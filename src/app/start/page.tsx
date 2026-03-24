@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Zap, Check, CheckCircle2, ArrowLeft } from "lucide-react";
 import { submitLead } from "./actions";
 
@@ -481,19 +482,31 @@ export default function StartPage() {
 
               {/* Case study card */}
               <div className="w-full max-w-md bg-darkgray border border-sage/10 rounded-xl p-6 mb-12">
-                <p className="font-satoshi text-xs text-sage uppercase tracking-wider mb-3">
+                <p className="font-satoshi text-xs text-sage uppercase tracking-wider mb-4">
                   While you wait, here&apos;s what a project looks like
                 </p>
-                <div className="aspect-video bg-charcoal rounded-lg mb-4 flex items-center justify-center border border-sage/10">
-                  <div className="text-center">
-                    <p className="font-anton text-xl uppercase text-white">
-                      Downtown BJJ
-                    </p>
-                    <p className="font-satoshi text-sm text-sage">
-                      San Diego
-                    </p>
+                {/* Browser frame with screenshot */}
+                <div className="bg-charcoal rounded-lg mb-5 overflow-hidden border border-sage/10">
+                  <div className="h-6 bg-darkgray border-b border-sage/10 flex items-center px-3 gap-1.5">
+                    <div className="w-2 h-2 rounded-full bg-red-400" />
+                    <div className="w-2 h-2 rounded-full bg-yellow" />
+                    <div className="w-2 h-2 rounded-full bg-green-400" />
+                  </div>
+                  <div className="relative aspect-video">
+                    <Image
+                      src="/case-studies/dtjj.png"
+                      alt="Downtown BJJ website"
+                      fill
+                      className="object-cover object-top"
+                    />
                   </div>
                 </div>
+                <h3 className="font-anton text-xl uppercase text-white mb-1">
+                  Downtown BJJ
+                </h3>
+                <p className="font-satoshi text-sm text-sage mb-3">
+                  San Diego
+                </p>
                 <p className="font-satoshi font-bold text-white text-sm border-l-2 border-yellow pl-3">
                   &ldquo;Built from scratch in one day.&rdquo;
                 </p>

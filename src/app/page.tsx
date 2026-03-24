@@ -201,7 +201,7 @@ export default function Home() {
             <div className="absolute inset-0 bg-[image:var(--background-image-grid-dark)] bg-[size:40px_40px] pointer-events-none" />
             <div className="relative z-10">
               <h2 className="font-anton text-5xl md:text-6xl uppercase leading-[0.9] mb-16 text-yellow">
-                THE CTRLSWING WAY
+                THE BETTER WAY
               </h2>
               <p className="font-satoshi text-xl text-white/90 mb-16 max-w-xl">
                 One person builds your whole system. That same person answers
