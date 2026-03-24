@@ -5,37 +5,43 @@ export function CaseStudyCard({
   location,
   description,
   proof,
-  variant,
   stagger,
   screenshot,
+  outerBg,
+  innerBg,
+  innerBorder,
+  chromeBg,
+  chromeBorder,
 }: {
   name: string;
   location: string;
   description: string;
   proof: string;
-  variant: "dark" | "light";
   stagger: boolean;
   screenshot?: string;
+  outerBg: string;
+  innerBg: string;
+  innerBorder: string;
+  chromeBg: string;
+  chromeBorder: string;
 }) {
-  const isDark = variant === "dark";
-
   return (
     <div className={`group cursor-pointer ${stagger ? "md:mt-12" : ""}`}>
       <div
-        className={`aspect-[4/3] ${isDark ? "bg-sage/20" : "bg-charcoal/5"} rounded-xl mb-6 overflow-hidden relative border border-charcoal/10`}
+        className={`aspect-[4/3] ${outerBg} rounded-xl mb-6 overflow-hidden relative border border-charcoal/10`}
       >
         <div
-          className={`absolute inset-4 ${isDark ? "bg-charcoal border-charcoal" : "bg-white border-charcoal/5"} shadow-xl rounded-lg border flex flex-col overflow-hidden transition-transform duration-500 group-hover:scale-105`}
+          className={`absolute inset-4 ${innerBg} ${innerBorder} shadow-xl rounded-lg border flex flex-col overflow-hidden transition-transform duration-500 group-hover:scale-105`}
         >
           {/* Browser chrome */}
           <div
-            className={`h-6 shrink-0 ${isDark ? "bg-darkgray border-sage/10" : "bg-charcoal/5 border-charcoal/10"} border-b flex items-center px-3 gap-1.5`}
+            className={`h-6 shrink-0 ${chromeBg} ${chromeBorder} border-b flex items-center px-3 gap-1.5`}
           >
             <div className="w-2 h-2 rounded-full bg-red-400" />
             <div className="w-2 h-2 rounded-full bg-yellow" />
             <div className="w-2 h-2 rounded-full bg-green-400" />
           </div>
-          {/* Screenshot or placeholder */}
+          {/* Screenshot */}
           <div className="flex-1 relative overflow-hidden">
             {screenshot ? (
               <Image
@@ -46,12 +52,8 @@ export function CaseStudyCard({
               />
             ) : (
               <div className="p-4 flex flex-col gap-2 h-full">
-                <div
-                  className={`h-4 w-1/2 ${isDark ? "bg-sage/20" : "bg-charcoal/10"} rounded`}
-                />
-                <div
-                  className={`h-20 w-full ${isDark ? "bg-sage/10" : "bg-charcoal/5"} rounded mt-2`}
-                />
+                <div className="h-4 w-1/2 bg-charcoal/10 rounded" />
+                <div className="h-20 w-full bg-charcoal/5 rounded mt-2" />
                 <div className="h-8 w-1/3 bg-yellow/30 rounded mt-auto" />
               </div>
             )}
