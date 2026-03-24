@@ -7,11 +7,7 @@ export function CaseStudyCard({
   proof,
   stagger,
   screenshot,
-  outerBg,
-  innerBg,
-  innerBorder,
-  chromeBg,
-  chromeBorder,
+  isDark,
 }: {
   name: string;
   location: string;
@@ -19,45 +15,38 @@ export function CaseStudyCard({
   proof: string;
   stagger: boolean;
   screenshot?: string;
-  outerBg: string;
-  innerBg: string;
-  innerBorder: string;
-  chromeBg: string;
-  chromeBorder: string;
+  isDark?: boolean;
 }) {
   return (
     <div className={`group cursor-pointer ${stagger ? "md:mt-12" : ""}`}>
+      {/* Browser frame as the card itself */}
       <div
-        className={`aspect-[4/3] ${outerBg} rounded-xl mb-6 overflow-hidden relative border border-charcoal/10`}
+        className={`rounded-xl mb-6 overflow-hidden border ${isDark ? "bg-charcoal border-charcoal" : "bg-white border-charcoal/10"} shadow-xl transition-transform duration-500 group-hover:scale-[1.02]`}
       >
+        {/* Chrome bar */}
         <div
-          className={`absolute inset-4 ${innerBg} ${innerBorder} shadow-xl rounded-lg border flex flex-col overflow-hidden transition-transform duration-500 group-hover:scale-105`}
+          className={`h-7 shrink-0 ${isDark ? "bg-darkgray border-sage/10" : "bg-charcoal/5 border-charcoal/10"} border-b flex items-center px-3 gap-1.5`}
         >
-          {/* Browser chrome */}
-          <div
-            className={`h-6 shrink-0 ${chromeBg} ${chromeBorder} border-b flex items-center px-3 gap-1.5`}
-          >
-            <div className="w-2 h-2 rounded-full bg-red-400" />
-            <div className="w-2 h-2 rounded-full bg-yellow" />
-            <div className="w-2 h-2 rounded-full bg-green-400" />
-          </div>
-          {/* Screenshot */}
-          <div className="flex-1 relative overflow-hidden">
-            {screenshot ? (
-              <Image
-                src={screenshot}
-                alt={`${name} website screenshot`}
-                fill
-                className="object-cover object-top"
-              />
-            ) : (
-              <div className="p-4 flex flex-col gap-2 h-full">
-                <div className="h-4 w-1/2 bg-charcoal/10 rounded" />
-                <div className="h-20 w-full bg-charcoal/5 rounded mt-2" />
-                <div className="h-8 w-1/3 bg-yellow/30 rounded mt-auto" />
-              </div>
-            )}
-          </div>
+          <div className="w-2 h-2 rounded-full bg-red-400" />
+          <div className="w-2 h-2 rounded-full bg-yellow" />
+          <div className="w-2 h-2 rounded-full bg-green-400" />
+        </div>
+        {/* Screenshot */}
+        <div className="relative aspect-[4/3] overflow-hidden">
+          {screenshot ? (
+            <Image
+              src={screenshot}
+              alt={`${name} website screenshot`}
+              fill
+              className="object-cover object-top"
+            />
+          ) : (
+            <div className="p-4 flex flex-col gap-2 h-full">
+              <div className="h-4 w-1/2 bg-charcoal/10 rounded" />
+              <div className="h-20 w-full bg-charcoal/5 rounded mt-2" />
+              <div className="h-8 w-1/3 bg-yellow/30 rounded mt-auto" />
+            </div>
+          )}
         </div>
       </div>
       <h3 className="font-anton text-2xl uppercase mb-2">{name}</h3>
