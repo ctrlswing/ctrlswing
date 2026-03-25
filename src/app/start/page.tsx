@@ -530,7 +530,7 @@ export default function StartPage() {
                 </a>
                 <span className="text-sage/30">&middot;</span>
                 <a
-                  href="https://linkedin.com/in/jacksondean"
+                  href="https://www.linkedin.com/in/ctrlswing/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-satoshi text-sm hover:text-yellow transition-colors"

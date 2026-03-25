@@ -18,7 +18,7 @@ export function Footer() {
             </svg>
           </a>
           <a
-            href="https://linkedin.com/in/jacksondean"
+            href="https://www.linkedin.com/in/ctrlswing/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-white hover:text-yellow transition-colors duration-200"
