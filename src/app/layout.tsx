@@ -10,9 +10,37 @@ const anton = Anton({
 });
 
 export const metadata: Metadata = {
-  title: "CTRLSWING | Your Marketing System, Built in Days",
+  title: {
+    default: "CTRLSWING | Your Marketing System, Built in Days",
+    template: "%s | CTRLSWING",
+  },
   description:
     "I build complete marketing systems for small businesses. Website, email, ads, SEO. Live and running in days, not months. San Diego and beyond.",
+  metadataBase: new URL("https://ctrlswing.com"),
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://ctrlswing.com",
+    siteName: "CTRLSWING",
+    title: "Your Entire Marketing System. Built and Running in Days.",
+    description:
+      "Website. Email. Ads. SEO. All of it. Set up, launched, and live before most agencies finish their proposal.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@ctrlswing",
+    creator: "@ctrlswing",
+    title: "Your Entire Marketing System. Built and Running in Days.",
+    description:
+      "Website. Email. Ads. SEO. All of it. Set up, launched, and live before most agencies finish their proposal.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  alternates: {
+    canonical: "https://ctrlswing.com",
+  },
 };
 
 export default function RootLayout({
