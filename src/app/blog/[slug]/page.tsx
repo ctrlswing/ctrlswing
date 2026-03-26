@@ -37,7 +37,7 @@ export default async function BlogArticle({ params }: Props) {
 
   return (
     <div className="flex flex-col bg-charcoal text-sage min-h-screen">
-      <Nav />
+      <Nav variant="dark" />
 
       <main className="flex-1 pt-20">
         {/* ARTICLE HERO */}
