@@ -17,7 +17,8 @@ type FormData = {
   location: string;
   email: string;
   phone: string;
-  website: string; // honeypot — bots fill this, humans don't see it
+  currentWebsite: string;
+  honeypot: string; // bots fill this, humans don't see it
 };
 
 const initialFormData: FormData = {
@@ -30,7 +31,8 @@ const initialFormData: FormData = {
   email: "",
   location: "",
   phone: "",
-  website: "",
+  currentWebsite: "",
+  honeypot: "",
 };
 
 export default function StartPage() {
@@ -418,16 +420,16 @@ export default function StartPage() {
 
               {/* Honeypot — hidden from humans, bots fill it */}
               <div aria-hidden="true" className="absolute -left-[9999px]">
-                <label htmlFor="website">Website</label>
+                <label htmlFor="honeypot">Website</label>
                 <input
-                  id="website"
+                  id="honeypot"
                   type="text"
-                  name="website"
+                  name="honeypot"
                   tabIndex={-1}
                   autoComplete="off"
-                  value={formData.website}
+                  value={formData.honeypot}
                   onChange={(e) =>
-                    setFormData((prev) => ({ ...prev, website: e.target.value }))
+                    setFormData((prev) => ({ ...prev, honeypot: e.target.value }))
                   }
                 />
               </div>
@@ -460,6 +462,13 @@ export default function StartPage() {
                     label: "Location",
                     placeholder: "Where is your business based? (city/state)",
                     type: "text",
+                    required: false,
+                  },
+                  {
+                    key: "currentWebsite" as const,
+                    label: "Got a website? Drop the link.",
+                    placeholder: "https://yourbusiness.com (optional)",
+                    type: "url",
                     required: false,
                   },
                   {

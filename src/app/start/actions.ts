@@ -10,7 +10,8 @@ type LeadData = {
   location: string;
   email: string;
   phone: string;
-  website: string; // honeypot field
+  currentWebsite: string;
+  honeypot: string;
 };
 
 const statusLabels: Record<string, string> = {
@@ -36,7 +37,7 @@ const timelineLabels: Record<string, string> = {
 
 export async function submitLead(data: LeadData) {
   // Honeypot check — bots fill hidden fields, real users don't
-  if (data.website) {
+  if (data.honeypot) {
     return { success: true }; // silently accept to not tip off bot
   }
 
@@ -87,6 +88,9 @@ export async function submitLead(data: LeadData) {
       },
       ...(data.phone
         ? [{ name: "Phone", value: data.phone, inline: true }]
+        : []),
+      ...(data.currentWebsite
+        ? [{ name: "Website", value: data.currentWebsite, inline: false }]
         : []),
     ],
     footer: {
