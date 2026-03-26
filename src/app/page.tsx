@@ -17,7 +17,7 @@ const caseStudies = [
     description: "Full site rebuild, branding, mobile optimization.",
     proof: "Built from scratch in one day.",
     stagger: false,
-    screenshot: "/case-studies/dtjj.png",
+    screenshot: "/case-studies/dtjj.webp",
     isDark: false,
   },
   {
@@ -26,7 +26,7 @@ const caseStudies = [
     description: "11+ pages, booking system integration, SEO overhaul.",
     proof: "Built and maintained. 51 updates and counting.",
     stagger: true,
-    screenshot: "/case-studies/valleballet.png",
+    screenshot: "/case-studies/valleballet.webp",
     isDark: true,
   },
   {
@@ -35,7 +35,7 @@ const caseStudies = [
     description: "Store locator, FAQ, SMS capture, scalable SEO pages.",
     proof: "Complete brand site for a national product.",
     stagger: false,
-    screenshot: "/case-studies/bornsimple.png",
+    screenshot: "/case-studies/bornsimple.webp",
     isDark: false,
   },
   {
@@ -44,7 +44,7 @@ const caseStudies = [
     description: "23+ articles, email campaigns, comprehensive Google Ads.",
     proof: "Full marketing system. Content, email, and paid ads.",
     stagger: true,
-    screenshot: "/case-studies/fungushead.png",
+    screenshot: "/case-studies/fungushead.webp",
     isDark: true,
   },
 ];
@@ -87,14 +87,96 @@ const faqs = [
   },
 ];
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      name: "CTRLSWING",
+      url: "https://ctrlswing.com",
+      description:
+        "Complete marketing systems for small businesses. Website, email, ads, SEO. Built and running in days.",
+      founder: {
+        "@type": "Person",
+        name: "Jackson Dean",
+      },
+      areaServed: {
+        "@type": "Country",
+        name: "US",
+      },
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "San Diego",
+        addressRegion: "CA",
+        addressCountry: "US",
+      },
+      sameAs: [
+        "https://x.com/ctrlswing",
+        "https://linkedin.com/in/jacksonrdean",
+      ],
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Marketing Services",
+        itemListElement: [
+          {
+            "@type": "Offer",
+            name: "Website Sprint",
+            price: "3500",
+            priceCurrency: "USD",
+            description:
+              "Custom site, SEO, mobile, copy, analytics, hosting. 5 days or less.",
+          },
+          {
+            "@type": "Offer",
+            name: "The Full System",
+            price: "5500",
+            priceCurrency: "USD",
+            description:
+              "Everything in Website Sprint plus 4 email/SMS flows and Google Ads setup. 7 days or less.",
+          },
+          {
+            "@type": "Offer",
+            name: "Monthly Maintenance",
+            price: "400",
+            priceCurrency: "USD",
+            description:
+              "Hosting, continuous updates, technical support, and minor changes.",
+          },
+        ],
+      },
+    },
+    {
+      "@type": "WebSite",
+      name: "CTRLSWING",
+      url: "https://ctrlswing.com",
+    },
+    {
+      "@type": "FAQPage",
+      mainEntity: faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.answer,
+        },
+      })),
+    },
+  ],
+};
+
 export default function Home() {
   return (
     <div className="flex flex-col">
+      {/* JSON-LD structured data — static content from hardcoded constants, safe to inline */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Nav />
 
-      <main className="flex-1 pt-20">
+      <main id="main" className="flex-1 pt-20">
         {/* HERO */}
-        <section className="relative bg-[image:var(--background-image-grid-light)] bg-[size:40px_40px] py-24 md:py-32 px-6 flex flex-col items-center text-center overflow-hidden border-b border-charcoal/10">
+        <section aria-label="Overview" className="relative bg-[image:var(--background-image-grid-light)] bg-[size:40px_40px] py-24 md:py-32 px-6 flex flex-col items-center text-center overflow-hidden border-b border-charcoal/10">
           <div className="inline-flex items-center gap-2 border border-charcoal/20 bg-white px-4 py-1.5 rounded-full mb-10 shadow-sm">
             <span className="w-2 h-2 rounded-full bg-yellow animate-pulse" />
             <span className="text-xs font-bold tracking-widest uppercase">
@@ -297,6 +379,7 @@ export default function Home() {
         {/* PRICING */}
         <section
           id="pricing"
+          aria-label="Pricing"
           className="py-24 md:py-32 px-6 bg-[image:var(--background-image-grid-light)] bg-[size:40px_40px] border-b border-charcoal/10"
         >
           <div className="max-w-6xl mx-auto">
@@ -432,7 +515,7 @@ export default function Home() {
         </section>
 
         {/* CASE STUDIES */}
-        <section className="py-24 md:py-32 px-6 bg-white border-b border-charcoal/10">
+        <section aria-label="Case studies" className="py-24 md:py-32 px-6 bg-white border-b border-charcoal/10">
           <div className="max-w-[1400px] mx-auto">
             <h2 className="font-anton text-5xl md:text-6xl uppercase leading-[0.9] mb-16">
               Work I&apos;ve done. Businesses like yours.
@@ -448,6 +531,7 @@ export default function Home() {
         {/* FAQ */}
         <section
           id="faq"
+          aria-label="Frequently asked questions"
           className="py-24 md:py-32 px-6 bg-white border-b border-charcoal/10"
         >
           <div className="max-w-3xl mx-auto">
@@ -465,6 +549,7 @@ export default function Home() {
         {/* FINAL CTA */}
         <section
           id="contact"
+          aria-label="Get started"
           className="py-32 px-6 bg-yellow text-charcoal relative overflow-hidden flex flex-col items-center justify-center text-center"
         >
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">

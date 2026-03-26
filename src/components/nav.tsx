@@ -1,42 +1,93 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import { Menu, X } from "lucide-react";
 
 export function Nav() {
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape" && open) setOpen(false);
+    }
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [open]);
+
   return (
-    <nav className="fixed top-0 left-0 right-0 h-20 bg-white/90 backdrop-blur-md z-50 border-b border-charcoal/10 px-6 md:px-12 flex items-center justify-between">
-      <Link
-        href="/"
-        className="font-anton text-3xl uppercase tracking-wide flex items-baseline"
-      >
-        CTRLSWING<span className="text-yellow">.</span>
-      </Link>
-      <div className="hidden md:flex items-center gap-8 font-satoshi text-sm font-medium">
-        <a
-          href="#work"
-          className="hover:text-yellow transition-colors duration-200"
-        >
-          WORK
-        </a>
-        <a
-          href="#pricing"
-          className="hover:text-yellow transition-colors duration-200"
-        >
-          PRICING
-        </a>
-        <a
-          href="#faq"
-          className="hover:text-yellow transition-colors duration-200"
-        >
-          FAQ
-        </a>
-      </div>
-      <div className="flex items-center gap-6">
+    <nav className="fixed top-0 left-0 right-0 z-50">
+      <div className="h-20 bg-white/90 backdrop-blur-md border-b border-charcoal/10 px-6 md:px-12 flex items-center justify-between">
         <Link
-          href="/start"
-          className="bg-charcoal text-white font-anton uppercase text-lg px-6 py-2 rounded-full hover:bg-yellow hover:text-charcoal transition-all duration-300 hover:scale-105"
+          href="/"
+          className="font-anton text-3xl uppercase tracking-wide flex items-baseline"
         >
-          Get Started
+          CTRLSWING<span className="text-yellow">.</span>
         </Link>
+        <div className="hidden md:flex items-center gap-8 font-satoshi text-sm font-medium">
+          <a
+            href="#work"
+            className="hover:text-yellow transition-colors duration-200"
+          >
+            WORK
+          </a>
+          <a
+            href="#pricing"
+            className="hover:text-yellow transition-colors duration-200"
+          >
+            PRICING
+          </a>
+          <a
+            href="#faq"
+            className="hover:text-yellow transition-colors duration-200"
+          >
+            FAQ
+          </a>
+        </div>
+        <div className="flex items-center gap-4">
+          <Link
+            href="/start"
+            className="bg-charcoal text-white font-anton uppercase text-lg px-6 py-2 rounded-full hover:bg-yellow hover:text-charcoal transition-all duration-300 hover:scale-105"
+          >
+            Get Started
+          </Link>
+          <button
+            onClick={() => setOpen(!open)}
+            className="md:hidden p-2"
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+          >
+            {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
       </div>
+
+      {/* Mobile menu */}
+      {open && (
+        <div className="md:hidden bg-white border-b border-charcoal/10 px-6 py-6 flex flex-col gap-4 font-satoshi text-lg font-medium shadow-lg">
+          <a
+            href="#work"
+            onClick={() => setOpen(false)}
+            className="py-2 hover:text-yellow transition-colors"
+          >
+            WORK
+          </a>
+          <a
+            href="#pricing"
+            onClick={() => setOpen(false)}
+            className="py-2 hover:text-yellow transition-colors"
+          >
+            PRICING
+          </a>
+          <a
+            href="#faq"
+            onClick={() => setOpen(false)}
+            className="py-2 hover:text-yellow transition-colors"
+          >
+            FAQ
+          </a>
+        </div>
+      )}
     </nav>
   );
 }

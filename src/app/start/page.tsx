@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Zap, Check, CheckCircle2, ArrowLeft } from "lucide-react";
+import { track } from "@vercel/analytics";
 import { submitLead } from "./actions";
 
 type FormData = {
@@ -16,6 +17,7 @@ type FormData = {
   location: string;
   email: string;
   phone: string;
+  website: string; // honeypot — bots fill this, humans don't see it
 };
 
 const initialFormData: FormData = {
@@ -28,12 +30,14 @@ const initialFormData: FormData = {
   email: "",
   location: "",
   phone: "",
+  website: "",
 };
 
 export default function StartPage() {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState<FormData>(initialFormData);
   const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
   const totalSteps = 4;
 
@@ -58,7 +62,11 @@ export default function StartPage() {
   }
 
   function nextStep() {
-    if (step < totalSteps) setStep(step + 1);
+    if (step < totalSteps) {
+      const nextStepNum = step + 1;
+      track("form_step", { step: nextStepNum });
+      setStep(nextStepNum);
+    }
   }
 
   function goBack() {
@@ -76,9 +84,19 @@ export default function StartPage() {
 
   async function handleSubmit() {
     setSubmitting(true);
-    await submitLead(formData);
+    const result = await submitLead(formData);
     setSubmitting(false);
-    setStep(5);
+    if (result.success) {
+      track("form_submitted", {
+        timeline: formData.timeline,
+        needs: formData.needs.join(","),
+        status: formData.currentStatus,
+      });
+      setStep(5);
+    } else {
+      track("form_error");
+      setError("Something went wrong. Try again, or email me directly at jackson@ctrlswing.com");
+    }
   }
 
   return (
@@ -109,6 +127,18 @@ export default function StartPage() {
           </div>
         )}
       </header>
+
+      {/* Progress bar */}
+      {step <= totalSteps && (
+        <div className="relative z-20 w-full px-6 md:px-12">
+          <div className="h-1 bg-sage/10 rounded-full overflow-hidden">
+            <div
+              className="h-full bg-yellow rounded-full transition-all duration-500 ease-out"
+              style={{ width: `${(step / totalSteps) * 100}%` }}
+            />
+          </div>
+        </div>
+      )}
 
       {/* Main */}
       <main className="relative z-10 flex-1 flex flex-col justify-center items-center px-6 py-12 w-full">
@@ -159,12 +189,14 @@ export default function StartPage() {
                       value={option.value}
                       className="sr-only"
                       checked={formData.currentStatus === option.value}
-                      onChange={() =>
+                      onChange={() => {
                         setFormData((prev) => ({
                           ...prev,
                           currentStatus: option.value,
-                        }))
-                      }
+                        }));
+                        track("form_step", { step: 2 });
+                        setTimeout(() => setStep(2), 300);
+                      }}
                     />
                     <span className="font-satoshi text-lg text-white font-medium">
                       {option.label}
@@ -321,12 +353,14 @@ export default function StartPage() {
                     value="yesterday"
                     className="sr-only"
                     checked={formData.timeline === "yesterday"}
-                    onChange={() =>
+                    onChange={() => {
                       setFormData((prev) => ({
                         ...prev,
                         timeline: "yesterday",
-                      }))
-                    }
+                      }));
+                      track("form_step", { step: 4, timeline: "yesterday" });
+                      setTimeout(() => setStep(4), 300);
+                    }}
                   />
                   <div className="flex items-center gap-2">
                     <Zap className="text-yellow w-5 h-5" />
@@ -354,12 +388,14 @@ export default function StartPage() {
                       value={option.value}
                       className="sr-only"
                       checked={formData.timeline === option.value}
-                      onChange={() =>
+                      onChange={() => {
                         setFormData((prev) => ({
                           ...prev,
                           timeline: option.value,
-                        }))
-                      }
+                        }));
+                        track("form_step", { step: 4, timeline: option.value });
+                        setTimeout(() => setStep(4), 300);
+                      }}
                     />
                     <span className="font-satoshi text-lg text-white font-medium">
                       {option.label}
@@ -392,61 +428,100 @@ export default function StartPage() {
                 </h2>
               </div>
 
+              {/* Honeypot — hidden from humans, bots fill it */}
+              <div aria-hidden="true" className="absolute -left-[9999px]">
+                <label htmlFor="website">Website</label>
+                <input
+                  id="website"
+                  type="text"
+                  name="website"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={formData.website}
+                  onChange={(e) =>
+                    setFormData((prev) => ({ ...prev, website: e.target.value }))
+                  }
+                />
+              </div>
+
               <div className="space-y-6 mb-12">
                 {[
                   {
                     key: "name" as const,
+                    label: "Your name",
                     placeholder: "Your name",
                     type: "text",
                     required: true,
                   },
                   {
                     key: "businessName" as const,
+                    label: "Business name",
                     placeholder: "Business name",
                     type: "text",
                     required: true,
                   },
                   {
                     key: "businessDesc" as const,
+                    label: "What does your business do?",
                     placeholder: "What does your business do?",
                     type: "text",
                     required: true,
                   },
                   {
                     key: "location" as const,
+                    label: "Location",
                     placeholder: "Where is your business based? (city/state)",
                     type: "text",
                     required: false,
                   },
                   {
                     key: "email" as const,
+                    label: "Email",
                     placeholder: "Email",
                     type: "email",
                     required: true,
                   },
                   {
                     key: "phone" as const,
+                    label: "Phone",
                     placeholder: "Phone (optional, but fastest way to reach you)",
                     type: "tel",
                     required: false,
                   },
                 ].map((field) => (
-                  <input
-                    key={field.key}
-                    type={field.type}
-                    placeholder={field.placeholder}
-                    required={field.required}
-                    value={formData[field.key]}
-                    onChange={(e) =>
-                      setFormData((prev) => ({
-                        ...prev,
-                        [field.key]: e.target.value,
-                      }))
-                    }
-                    className="w-full bg-transparent border-0 border-b border-sage/20 py-4 text-white font-satoshi text-lg focus:ring-0 focus:border-yellow focus:outline-none placeholder-sage transition-colors"
-                  />
+                  <div key={field.key} className="relative">
+                    <label
+                      htmlFor={field.key}
+                      className={`absolute left-0 font-satoshi transition-all duration-200 pointer-events-none ${
+                        formData[field.key]
+                          ? "text-xs text-yellow -top-2"
+                          : "text-lg text-sage top-4"
+                      }`}
+                    >
+                      {field.label}{field.required && " *"}
+                    </label>
+                    <input
+                      id={field.key}
+                      type={field.type}
+                      required={field.required}
+                      value={formData[field.key]}
+                      onChange={(e) =>
+                        setFormData((prev) => ({
+                          ...prev,
+                          [field.key]: e.target.value,
+                        }))
+                      }
+                      className="w-full bg-transparent border-0 border-b border-sage/20 py-4 text-white font-satoshi text-lg focus:ring-0 focus:border-yellow focus:outline-none transition-colors"
+                    />
+                  </div>
                 ))}
               </div>
+
+              {error && (
+                <p className="text-red-400 font-satoshi text-sm text-center mb-4">
+                  {error}
+                </p>
+              )}
 
               <button
                 type="button"
@@ -494,7 +569,7 @@ export default function StartPage() {
                   </div>
                   <div className="relative aspect-video">
                     <Image
-                      src="/case-studies/dtjj.png"
+                      src="/case-studies/dtjj.webp"
                       alt="Downtown BJJ website"
                       fill
                       className="object-cover object-top"

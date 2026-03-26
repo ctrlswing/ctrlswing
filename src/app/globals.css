@@ -60,3 +60,9 @@ html {
 body {
   font-family: "Satoshi", sans-serif;
 }
+
+/* Focus-visible: yellow ring for keyboard navigation, consistent with brand */
+:focus-visible {
+  outline: 2px solid #ffe17c;
+  outline-offset: 2px;
+}

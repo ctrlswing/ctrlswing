@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     template: "%s | CTRLSWING",
   },
   description:
-    "I build complete marketing systems for small businesses. Website, email, ads, SEO. Live and running in days, not months. San Diego and beyond.",
+    "Complete marketing systems for small businesses, built and running in days. Website, email, ads, SEO. No retainers, no mystery pricing. One person builds everything. San Diego and beyond.",
   metadataBase: new URL("https://ctrlswing.com"),
   openGraph: {
     type: "website",
@@ -53,12 +53,20 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${anton.variable} scroll-smooth`}>
       <head>
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://api.fontshare.com" crossOrigin="anonymous" />
         <link
           href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap"
           rel="stylesheet"
         />
       </head>
       <body className="min-h-screen bg-white text-charcoal font-satoshi antialiased">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-yellow focus:text-charcoal focus:font-anton focus:uppercase focus:px-6 focus:py-3 focus:rounded-lg focus:shadow-lg"
+        >
+          Skip to content
+        </a>
         {children}
         <Analytics />
         <SpeedInsights />
