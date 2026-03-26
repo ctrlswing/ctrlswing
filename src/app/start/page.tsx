@@ -128,18 +128,6 @@ export default function StartPage() {
         )}
       </header>
 
-      {/* Progress bar */}
-      {step <= totalSteps && (
-        <div className="relative z-20 w-full px-6 md:px-12">
-          <div className="h-1 bg-sage/10 rounded-full overflow-hidden">
-            <div
-              className="h-full bg-yellow rounded-full transition-all duration-500 ease-out"
-              style={{ width: `${(step / totalSteps) * 100}%` }}
-            />
-          </div>
-        </div>
-      )}
-
       {/* Main */}
       <main className="relative z-10 flex-1 flex flex-col justify-center items-center px-6 py-12 w-full">
         <div className="w-full max-w-2xl mx-auto">
@@ -572,6 +560,7 @@ export default function StartPage() {
                       src="/case-studies/dtjj.webp"
                       alt="Downtown BJJ website"
                       fill
+                      sizes="(max-width: 768px) 100vw, 400px"
                       className="object-cover object-top"
                     />
                   </div>
