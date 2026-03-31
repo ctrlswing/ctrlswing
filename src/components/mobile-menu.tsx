@@ -5,8 +5,8 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
+  { href: "/tools", label: "TOOLS" },
   { href: "/work", label: "WORK" },
-  { href: "/pricing", label: "PRICING" },
   { href: "/blog", label: "BLOG" },
 ];
 
@@ -55,6 +55,13 @@ export function MobileMenu({
               {link.label}
             </Link>
           ))}
+          <Link
+            href="/tools"
+            onClick={() => setOpen(false)}
+            className="mt-2 w-full text-center font-anton uppercase text-lg px-6 py-3 rounded-full bg-yellow text-charcoal hover:bg-charcoal hover:text-white transition-colors"
+          >
+            Browse Tools
+          </Link>
         </div>
       )}
     </>

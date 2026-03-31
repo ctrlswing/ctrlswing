@@ -2,8 +2,8 @@ import Link from "next/link";
 import { MobileMenu } from "./mobile-menu";
 
 const navLinks = [
+  { href: "/tools", label: "TOOLS" },
   { href: "/work", label: "WORK" },
-  { href: "/pricing", label: "PRICING" },
   { href: "/blog", label: "BLOG" },
 ];
 
@@ -44,14 +44,10 @@ export function Nav({ variant = "light" }: { variant?: "light" | "dark" }) {
         </div>
         <div className="flex items-center gap-4">
           <Link
-            href="/start"
-            className={`font-anton uppercase text-lg px-6 py-2 rounded-full transition-all duration-300 hover:scale-105 ${
-              isDark
-                ? "bg-yellow text-charcoal hover:bg-white"
-                : "bg-charcoal text-white hover:bg-yellow hover:text-charcoal"
-            }`}
+            href="/tools"
+            className="font-anton uppercase text-lg px-6 py-2 rounded-full transition-all duration-300 hover:scale-105 bg-yellow text-charcoal hover:bg-charcoal hover:text-white"
           >
-            Get Started
+            Browse Tools
           </Link>
           <MobileMenu variant={variant} />
         </div>
