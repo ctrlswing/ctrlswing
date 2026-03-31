@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Get Started",
+  title: "Book a Strategy Session -- ctrlswing",
   description:
-    "Tell me about your business. Takes 2 minutes. I'll get back to you within 24 hours with a scope, timeline, and price.",
+    "30 minutes, $99. Tell me about your project and I will come prepared with a plan. The $99 credits toward any retainer.",
   robots: {
     index: false,
   },

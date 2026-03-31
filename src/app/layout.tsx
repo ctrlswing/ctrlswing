@@ -13,28 +13,28 @@ const anton = Anton({
 
 export const metadata: Metadata = {
   title: {
-    default: "CTRLSWING | Your Marketing System, Built in Days",
-    template: "%s | CTRLSWING",
+    default: "ctrlswing -- AI Marketing Strategy + Tools for Small Businesses",
+    template: "%s | ctrlswing",
   },
   description:
-    "Complete marketing systems for small businesses, built and running in days. Website, email, ads, SEO. No retainers, no mystery pricing. One person builds everything. San Diego and beyond.",
+    "Strategy sessions, Claude Code skills, and AI marketing tools for small business owners. 30 minutes of clarity. Tools that do the work. Built by a practitioner who uses them daily.",
   metadataBase: new URL("https://ctrlswing.com"),
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://ctrlswing.com",
-    siteName: "CTRLSWING",
-    title: "Your Entire Marketing System. Built and Running in Days.",
+    siteName: "ctrlswing",
+    title: "Your marketing isn't broken. It's just outdated.",
     description:
-      "Website. Email. Ads. SEO. All of it. Set up, launched, and live before most agencies finish their proposal.",
+      "Strategy sessions, Claude Code skills, and AI marketing tools for small business owners. 30 minutes of clarity. Tools that do the work.",
   },
   twitter: {
     card: "summary_large_image",
     site: "@ctrlswing",
     creator: "@ctrlswing",
-    title: "Your Entire Marketing System. Built and Running in Days.",
+    title: "Your marketing isn't broken. It's just outdated.",
     description:
-      "Website. Email. Ads. SEO. All of it. Set up, launched, and live before most agencies finish their proposal.",
+      "Strategy sessions, Claude Code skills, and AI marketing tools for small business owners. 30 minutes of clarity. Tools that do the work.",
   },
   robots: {
     index: true,
