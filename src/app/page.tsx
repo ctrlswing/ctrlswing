@@ -1,440 +1,537 @@
 import Link from "next/link";
+import { X, CheckCircle2, Mail } from "lucide-react";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
+import { CaseStudyCard } from "@/components/case-study-card";
+import { FaqItem } from "@/components/faq-item";
 import { Button } from "@/components/ui/button";
 import { SectionHeader } from "@/components/ui/section-header";
+import { CtaBlock } from "@/components/ui/cta-block";
 
+const caseStudies = [
+  {
+    name: "Downtown BJJ",
+    location: "San Diego",
+    description: "Full site rebuild, branding, mobile optimization.",
+    proof: "Built from scratch in one day.",
+    stagger: false,
+    screenshot: "/case-studies/dtjj.webp",
+    isDark: false,
+  },
+  {
+    name: "Valle Ballet",
+    location: "San Diego",
+    description: "11+ pages, booking system integration, SEO overhaul.",
+    proof: "Built and maintained. 51 updates and counting.",
+    stagger: true,
+    screenshot: "/case-studies/valleballet.webp",
+    isDark: true,
+  },
+  {
+    name: "BornSimple",
+    location: "National CPG",
+    description: "Store locator, FAQ, SMS capture, scalable SEO pages.",
+    proof: "Complete brand site for a national product.",
+    stagger: false,
+    screenshot: "/case-studies/bornsimple.webp",
+    isDark: false,
+  },
+  {
+    name: "Fungushead",
+    location: "E-Commerce",
+    description: "23+ articles, email campaigns, comprehensive Google Ads.",
+    proof: "Full marketing system. Content, email, and paid ads.",
+    stagger: true,
+    screenshot: "/case-studies/fungushead.webp",
+    isDark: true,
+  },
+];
+
+const faqs = [
+  {
+    question: "What makes this different from hiring an agency?",
+    answer:
+      "Agencies juggle dozens of clients, farm work out to juniors, and bill you for project management overhead. Here, the person who scopes your project is the same person who builds it, tests it, and picks up the phone when you call. No layers, no handoffs.",
+  },
+  {
+    question: "What if I already have a website?",
+    answer:
+      "I can either port your existing content over to a faster, high-converting foundation, or if your current site is solid, focus purely on the marketing flows (Ads, Email, SEO).",
+  },
+  {
+    question: "Do I own everything you build?",
+    answer:
+      "100%. Once paid in full, all assets, accounts, and code belong to you. No hostage situations.",
+  },
+  {
+    question: "What industries do you work with?",
+    answer:
+      "Local services, e-commerce, SaaS, and boutique agencies. The fundamental mechanics of a good marketing system apply across the board.",
+  },
+  {
+    question: "What if I've been burned by an agency before?",
+    answer:
+      "That's exactly who this is for. You see the full scope, timeline, and price before a single dollar changes hands. One person does the work, one person is accountable. No surprises.",
+  },
+  {
+    question: "Do you manage the ads after launch?",
+    answer:
+      "Yes, I offer ongoing ad management as an add-on service ($750/mo) for businesses that want continuous optimization.",
+  },
+  {
+    question: "What does the $400/month maintenance cover?",
+    answer:
+      "Premium hosting, daily backups, security updates, technical support, and minor content updates (swapping images, updating text). It replaces your hosting bill, your 'tech guy,' and the agency retainer you'd otherwise need. Cancel anytime.",
+  },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      name: "CTRLSWING",
+      url: "https://ctrlswing.com",
+      description:
+        "Modern marketing systems for small businesses. Website, email, ads, SEO — built by one person with purpose-built tools, in days.",
+      founder: {
+        "@type": "Person",
+        name: "Jackson Dean",
+      },
+      areaServed: {
+        "@type": "Country",
+        name: "US",
+      },
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "San Diego",
+        addressRegion: "CA",
+        addressCountry: "US",
+      },
+      sameAs: [
+        "https://x.com/ctrlswing",
+        "https://www.linkedin.com/in/ctrlswing/",
+      ],
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Marketing Services",
+        itemListElement: [
+          {
+            "@type": "Offer",
+            name: "The System",
+            price: "5500",
+            priceCurrency: "USD",
+            description:
+              "Complete marketing system: custom website, SEO, email/SMS automations, Google Ads setup, analytics, and strategy session.",
+          },
+          {
+            "@type": "Offer",
+            name: "Monthly Maintenance",
+            price: "400",
+            priceCurrency: "USD",
+            description:
+              "Hosting, continuous updates, technical support, and minor changes. Cancel anytime.",
+          },
+        ],
+      },
+    },
+    {
+      "@type": "WebSite",
+      name: "CTRLSWING",
+      url: "https://ctrlswing.com",
+    },
+    {
+      "@type": "FAQPage",
+      mainEntity: faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.answer,
+        },
+      })),
+    },
+  ],
+};
 
 export default function Home() {
   return (
     <div className="flex flex-col">
+      {/* JSON-LD structured data — static content from hardcoded constants, safe to inline */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Nav />
 
       <main id="main" className="flex-1 pt-20">
+        {/* HERO */}
+        <section aria-label="Overview" className="relative bg-[image:var(--background-image-grid-light)] bg-[size:40px_40px] py-24 md:py-32 px-6 flex flex-col items-center text-center overflow-hidden border-b border-charcoal/10">
+          <div className="inline-flex items-center gap-2 border border-charcoal/20 bg-white px-4 py-1.5 rounded-full mb-10 shadow-sm">
+            <span className="w-2 h-2 rounded-full bg-yellow animate-pulse" />
+            <span className="text-xs font-bold tracking-widest uppercase">
+              Marketing System
+            </span>
+          </div>
 
-        {/* ── SECTION 1: HERO ── */}
-        <section
-          aria-label="Introduction"
-          className="relative bg-charcoal bg-[image:var(--background-image-grid-dark)] bg-[size:40px_40px] py-24 md:py-36 px-6 flex flex-col items-center text-center overflow-hidden border-b border-sage/10"
-        >
-          <p className="font-satoshi text-xs text-sage/50 uppercase tracking-widest font-medium mb-6">
-            Claude Code Plugins
-          </p>
-          <h1 className="font-anton text-5xl md:text-7xl lg:text-8xl uppercase leading-[0.9] max-w-5xl mx-auto mb-8 text-white">
-            Claude Code Plugins for Marketers Who Ship.
+          <h1 className="font-anton text-6xl md:text-8xl lg:text-9xl uppercase leading-[0.9] max-w-6xl mx-auto mb-8 relative z-10">
+            Your marketing isn&apos;t broken. It&apos;s just{" "}
+            <span className="relative inline-block whitespace-nowrap px-2">
+              <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[70%] bg-yellow transform rotate-[15deg] z-[-1]" />
+              <span className="relative z-10">outdated.</span>
+            </span>
           </h1>
-          <p className="font-satoshi text-lg md:text-xl text-sage/70 max-w-xl mx-auto mb-10">
-            Strategy frameworks, content engines, and frontend workflows. Built
-            from real client projects. Ready to run in your terminal.
+
+          <p className="font-satoshi text-lg md:text-xl text-charcoal/70 max-w-2xl mx-auto mb-16">
+            Whether you&apos;re starting fresh or replacing what stopped
+            working — I&apos;ll build your entire system in one sprint.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center gap-5 mb-10">
-            <Button href="/tools" variant="primary" size="xl">
-              Browse Tools
-            </Button>
-            <Button href="/start" variant="ghost">
-              Book a Strategy Session / $99
-            </Button>
-          </div>
-
-          <p className="font-satoshi text-xs text-sage/40 max-w-sm mx-auto">
-            Built by Jackson Dean. 4 years of client work turned into tools you
-            can use today.
+          <Button href="/start" variant="primary" size="xl" className="mb-4">
+            Tell me about your business
+          </Button>
+          <p className="font-satoshi text-sm text-charcoal/50 mb-1">
+            No retainers. No mystery pricing. Full scope before anything starts.
           </p>
+          <a
+            href="mailto:jackson@ctrlswing.com"
+            className="inline-flex items-center gap-1.5 font-satoshi text-sm text-charcoal/50 hover:text-charcoal transition-colors"
+          >
+            <Mail className="w-3.5 h-3.5" />
+            or just email jackson@ctrlswing.com
+          </a>
         </section>
 
-        {/* ── SECTION 2: FEATURED PLUGINS ── */}
-        <section
-          aria-label="Featured plugins"
-          className="py-24 md:py-32 px-6 bg-white border-b border-charcoal/10"
-        >
-          <div className="max-w-7xl mx-auto">
-            <div className="mb-16 max-w-2xl">
-              <SectionHeader
-                heading="The Tools"
-                subtitle="Full plugins bundle strategy, research, and build steps into one workflow. Individual skills handle a single job."
-                variant="light"
-              />
-            </div>
+        {/* TRUST STRIP */}
+        <section className="border-b border-charcoal/10 bg-white py-8 px-6">
+          <div className="max-w-7xl mx-auto flex flex-wrap justify-center items-center gap-x-8 gap-y-4 text-charcoal/80 font-satoshi text-sm md:text-base font-medium uppercase tracking-wide">
+            <span>25+ brands managed</span>
+            <span className="hidden sm:block text-charcoal/30">&bull;</span>
+            <span>Sites launched in 24 hours</span>
+            <span className="hidden md:block text-charcoal/30">&bull;</span>
+            <span>San Diego, CA</span>
+          </div>
+        </section>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-              {/* Creative Strategist Engine */}
-              <div className="bg-charcoal text-white rounded-2xl p-8 md:p-10 flex flex-col">
-                <div className="flex items-start justify-between mb-2">
-                  <div>
-                    <p className="font-satoshi text-xs text-sage/50 uppercase tracking-wider font-medium mb-1">
-                      Plugin
-                    </p>
-                    <h3 className="font-anton text-3xl uppercase text-yellow leading-tight">
-                      Creative Strategist Engine
-                    </h3>
-                  </div>
-                  <div className="font-anton text-2xl text-white shrink-0 ml-4">
-                    $40
-                  </div>
-                </div>
-                <p className="font-satoshi text-xs text-sage/50 uppercase tracking-wider mb-6">
-                  4 skills + research agent
-                </p>
-                <p className="font-satoshi text-sage/80 text-base leading-relaxed mb-8 flex-1">
-                  A complete research-to-strategy pipeline. Give it a business
-                  and it returns audience personas, content angles, keyword
-                  clusters, and a publishing calendar. The same workflow I ran
-                  for every client project, packaged as a plugin.
-                </p>
-                <div className="space-y-0 mb-8">
-                  <p className="font-satoshi text-xs text-sage/40 uppercase tracking-wider mb-3">
-                    What you get
+        {/* PROBLEM / SOLUTION SPLIT */}
+        <section className="w-full flex flex-col lg:flex-row">
+          {/* Problem */}
+          <div className="w-full lg:w-1/2 bg-charcoal text-white p-12 md:p-24 border-b lg:border-b-0 lg:border-r border-sage/10 relative overflow-hidden">
+            <div className="absolute inset-0 bg-[image:var(--background-image-grid-dark)] bg-[size:40px_40px] pointer-events-none" />
+            <div className="relative z-10">
+              <h2 className="font-anton text-5xl md:text-6xl uppercase leading-[0.9] mb-16">
+                WHAT&apos;S NOT WORKING
+              </h2>
+              <ul className="space-y-8 mb-16">
+                <li className="flex items-start gap-4">
+                  <X className="text-error w-8 h-8 shrink-0 mt-1" />
+                  <p className="font-satoshi text-lg text-sage/80">
+                    <strong className="text-white font-bold block mb-1">
+                      You paid someone and got ghosted.
+                    </strong>
+                    The freelancer disappeared. The agency sends invoices but
+                    no results. You&apos;re stuck with a half-finished site and
+                    no answers.
                   </p>
-                  {[
-                    "Audience personas with pain points, goals, and language patterns",
-                    "Content angles mapped to each persona",
-                    "Keyword clusters grouped by intent",
-                    "A 30-day publishing calendar with topics, formats, and distribution channels",
-                  ].map((item) => (
-                    <div
-                      key={item}
-                      className="flex items-start gap-3 py-2.5 border-t border-sage/10"
-                    >
-                      <span className="text-yellow mt-0.5 shrink-0 text-sm">+</span>
-                      <span className="font-satoshi text-sm text-sage/70">
-                        {item}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-                <Button href="/tools" variant="primary" size="lg" className="w-full">
-                  Get the Plugin / $40
-                </Button>
-              </div>
-
-              {/* Frontend Designer */}
-              <div className="bg-white border border-charcoal/10 rounded-2xl p-8 md:p-10 flex flex-col hover:shadow-xl transition-shadow duration-300">
-                <div className="flex items-start justify-between mb-2">
-                  <div>
-                    <p className="font-satoshi text-xs text-charcoal/40 uppercase tracking-wider font-medium mb-1">
-                      Plugin
-                    </p>
-                    <h3 className="font-anton text-3xl uppercase leading-tight">
-                      Frontend Designer
-                    </h3>
-                  </div>
-                  <div className="font-anton text-2xl shrink-0 ml-4">$40</div>
-                </div>
-                <p className="font-satoshi text-xs text-charcoal/40 uppercase tracking-wider mb-6">
-                  8 skills + 2 agents
-                </p>
-                <p className="font-satoshi text-charcoal/70 text-base leading-relaxed mb-8 flex-1">
-                  Component-first frontend builds inside Claude Code. Generates
-                  design systems, page layouts, and production-ready components.
-                  It follows the same approach I used to build sites that
-                  actually convert, not just look good in a screenshot.
-                </p>
-                <div className="space-y-0 mb-8">
-                  <p className="font-satoshi text-xs text-charcoal/40 uppercase tracking-wider mb-3">
-                    What you get
+                </li>
+                <li className="flex items-start gap-4">
+                  <X className="text-error w-8 h-8 shrink-0 mt-1" />
+                  <p className="font-satoshi text-lg text-sage/80">
+                    <strong className="text-white font-bold block mb-1">
+                      You tried doing it yourself and ran out of time.
+                    </strong>
+                    Squarespace, Wix, Canva, Mailchimp — you spent your
+                    weekends on it and still don&apos;t have something that
+                    works.
                   </p>
-                  {[
-                    "Design system tokens matched to your brand",
-                    "Page layouts with semantic HTML and responsive structure",
-                    "Individual components ready to drop into your project",
-                    "Built-in accessibility and performance defaults",
-                  ].map((item) => (
-                    <div
-                      key={item}
-                      className="flex items-start gap-3 py-2.5 border-t border-charcoal/10"
-                    >
-                      <span className="text-yellow mt-0.5 shrink-0 text-sm">+</span>
-                      <span className="font-satoshi text-sm text-charcoal/60">
-                        {item}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-                <Button href="/tools" variant="secondary" size="lg" className="w-full">
-                  Get the Plugin / $40
-                </Button>
-              </div>
-            </div>
-
-            <div className="text-center">
-              <p className="font-satoshi text-charcoal/60 mb-5">
-                Need just one piece? Individual skills start at $20. Vibe
-                Marketer members get 50% off everything.
+                </li>
+                <li className="flex items-start gap-4">
+                  <X className="text-error w-8 h-8 shrink-0 mt-1" />
+                  <p className="font-satoshi text-lg text-sage/80">
+                    <strong className="text-white font-bold block mb-1">
+                      You&apos;ve been &ldquo;meaning to fix the website&rdquo;
+                      for two years.
+                    </strong>
+                    Every month it slides. Meanwhile your competitors show up
+                    first on Google and look twice as professional.
+                  </p>
+                </li>
+              </ul>
+              <p className="font-satoshi text-xl text-sage border-l-2 border-sage/30 pl-6">
+                You need a marketing system that works, built by someone who
+                actually picks up the phone.
               </p>
-              <Button href="/tools" variant="text-link">
-                Browse All Tools
-              </Button>
+            </div>
+          </div>
+
+          {/* Solution */}
+          <div className="w-full lg:w-1/2 bg-darkgray text-white p-12 md:p-24 border-l-4 border-yellow relative overflow-hidden">
+            <div className="absolute inset-0 bg-[image:var(--background-image-grid-dark)] bg-[size:40px_40px] pointer-events-none" />
+            <div className="relative z-10">
+              <h2 className="font-anton text-5xl md:text-6xl uppercase leading-[0.9] mb-16 text-yellow">
+                HOW I FIX IT
+              </h2>
+              <p className="font-satoshi text-xl text-white/90 mb-16 max-w-xl">
+                One person builds your whole system. That same person answers
+                when you call.
+              </p>
+              <div className="space-y-10">
+                {[
+                  {
+                    title: "Built with better tools, not bigger teams",
+                    desc: "Your system is built with purpose-built tools, not farmed out to junior designers working off templates.",
+                  },
+                  {
+                    title: "One person, fully accountable",
+                    desc: "The person who builds it is the person who answers the phone. No account managers or middle-men.",
+                  },
+                  {
+                    title: "Live in days, not months",
+                    desc: "Better tools mean faster execution without cutting corners. Your system goes live this week.",
+                  },
+                  {
+                    title: "You see everything before you pay",
+                    desc: "Full scope, timeline, and price upfront. No surprises, no change orders.",
+                  },
+                ].map((item) => (
+                  <div key={item.title} className="flex flex-col gap-2">
+                    <CheckCircle2 className="text-yellow w-10 h-10 mb-1" />
+                    <h3 className="font-anton text-2xl uppercase tracking-wide">
+                      {item.title}
+                    </h3>
+                    <p className="font-satoshi text-sage/80">{item.desc}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
 
-        {/* ── SECTION 3: HOW IT WORKS ── */}
+        {/* HOW IT WORKS */}
         <section
-          aria-label="How it works"
-          className="py-24 md:py-32 px-6 bg-charcoal text-white border-b border-sage/10 relative overflow-hidden"
+          id="work"
+          className="py-24 md:py-32 px-6 bg-white border-b border-charcoal/10 relative"
         >
-          <div className="absolute inset-0 bg-[image:var(--background-image-grid-dark)] bg-[size:40px_40px] pointer-events-none" />
-          <div className="relative z-10 max-w-7xl mx-auto">
-            <div className="mb-16">
-              <SectionHeader
-                heading="Install. Run. Ship."
-                variant="dark"
-                headingClassName="text-yellow"
-              />
+          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16">
+            <div className="lg:col-span-5">
+              <div className="sticky top-32">
+                <h2 className="font-anton text-6xl md:text-7xl uppercase leading-[0.9] mb-6">
+                  Three steps.
+                  <br />
+                  That&apos;s it.
+                </h2>
+                <p className="font-satoshi text-lg text-charcoal/70 max-w-sm">
+                  A streamlined process designed to eliminate friction and get
+                  your business online fast.
+                </p>
+              </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-16">
+            <div className="lg:col-span-7 space-y-24">
               {[
                 {
                   num: "01",
-                  title: "Install the plugin",
-                  body: "One command in your terminal. The plugin registers its skills and commands with Claude Code automatically. No config files, no setup wizard.",
+                  title: "Tell me about your business",
+                  desc: "Fill out a quick form. I get back within 24 hours with a comprehensive scope, timeline, and exact price.",
                 },
                 {
                   num: "02",
-                  title: "Run a command",
-                  body: "Tell Claude what you need. The plugin's skills activate in context, pulling from tested frameworks to generate strategy docs, content plans, or frontend components.",
+                  title: "I build your system",
+                  desc: "You see progress throughout the entire build. No black box, no wondering what's happening behind the scenes.",
                 },
                 {
                   num: "03",
-                  title: "Ship the output",
-                  body: "You get real files in your project directory. Markdown strategy docs, HTML components, structured content plans. Review them, adjust what you want, and use them.",
+                  title: "Your marketing goes live",
+                  desc: "Everything launches simultaneously. Your complete system starts running and bringing in customers on day one.",
                 },
               ].map((step) => (
-                <div key={step.num} className="flex flex-col">
-                  <div className="font-anton text-5xl text-yellow/20 leading-none mb-4 select-none">
+                <div
+                  key={step.num}
+                  className="relative group flex flex-col md:flex-row gap-8 items-start"
+                >
+                  <div className="font-anton text-[8rem] leading-none text-yellow/20 group-hover:text-yellow transition-colors duration-500 select-none -mt-4 md:-ml-8 z-0 absolute md:relative top-0 right-0 md:top-auto md:right-auto opacity-30 md:opacity-100">
                     {step.num}
                   </div>
-                  <h3 className="font-anton text-2xl uppercase mb-3 text-white">
-                    {step.title}
-                  </h3>
-                  <p className="font-satoshi text-sage/70 text-base leading-relaxed">
-                    {step.body}
-                  </p>
+                  <div className="relative z-10 pt-4 md:pt-12">
+                    <h3 className="font-anton text-4xl uppercase mb-4 group-hover:translate-x-2 transition-transform duration-300">
+                      {step.title}
+                    </h3>
+                    <p className="font-satoshi text-lg text-charcoal/70 max-w-md">
+                      {step.desc}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>
-
-            <p className="font-satoshi text-sm text-sage/50">
-              New to Claude Code plugins?{" "}
-              <Link
-                href="/blog/getting-started-with-plugins"
-                className="text-yellow underline underline-offset-4 hover:text-white transition-colors duration-200"
-              >
-                Here&apos;s a quick setup guide.
-              </Link>
-            </p>
           </div>
         </section>
 
-        {/* ── SECTION 4: CASE STUDIES (stat blocks, no screenshots) ── */}
+        {/* PRICING */}
         <section
-          id="case-studies"
-          aria-label="Case studies"
+          id="pricing"
+          aria-label="Pricing"
           className="py-24 md:py-32 px-6 bg-[image:var(--background-image-grid-light)] bg-[size:40px_40px] border-b border-charcoal/10"
         >
-          <div className="max-w-7xl mx-auto">
-            <div className="mb-16 max-w-3xl">
-              <SectionHeader
-                heading="Built from Real Projects. Now Available as Tools."
-                subtitle="Every plugin started as a workflow I developed for a paying client. Here is what those workflows produced."
-                variant="light"
-              />
+          <div className="max-w-4xl mx-auto">
+            <SectionHeader align="center" className="mb-20 max-w-3xl mx-auto">
+              Clear pricing. No &apos;schedule a call to find out.&apos;
+            </SectionHeader>
+
+            {/* The System */}
+            <div className="bg-charcoal text-white rounded-2xl p-8 md:p-12 shadow-2xl relative overflow-hidden mb-6">
+              <div className="absolute inset-0 bg-[image:var(--background-image-grid-dark)] bg-[size:40px_40px] pointer-events-none" />
+              <div className="relative z-10">
+                <h3 className="font-anton text-3xl md:text-4xl uppercase mb-2 text-yellow">
+                  The System
+                </h3>
+                <p className="font-satoshi text-sage/80 mb-8 max-w-xl">
+                  Everything your business needs to start showing up and
+                  converting. Built in one sprint.
+                </p>
+
+                <div className="flex items-baseline gap-3 mb-8 pb-8 border-b border-sage/20">
+                  <span className="font-anton text-6xl md:text-7xl">$5,500</span>
+                  <span className="font-satoshi text-sage/60 text-lg">one-time</span>
+                </div>
+
+                {/* Value anchor */}
+                <div className="bg-white/5 rounded-xl p-6 mb-10 border border-sage/10">
+                  <p className="font-satoshi text-sm text-sage/60 uppercase tracking-wider mb-4">
+                    What this would cost separately
+                  </p>
+                  <div className="space-y-2 font-satoshi text-white/80 mb-4">
+                    {[
+                      { item: "Custom website design + development", range: "$8–15K" },
+                      { item: "4 email/SMS automations", range: "$2–4K" },
+                      { item: "Google Ads campaign setup", range: "$2–3K" },
+                      { item: "SEO foundation + analytics", range: "$1–2K" },
+                    ].map((line) => (
+                      <div key={line.item} className="flex justify-between text-sm">
+                        <span>{line.item}</span>
+                        <span className="text-sage/50 ml-4 shrink-0">{line.range}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="flex justify-between font-satoshi text-sm pt-3 border-t border-sage/20">
+                    <span className="text-sage/60">Typical agency total</span>
+                    <span className="text-yellow font-bold">$13–24K</span>
+                  </div>
+                </div>
+
+                <div className="grid sm:grid-cols-2 gap-x-8 gap-y-4 mb-10">
+                  {[
+                    "Custom Website Design",
+                    "SEO Foundation",
+                    "Mobile Responsive",
+                    "Copywriting",
+                    "Analytics + Conversion Tracking",
+                    "4 Email/SMS Automations",
+                    "Google Ads Campaign Setup",
+                    "Strategy Session",
+                  ].map((f) => (
+                    <div key={f} className="flex items-center gap-3 font-satoshi text-white/90">
+                      <CheckCircle2 className="w-5 h-5 text-yellow shrink-0" />
+                      {f}
+                    </div>
+                  ))}
+                </div>
+
+                <Button href="/start" variant="primary-dark" size="lg" fullWidth>
+                  Tell me about your business
+                </Button>
+              </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {/* Valle Ballet */}
-              <div className="bg-white rounded-2xl p-8 border border-charcoal/10 flex flex-col hover:shadow-xl transition-shadow duration-300">
-                <p className="font-satoshi text-xs text-charcoal/40 uppercase tracking-wider font-medium mb-5">
-                  Valle Ballet
+            {/* Maintenance */}
+            <div className="bg-white border border-charcoal/10 rounded-xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between mb-8 shadow-sm">
+              <div>
+                <h4 className="font-anton text-2xl uppercase mb-1">
+                  After Launch: $400/mo
+                </h4>
+                <p className="font-satoshi text-charcoal/70 text-sm md:text-base">
+                  Replaces your hosting, your &ldquo;tech guy,&rdquo; and the
+                  agency retainer you&apos;d otherwise need. Cancel anytime.
                 </p>
-                <div className="flex-1 space-y-5 mb-8">
-                  <div>
-                    <div className="font-anton text-5xl text-charcoal leading-none">14</div>
-                    <div className="font-satoshi text-sm text-charcoal/50 mt-1">local SEO pages</div>
-                  </div>
-                  <div className="border-t border-charcoal/10 pt-5">
-                    <div className="font-anton text-5xl text-charcoal leading-none">38</div>
-                    <div className="font-satoshi text-sm text-charcoal/50 mt-1">total pages built</div>
-                  </div>
-                  <div className="border-t border-charcoal/10 pt-5">
-                    <div className="font-satoshi text-sm font-medium text-charcoal">Real bookings</div>
-                    <div className="font-satoshi text-sm text-charcoal/50 mt-1">from organic Google search</div>
-                  </div>
-                </div>
-                <p className="font-satoshi text-xs text-charcoal/50 border-l-4 border-yellow pl-3 mb-6 leading-relaxed">
-                  The frontend workflow I used here became the Frontend Designer plugin.
-                </p>
-                <Link href="/work/valle-ballet" className="font-satoshi text-sm font-medium text-charcoal hover:text-yellow transition-colors duration-200">
-                  See the work &rarr;
-                </Link>
               </div>
+            </div>
 
-              {/* Downtown BJJ */}
-              <div className="bg-white rounded-2xl p-8 border border-charcoal/10 flex flex-col hover:shadow-xl transition-shadow duration-300 sm:mt-8">
-                <p className="font-satoshi text-xs text-charcoal/40 uppercase tracking-wider font-medium mb-5">
-                  Downtown BJJ
-                </p>
-                <div className="flex-1 space-y-5 mb-8">
-                  <div>
-                    <div className="font-anton text-5xl text-charcoal leading-none">21</div>
-                    <div className="font-satoshi text-sm text-charcoal/50 mt-1">blog posts published</div>
-                  </div>
-                  <div className="border-t border-charcoal/10 pt-5">
-                    <div className="font-satoshi text-sm font-medium text-charcoal">Interactive schedule</div>
-                    <div className="font-satoshi text-sm text-charcoal/50 mt-1">replacing uncrawlable PDF</div>
-                  </div>
-                  <div className="border-t border-charcoal/10 pt-5">
-                    <div className="font-anton text-5xl text-charcoal leading-none">2x</div>
-                    <div className="font-satoshi text-sm text-charcoal/50 mt-1">faster page load</div>
-                  </div>
-                </div>
-                <p className="font-satoshi text-xs text-charcoal/50 border-l-4 border-yellow pl-3 mb-6 leading-relaxed">
-                  The research workflow that shaped this project became the Creative Strategist Engine.
-                </p>
-                <Link href="/work/downtown-bjj" className="font-satoshi text-sm font-medium text-charcoal hover:text-yellow transition-colors duration-200">
-                  See the work &rarr;
-                </Link>
-              </div>
-
-              {/* Born Simple */}
-              <div className="bg-white rounded-2xl p-8 border border-charcoal/10 flex flex-col hover:shadow-xl transition-shadow duration-300">
-                <p className="font-satoshi text-xs text-charcoal/40 uppercase tracking-wider font-medium mb-5">
-                  Born Simple
-                </p>
-                <div className="flex-1 space-y-5 mb-8">
-                  <div>
-                    <div className="font-anton text-2xl text-charcoal leading-tight">Squarespace &rarr; Custom</div>
-                    <div className="font-satoshi text-sm text-charcoal/50 mt-1">full site migration</div>
-                  </div>
-                  <div className="border-t border-charcoal/10 pt-5">
-                    <div className="font-satoshi text-sm font-medium text-charcoal">Significant load time improvement</div>
-                    <div className="font-satoshi text-sm text-charcoal/50 mt-1">post-migration</div>
-                  </div>
-                  <div className="border-t border-charcoal/10 pt-5">
-                    <div className="font-satoshi text-sm font-medium text-charcoal">Conversion-focused pages</div>
-                    <div className="font-satoshi text-sm text-charcoal/50 mt-1">for a national CPG brand</div>
-                  </div>
-                </div>
-                <p className="font-satoshi text-xs text-charcoal/50 border-l-4 border-yellow pl-3 mb-6 leading-relaxed">
-                  The component-first approach became part of the Frontend Designer skill set.
-                </p>
-                <Link href="/work/born-simple" className="font-satoshi text-sm font-medium text-charcoal hover:text-yellow transition-colors duration-200">
-                  See the work &rarr;
-                </Link>
-              </div>
-
-              {/* Fungushead */}
-              <div className="bg-white rounded-2xl p-8 border border-charcoal/10 flex flex-col hover:shadow-xl transition-shadow duration-300 sm:mt-8">
-                <p className="font-satoshi text-xs text-charcoal/40 uppercase tracking-wider font-medium mb-5">
-                  Fungushead
-                </p>
-                <div className="flex-1 space-y-5 mb-8">
-                  <div>
-                    <div className="font-anton text-5xl text-charcoal leading-none">23+</div>
-                    <div className="font-satoshi text-sm text-charcoal/50 mt-1">SEO articles</div>
-                  </div>
-                  <div className="border-t border-charcoal/10 pt-5">
-                    <div className="font-satoshi text-sm font-medium text-charcoal">Full email system on Drip</div>
-                    <div className="font-satoshi text-sm text-charcoal/50 mt-1">automated campaigns</div>
-                  </div>
-                  <div className="border-t border-charcoal/10 pt-5">
-                    <div className="font-satoshi text-sm font-medium text-charcoal">Multi-channel</div>
-                    <div className="font-satoshi text-sm text-charcoal/50 mt-1">Google Ads, Pinterest, brand guidelines</div>
-                  </div>
-                </div>
-                <p className="font-satoshi text-xs text-charcoal/50 border-l-4 border-yellow pl-3 mb-6 leading-relaxed">
-                  The persona and angle generation tools came directly from this project.
-                </p>
-                <Link href="/work/fungushead" className="font-satoshi text-sm font-medium text-charcoal hover:text-yellow transition-colors duration-200">
-                  See the work &rarr;
-                </Link>
-              </div>
+            {/* Add-ons */}
+            <div className="overflow-x-auto">
+              <table className="w-full text-left font-satoshi">
+                <thead>
+                  <tr className="border-b-2 border-charcoal/20">
+                    <th className="py-4 px-4 font-anton uppercase text-xl">
+                      Optional Add-ons
+                    </th>
+                    <th className="py-4 px-4 font-anton uppercase text-xl text-right">
+                      Price
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-charcoal/10">
+                  {[
+                    { name: "Google Ads Management", price: "$750/mo" },
+                    { name: "Custom Email Campaign", price: "$400/ea" },
+                    { name: "SEO Blog Post (2000 words)", price: "$250/ea" },
+                    { name: "Additional Landing Page", price: "$800/ea" },
+                  ].map((addon) => (
+                    <tr
+                      key={addon.name}
+                      className="hover:bg-charcoal/5 transition-colors"
+                    >
+                      <td className="py-4 px-4">{addon.name}</td>
+                      <td className="py-4 px-4 text-right font-medium">
+                        {addon.price}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
         </section>
 
-        {/* ── SECTION 5: STRATEGY SESSION (secondary, outlined button) ── */}
+        {/* CASE STUDIES */}
+        <section aria-label="Case studies" className="py-24 md:py-32 px-6 bg-white border-b border-charcoal/10">
+          <div className="max-w-[1400px] mx-auto">
+            <SectionHeader className="mb-16">
+              Work I&apos;ve done. Businesses like yours.
+            </SectionHeader>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {caseStudies.map((cs) => (
+                <CaseStudyCard key={cs.name} {...cs} />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ */}
         <section
-          aria-label="Strategy session"
+          id="faq"
+          aria-label="Frequently asked questions"
           className="py-24 md:py-32 px-6 bg-white border-b border-charcoal/10"
         >
           <div className="max-w-3xl mx-auto">
-            <h2 className="font-anton text-5xl md:text-6xl uppercase leading-[0.9] mb-6">
-              Want Help Putting It Together?
-            </h2>
-            <p className="font-satoshi text-lg text-charcoal/70 mb-3 leading-relaxed">
-              The tools handle execution. But if you need someone to look at
-              your specific situation and tell you where to start, book a
-              strategy session. 30 minutes, $99. We will go through your site,
-              your goals, and your biggest gaps. You will leave with a
-              prioritized plan.
-            </p>
-            <p className="font-satoshi text-base text-charcoal/50 mb-10">
-              The $99 credits toward any retainer if you decide to work
-              together.
-            </p>
-            <Button href="/start" variant="outline" size="lg">
-              Book a Strategy Session / $99
-            </Button>
-          </div>
-        </section>
-
-        {/* ── SECTION 6: VIBE MARKETER (rupture — yellow bg) ── */}
-        <section
-          aria-label="Vibe Marketer community"
-          className="py-24 md:py-32 px-6 bg-yellow text-charcoal relative overflow-hidden border-b border-charcoal/10"
-        >
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
-            <div className="font-anton text-[20vw] leading-none opacity-5 whitespace-nowrap select-none uppercase">
-              Half Off
-            </div>
-          </div>
-          <div className="relative z-10 max-w-3xl mx-auto">
-            <h2 className="font-anton text-5xl md:text-6xl uppercase leading-[0.9] mb-6">
-              Vibe Marketer Member? Half Off Everything.
-            </h2>
-            <p className="font-satoshi text-lg text-charcoal/80 mb-4 leading-relaxed">
-              If you are part of the Vibe Marketer community, use code{" "}
-              <span className="font-bold">VIBEMEMBER</span> at checkout for 50%
-              off any plugin or skill. Already inside? You know the deal.
-            </p>
-            <p className="font-satoshi text-base text-charcoal/60">
-              Not a member yet?{" "}
-              <a
-                href="#"
-                className="text-charcoal underline underline-offset-4 hover:opacity-70 transition-opacity duration-200"
-              >
-                Join Vibe Marketers here.
-              </a>
-            </p>
-          </div>
-        </section>
-
-        {/* ── SECTION 7: FINAL CTA ── */}
-        <section
-          aria-label="Get started"
-          className="py-24 md:py-32 px-6 bg-charcoal text-white relative overflow-hidden"
-        >
-          <div className="absolute inset-0 bg-[image:var(--background-image-grid-dark)] bg-[size:40px_40px] pointer-events-none" />
-          <div className="relative z-10 max-w-3xl mx-auto text-center">
-            <SectionHeader
-              heading="Your Next Project Ships Faster."
-              subtitle="Pick a tool. Install it. Run it on your next client project or your own site. These workflows took years to build. You can use them today."
-              variant="dark"
-              className="mb-12"
-            />
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-5">
-              <Button href="/tools" variant="primary" size="xl">
-                Browse Tools
-              </Button>
-              <Button href="/start" variant="ghost">
-                Book a Strategy Session / $99
-              </Button>
+            <SectionHeader className="mb-16">
+              Questions you probably have.
+            </SectionHeader>
+            <div className="space-y-2">
+              {faqs.map((faq) => (
+                <FaqItem key={faq.question} {...faq} />
+              ))}
             </div>
           </div>
         </section>
+
+        {/* FINAL CTA */}
+        <CtaBlock
+          heading="Tell me about your business."
+          subheading={<>I&apos;ll tell you exactly what I&apos;d build.</>}
+          description="Takes about 2 minutes. I'll get back within 24 hours with a clear scope, timeline, and price. No commitment."
+          buttonText="Get Started"
+          buttonHref="/start"
+          email="jackson@ctrlswing.com"
+        />
       </main>
 
       <Footer />

@@ -1,149 +1,96 @@
 "use server";
 
-import { type QuizFormData, type Recommendation, getRecommendation } from "./quiz";
-
-// --- Simple session booking form ---
-
-export type SessionFormData = {
+type LeadData = {
+  currentStatus: string;
+  needs: string[];
+  timeline: string;
   name: string;
+  businessName: string;
+  businessDesc: string;
+  location: string;
   email: string;
-  website: string;
-  message: string;
-  phone: string; // honeypot
+  phone: string;
+  website: string; // honeypot field
 };
 
-export async function submitSessionForm(data: SessionFormData) {
-  // Honeypot: bots fill hidden fields, real users don't
-  if (data.phone) {
-    return { success: true };
-  }
-
-  const webhookUrl = process.env.DISCORD_WEBHOOK_URL;
-  if (!webhookUrl) {
-    console.error("DISCORD_WEBHOOK_URL not set");
-    return { success: false };
-  }
-
-  const embed = {
-    title: data.name ? `${data.name} -- session booking` : "Session booking request",
-    color: 0xffe17c,
-    fields: [
-      { name: "Email", value: data.email, inline: false },
-      ...(data.website ? [{ name: "Website", value: data.website, inline: false }] : []),
-      { name: "What they're working on", value: data.message, inline: false },
-    ],
-    footer: { text: "source: /start booking form" },
-    timestamp: new Date().toISOString(),
-  };
-
-  try {
-    const res = await fetch(webhookUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ embeds: [embed] }),
-    });
-    if (!res.ok) {
-      console.error("Discord webhook failed:", res.status);
-      return { success: false };
-    }
-    return { success: true };
-  } catch (error) {
-    console.error("Discord webhook error:", error);
-    return { success: false };
-  }
-}
-
-export { type QuizFormData, type Recommendation };
-
-const situationLabels: Record<string, string> = {
-  inconsistent: "Marketing is inconsistent -- sometimes do it, sometimes don't",
-  ai_generic: "Using AI tools but getting generic results I can't use",
-  agency_burned: "Tried agencies/freelancers and didn't get what I paid for",
-  starting_scratch: "Starting from scratch, don't know where to begin",
-  running_not_sure: "Marketing is running but not sure it's working",
+const statusLabels: Record<string, string> = {
+  zero: "Starting from zero",
+  have_website: "Has a website, not converting",
+  running_some: "Running some marketing",
+  ready_upgrade: "Ready to upgrade everything",
 };
 
-const painLabels: Record<string, string> = {
-  messaging: "Messaging",
-  research: "Customer research",
-  creative: "Creative strategy",
-  approach: "Overall approach",
-  ai_workflow: "AI workflow",
-};
-
-const approachLabels: Record<string, string> = {
-  inconsistent: "Doing it myself, inconsistently",
-  ai_generic: "Doing it myself with AI tools but results feel generic",
-  paying_not_working: "Paying someone and not seeing results",
-  not_at_all: "Not doing it at all",
+const needsLabels: Record<string, string> = {
+  website: "Website",
+  email: "Email/SMS",
+  ads: "Paid Ads",
+  seo: "SEO",
+  all: "The Full System",
 };
 
 const timelineLabels: Record<string, string> = {
-  now: "I want to fix this now",
-  weeks: "In the next few weeks",
-  researching: "Just researching for now",
+  yesterday: "Yesterday (URGENT)",
+  this_month: "This month",
+  exploring: "Just exploring",
 };
 
-export async function submitQuiz(data: QuizFormData) {
-  // Honeypot: bots fill hidden fields, real users don't
+export async function submitLead(data: LeadData) {
+  // Honeypot check — bots fill hidden fields, real users don't
   if (data.website) {
-    return { success: true };
+    return { success: true }; // silently accept to not tip off bot
   }
 
   const webhookUrl = process.env.DISCORD_WEBHOOK_URL;
+
   if (!webhookUrl) {
     console.error("DISCORD_WEBHOOK_URL not set");
     return { success: false };
   }
 
-  const isUrgent = data.timeline === "now";
-  const recommendation = getRecommendation(data);
-
-  const recommendationLabels: Record<Recommendation, string> = {
-    session: "Strategy Session ($150)",
-    "creative-strategist": "Creative Strategist Engine ($40)",
-    "frontend-designer": "Frontend Designer ($40)",
-  };
+  const isUrgent = data.timeline === "yesterday";
 
   const embed = {
-    title: data.name ? `${data.name} -- quiz submission` : "Quiz submission",
+    title: `${data.name} — ${data.businessName}`,
     color: isUrgent ? 0xff0000 : 0xffe17c,
     fields: [
       {
-        name: "Situation (Q1)",
-        value: situationLabels[data.situation] || data.situation,
+        name: "Business",
+        value: data.businessDesc || "Not provided",
+        inline: true,
+      },
+      {
+        name: "Location",
+        value: data.location || "Not provided",
+        inline: true,
+      },
+      {
+        name: "Situation",
+        value: statusLabels[data.currentStatus] || data.currentStatus,
         inline: false,
       },
       {
-        name: "Pain Areas (Q2)",
+        name: "Needs",
         value:
-          data.painAreas.map((p) => painLabels[p] || p).join(", ") ||
+          data.needs.map((n) => needsLabels[n] || n).join(", ") ||
           "Not specified",
         inline: false,
       },
       {
-        name: "Current Approach (Q3)",
-        value: approachLabels[data.currentApproach] || data.currentApproach,
-        inline: false,
-      },
-      {
-        name: "Timeline (Q4)",
+        name: "Timeline",
         value: timelineLabels[data.timeline] || data.timeline,
         inline: true,
       },
       {
-        name: "Recommendation",
-        value: recommendationLabels[recommendation],
+        name: "Email",
+        value: data.email,
         inline: true,
       },
-      ...(data.email
-        ? [{ name: "Email", value: data.email, inline: false }]
+      ...(data.phone
+        ? [{ name: "Phone", value: data.phone, inline: true }]
         : []),
     ],
     footer: {
-      text: isUrgent
-        ? "URGENT -- Wants to fix this now | source: quiz"
-        : "source: quiz",
+      text: isUrgent ? "URGENT — Wants to start immediately" : "ctrlswing lead",
     },
     timestamp: new Date().toISOString(),
   };
@@ -153,7 +100,7 @@ export async function submitQuiz(data: QuizFormData) {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        content: isUrgent ? "**URGENT QUIZ LEAD**" : undefined,
+        content: isUrgent ? "**URGENT LEAD**" : undefined,
         embeds: [embed],
       }),
     });

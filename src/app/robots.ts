@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/start", "/book"],
+        disallow: "/start",
       },
     ],
     sitemap: "https://ctrlswing.com/sitemap.xml",
