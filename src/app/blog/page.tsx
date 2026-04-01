@@ -36,7 +36,7 @@ export default function BlogPage() {
                   <Link
                     key={post.slug}
                     href={`/blog/${post.slug}`}
-                    className="group block border-b border-charcoal/10 py-10 first:pt-0 last:border-b-0"
+                    className="group block border-b border-charcoal/10 py-10 first:pt-0 last:border-b-0 pl-4 -ml-4 border-l-4 border-l-transparent hover:border-l-yellow transition-all duration-300"
                   >
                     <div className="flex items-center gap-3 mb-3">
                       <span className="font-satoshi text-sm text-charcoal/50">

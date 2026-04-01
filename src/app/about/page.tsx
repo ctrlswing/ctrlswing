@@ -84,27 +84,31 @@ export default function AboutPage() {
                 {
                   name: "Creative Strategist",
                   desc: "Customer research, persona building, and ad angle generation. Pulls real review data to fuel creative strategy.",
+                  href: "/resources/creative-strategist",
                 },
                 {
                   name: "Frontend Designer",
                   desc: "Design system generation, component crafting, visual review, and responsive audits. Build polished UI without leaving your editor.",
+                  href: "/resources/frontend-designer",
                 },
                 {
                   name: "Media Buyer",
                   desc: "Google Ads and Bing Ads management from Claude Code. Query, analyze, and optimize campaigns with natural language.",
+                  href: "/resources/media-buyer",
                 },
               ].map((tool) => (
-                <div
+                <a
                   key={tool.name}
-                  className="border-l-4 border-yellow pl-6"
+                  href={tool.href}
+                  className="group block border-l-4 border-yellow pl-6 py-2 -ml-px hover:border-l-[6px] hover:bg-yellow/5 rounded-r-lg transition-all duration-300"
                 >
-                  <h3 className="font-anton text-2xl uppercase mb-2">
+                  <h3 className="font-anton text-2xl uppercase mb-2 group-hover:translate-x-1 transition-transform duration-300">
                     {tool.name}
                   </h3>
                   <p className="font-satoshi text-lg text-charcoal/70">
                     {tool.desc}
                   </p>
-                </div>
+                </a>
               ))}
             </div>
             <div className="mt-12">

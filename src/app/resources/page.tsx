@@ -5,16 +5,21 @@ import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { SectionHeader } from "@/components/ui/section-header";
+import { EmailCapture } from "@/components/ui/email-capture";
 import { ResourceCard } from "@/components/resource-card";
 import { TabBar } from "@/components/ui/tab-bar";
 import { resources } from "@/lib/resources";
 import type { ResourceType } from "@/lib/resources";
 
+const skillCount = resources.filter((r) => r.type === "skill").length;
+const pluginCount = resources.filter((r) => r.type === "plugin").length;
+const connectorCount = resources.filter((r) => r.type === "connector").length;
+
 const tabs = [
-  { label: "All", value: "all" },
-  { label: "Skills", value: "skill" },
-  { label: "Plugins", value: "plugin" },
-  { label: "Connectors", value: "connector" },
+  { label: `All (${resources.length})`, value: "all" },
+  { label: `Skills (${skillCount})`, value: "skill" },
+  { label: `Plugins (${pluginCount})`, value: "plugin" },
+  { label: `Connectors (${connectorCount})`, value: "connector" },
 ];
 
 export default function ResourcesPage() {
@@ -73,7 +78,7 @@ export default function ResourcesPage() {
             </div>
 
             {filtered.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div key={activeTab} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 animate-[fadeIn_0.3s_ease-in-out]">
                 {filtered.map((resource) => (
                   <ResourceCard key={resource.slug} {...resource} />
                 ))}
@@ -85,6 +90,19 @@ export default function ResourcesPage() {
                 </p>
               </div>
             )}
+          </div>
+        </section>
+
+        {/* EMAIL CAPTURE */}
+        <section className="py-24 md:py-32 px-6 bg-yellow border-b border-charcoal/10">
+          <div className="max-w-xl mx-auto">
+            <EmailCapture
+              headline="Get new resources first"
+              description="I publish new skills and tools after every workshop. Drop your email and I'll send them to you directly."
+              buttonText="Subscribe"
+              microcopy="No spam. Just tools. Unsubscribe anytime."
+              variant="brand"
+            />
           </div>
         </section>
 

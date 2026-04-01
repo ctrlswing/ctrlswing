@@ -165,8 +165,12 @@ export default function Home() {
           <Button href="/build" variant="primary" size="xl">
             Build your first skill
           </Button>
-          <p className="font-satoshi text-sm text-charcoal/50 mt-3 mb-6">
-            Answer a few questions. Get a custom skill built for your workflow.
+          <p className="font-satoshi text-sm text-charcoal/50 mt-3 mb-4">
+            Answer 3 questions. AI generates a custom Skill.md for your workflow in 60 seconds.
+          </p>
+
+          <p className="font-satoshi text-xs text-charcoal/40 mb-6">
+            Used by 3,200+ members in the Vibe Marketers community
           </p>
 
           <div className="flex items-center gap-2">
@@ -374,9 +378,9 @@ export default function Home() {
                 { stat: "3", label: "Shipped plugins" },
                 { stat: "3,200+", label: "Community members" },
                 { stat: "2×/mo", label: "Skills labs hosted" },
-              ].map((item) => (
-                <div key={item.label} className="text-center">
-                  <div className="font-anton text-5xl md:text-6xl text-yellow mb-2">
+              ].map((item, i) => (
+                <div key={item.label} className={`text-center ${i > 0 ? "md:border-l md:border-sage/10" : ""}`}>
+                  <div className="font-anton text-5xl md:text-6xl text-yellow mb-2 drop-shadow-[0_0_20px_rgba(255,225,124,0.2)]">
                     {item.stat}
                   </div>
                   <div className="font-satoshi text-sm text-sage/60 uppercase tracking-wider">
@@ -446,7 +450,7 @@ export default function Home() {
               </div>
             </div>
             <p className="font-satoshi text-sm text-charcoal/60 mb-4">
-              Your email goes directly to me. No spam. No autoresponder sequence.
+              Free. Takes 60 seconds. No spam, no autoresponder sequence.
             </p>
             <div className="flex items-center justify-center gap-2">
               <span className="font-satoshi text-sm text-charcoal/70">or</span>

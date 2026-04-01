@@ -63,6 +63,11 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Scroll margin for fixed nav on anchor links */
+[id] {
+  scroll-margin-top: 6rem;
+}
+
 /* Selection */
 ::selection {
   background-color: #ffe17c;

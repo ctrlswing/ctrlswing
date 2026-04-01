@@ -166,8 +166,22 @@ export default function BuildPage() {
           </Link>
         </div>
         {step <= totalSteps && (
-          <div className="font-satoshi text-sm text-sage font-medium tracking-wide">
-            Step {step} of {totalSteps}
+          <div className="flex items-center gap-4">
+            <div className="flex gap-1.5">
+              {Array.from({ length: totalSteps }, (_, i) => (
+                <div
+                  key={i}
+                  className={`h-1 rounded-full transition-all duration-500 ${
+                    i < step
+                      ? "w-8 bg-yellow"
+                      : "w-4 bg-sage/20"
+                  }`}
+                />
+              ))}
+            </div>
+            <span className="font-satoshi text-sm text-sage font-medium tracking-wide">
+              {step}/{totalSteps}
+            </span>
           </div>
         )}
       </header>
@@ -183,7 +197,7 @@ export default function BuildPage() {
                   What kind of work do you do?
                 </h1>
                 <p className="font-satoshi text-lg text-sage">
-                  This helps the builder tailor your skill.
+                  3 quick questions, then AI builds your custom skill. Takes about 60 seconds.
                 </p>
               </div>
 
