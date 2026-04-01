@@ -1,14 +1,12 @@
 import Link from "next/link";
-import {
-  Play,
-  X,
-  CheckCircle2,
-  Lock,
-} from "lucide-react";
+import { X, CheckCircle2, Mail } from "lucide-react";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { CaseStudyCard } from "@/components/case-study-card";
 import { FaqItem } from "@/components/faq-item";
+import { Button } from "@/components/ui/button";
+import { SectionHeader } from "@/components/ui/section-header";
+import { CtaBlock } from "@/components/ui/cta-block";
 
 const caseStudies = [
   {
@@ -51,14 +49,14 @@ const caseStudies = [
 
 const faqs = [
   {
-    question: "How is this so fast?",
+    question: "What makes this different from hiring an agency?",
     answer:
-      "I don't waste time on endless meetings, massive slide decks, or internal approvals. It's just me building the exact system you need based on a proven, repeatable process.",
+      "Agencies juggle dozens of clients, farm work out to juniors, and bill you for project management overhead. Here, the person who scopes your project is the same person who builds it, tests it, and picks up the phone when you call. No layers, no handoffs.",
   },
   {
     question: "What if I already have a website?",
     answer:
-      "We can either port your existing content over to a faster, high-converting foundation, or if your current site is solid, focus purely on the marketing flows (Ads, Email, SEO).",
+      "I can either port your existing content over to a faster, high-converting foundation, or if your current site is solid, focus purely on the marketing flows (Ads, Email, SEO).",
   },
   {
     question: "Do I own everything you build?",
@@ -73,7 +71,7 @@ const faqs = [
   {
     question: "What if I've been burned by an agency before?",
     answer:
-      "That's exactly why I built this. You get full transparency on scope and price before a single dollar changes hands. No surprises.",
+      "That's exactly who this is for. You see the full scope, timeline, and price before a single dollar changes hands. One person does the work, one person is accountable. No surprises.",
   },
   {
     question: "Do you manage the ads after launch?",
@@ -83,7 +81,7 @@ const faqs = [
   {
     question: "What does the $400/month maintenance cover?",
     answer:
-      "Premium hosting, daily backups, security updates, technical support, and minor content updates (swapping images, updating text) so you never have to touch the backend.",
+      "Premium hosting, daily backups, security updates, technical support, and minor content updates (swapping images, updating text). It replaces your hosting bill, your 'tech guy,' and the agency retainer you'd otherwise need. Cancel anytime.",
   },
 ];
 
@@ -95,7 +93,7 @@ const jsonLd = {
       name: "CTRLSWING",
       url: "https://ctrlswing.com",
       description:
-        "Complete marketing systems for small businesses. Website, email, ads, SEO. Built and running in days.",
+        "Modern marketing systems for small businesses. Website, email, ads, SEO — built by one person with purpose-built tools, in days.",
       founder: {
         "@type": "Person",
         name: "Jackson Dean",
@@ -120,19 +118,11 @@ const jsonLd = {
         itemListElement: [
           {
             "@type": "Offer",
-            name: "Website Sprint",
-            price: "3500",
-            priceCurrency: "USD",
-            description:
-              "Custom site, SEO, mobile, copy, analytics, hosting. 5 days or less.",
-          },
-          {
-            "@type": "Offer",
-            name: "The Full System",
+            name: "The System",
             price: "5500",
             priceCurrency: "USD",
             description:
-              "Everything in Website Sprint plus 4 email/SMS flows and Google Ads setup. 7 days or less.",
+              "Complete marketing system: custom website, SEO, email/SMS automations, Google Ads setup, analytics, and strategy session.",
           },
           {
             "@type": "Offer",
@@ -140,7 +130,7 @@ const jsonLd = {
             price: "400",
             priceCurrency: "USD",
             description:
-              "Hosting, continuous updates, technical support, and minor changes.",
+              "Hosting, continuous updates, technical support, and minor changes. Cancel anytime.",
           },
         ],
       },
@@ -185,36 +175,31 @@ export default function Home() {
           </div>
 
           <h1 className="font-anton text-6xl md:text-8xl lg:text-9xl uppercase leading-[0.9] max-w-6xl mx-auto mb-8 relative z-10">
-            Your entire marketing system. Built and running in{" "}
+            Your marketing isn&apos;t broken. It&apos;s just{" "}
             <span className="relative inline-block whitespace-nowrap px-2">
               <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[70%] bg-yellow transform rotate-[15deg] z-[-1]" />
-              <span className="relative z-10">days.</span>
+              <span className="relative z-10">outdated.</span>
             </span>
           </h1>
 
           <p className="font-satoshi text-lg md:text-xl text-charcoal/70 max-w-2xl mx-auto mb-16">
-            Website. Email. Ads. SEO. All of it. Set up, launched, and live
-            before most agencies finish their proposal.
+            Whether you&apos;re starting fresh or replacing what stopped
+            working — I&apos;ll build your entire system in one sprint.
           </p>
 
-          {/* Video placeholder */}
-          <div className="w-full max-w-4xl aspect-video bg-darkgray rounded-xl shadow-2xl relative flex items-center justify-center mb-16 overflow-hidden group cursor-pointer border border-charcoal/10">
-            <div className="absolute inset-0 bg-cover bg-center opacity-40 mix-blend-overlay transition-transform duration-700 group-hover:scale-105 bg-charcoal" />
-            <button className="w-20 h-20 bg-yellow rounded-full flex items-center justify-center z-10 group-hover:scale-110 transition-transform duration-300 shadow-xl">
-              <Play className="text-charcoal w-8 h-8 ml-1" />
-            </button>
-          </div>
-
-          <Link
-            href="/start"
-            className="inline-flex justify-center items-center bg-yellow text-charcoal font-anton uppercase text-xl md:text-2xl px-10 py-5 rounded-lg hover:bg-charcoal hover:text-white transition-all duration-300 hover:-translate-y-1 shadow-[0_8px_30px_rgb(255,225,124,0.4)] hover:shadow-[0_8px_30px_rgb(23,30,25,0.4)] mb-4"
-          >
+          <Button href="/start" variant="primary" size="xl" className="mb-4">
             Tell me about your business
-          </Link>
-          <p className="font-satoshi text-xs md:text-sm text-charcoal/60 max-w-md">
-            No retainers. No mystery pricing. You see the full scope before
-            anything starts.
+          </Button>
+          <p className="font-satoshi text-sm text-charcoal/50 mb-1">
+            No retainers. No mystery pricing. Full scope before anything starts.
           </p>
+          <a
+            href="mailto:jackson@ctrlswing.com"
+            className="inline-flex items-center gap-1.5 font-satoshi text-sm text-charcoal/50 hover:text-charcoal transition-colors"
+          >
+            <Mail className="w-3.5 h-3.5" />
+            or just email jackson@ctrlswing.com
+          </a>
         </section>
 
         {/* TRUST STRIP */}
@@ -222,10 +207,8 @@ export default function Home() {
           <div className="max-w-7xl mx-auto flex flex-wrap justify-center items-center gap-x-8 gap-y-4 text-charcoal/80 font-satoshi text-sm md:text-base font-medium uppercase tracking-wide">
             <span>25+ brands managed</span>
             <span className="hidden sm:block text-charcoal/30">&bull;</span>
-            <span>4 businesses built</span>
-            <span className="hidden md:block text-charcoal/30">&bull;</span>
             <span>Sites launched in 24 hours</span>
-            <span className="hidden lg:block text-charcoal/30">&bull;</span>
+            <span className="hidden md:block text-charcoal/30">&bull;</span>
             <span>San Diego, CA</span>
           </div>
         </section>
@@ -237,37 +220,40 @@ export default function Home() {
             <div className="absolute inset-0 bg-[image:var(--background-image-grid-dark)] bg-[size:40px_40px] pointer-events-none" />
             <div className="relative z-10">
               <h2 className="font-anton text-5xl md:text-6xl uppercase leading-[0.9] mb-16">
-                THE OLD WAY
+                WHAT&apos;S NOT WORKING
               </h2>
               <ul className="space-y-8 mb-16">
                 <li className="flex items-start gap-4">
-                  <X className="text-red-500 w-8 h-8 shrink-0 mt-1" />
+                  <X className="text-error w-8 h-8 shrink-0 mt-1" />
                   <p className="font-satoshi text-lg text-sage/80">
                     <strong className="text-white font-bold block mb-1">
-                      Agencies that waste time and money.
+                      You paid someone and got ghosted.
                     </strong>
-                    Paying $20K upfront only to wait months for a generic site
-                    and a confusing dashboard.
+                    The freelancer disappeared. The agency sends invoices but
+                    no results. You&apos;re stuck with a half-finished site and
+                    no answers.
                   </p>
                 </li>
                 <li className="flex items-start gap-4">
-                  <X className="text-red-500 w-8 h-8 shrink-0 mt-1" />
+                  <X className="text-error w-8 h-8 shrink-0 mt-1" />
                   <p className="font-satoshi text-lg text-sage/80">
                     <strong className="text-white font-bold block mb-1">
-                      DIY tools that make you wear every hat.
+                      You tried doing it yourself and ran out of time.
                     </strong>
-                    Spending your weekends learning Webflow or fighting with
-                    WordPress plugins instead of running your business.
+                    Squarespace, Wix, Canva, Mailchimp — you spent your
+                    weekends on it and still don&apos;t have something that
+                    works.
                   </p>
                 </li>
                 <li className="flex items-start gap-4">
-                  <X className="text-red-500 w-8 h-8 shrink-0 mt-1" />
+                  <X className="text-error w-8 h-8 shrink-0 mt-1" />
                   <p className="font-satoshi text-lg text-sage/80">
                     <strong className="text-white font-bold block mb-1">
-                      Doing nothing while competitors win.
+                      You&apos;ve been &ldquo;meaning to fix the website&rdquo;
+                      for two years.
                     </strong>
-                    Watching lesser products steal your customers because their
-                    marketing system actually works.
+                    Every month it slides. Meanwhile your competitors show up
+                    first on Google and look twice as professional.
                   </p>
                 </li>
               </ul>
@@ -283,7 +269,7 @@ export default function Home() {
             <div className="absolute inset-0 bg-[image:var(--background-image-grid-dark)] bg-[size:40px_40px] pointer-events-none" />
             <div className="relative z-10">
               <h2 className="font-anton text-5xl md:text-6xl uppercase leading-[0.9] mb-16 text-yellow">
-                THE BETTER WAY
+                HOW I FIX IT
               </h2>
               <p className="font-satoshi text-xl text-white/90 mb-16 max-w-xl">
                 One person builds your whole system. That same person answers
@@ -292,16 +278,20 @@ export default function Home() {
               <div className="space-y-10">
                 {[
                   {
-                    title: "Built in days, not months",
-                    desc: "Your complete marketing system goes live this week. Fast execution without sacrificing quality.",
+                    title: "Built with better tools, not bigger teams",
+                    desc: "Your system is built with purpose-built tools, not farmed out to junior designers working off templates.",
                   },
                   {
                     title: "One person, fully accountable",
                     desc: "The person who builds it is the person who answers the phone. No account managers or middle-men.",
                   },
                   {
+                    title: "Live in days, not months",
+                    desc: "Better tools mean faster execution without cutting corners. Your system goes live this week.",
+                  },
+                  {
                     title: "You see everything before you pay",
-                    desc: "Full scope, timeline, and price upfront. Absolute transparency from day one.",
+                    desc: "Full scope, timeline, and price upfront. No surprises, no change orders.",
                   },
                 ].map((item) => (
                   <div key={item.title} className="flex flex-col gap-2">
@@ -382,99 +372,86 @@ export default function Home() {
           aria-label="Pricing"
           className="py-24 md:py-32 px-6 bg-[image:var(--background-image-grid-light)] bg-[size:40px_40px] border-b border-charcoal/10"
         >
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-20">
-              <h2 className="font-anton text-5xl md:text-6xl uppercase leading-[0.9] mb-6 max-w-3xl mx-auto">
-                Clear pricing. No &apos;schedule a call to find out.&apos;
-              </h2>
-            </div>
+          <div className="max-w-4xl mx-auto">
+            <SectionHeader align="center" className="mb-20 max-w-3xl mx-auto">
+              Clear pricing. No &apos;schedule a call to find out.&apos;
+            </SectionHeader>
 
-            <div className="grid md:grid-cols-2 gap-8 mb-12 items-end">
-              {/* Website Sprint */}
-              <div className="bg-white border border-charcoal/10 rounded-2xl p-8 md:p-12 hover:shadow-2xl transition-shadow duration-300">
-                <h3 className="font-anton text-3xl uppercase mb-2">
-                  Website Sprint
+            {/* The System */}
+            <div className="bg-charcoal text-white rounded-2xl p-8 md:p-12 shadow-2xl relative overflow-hidden mb-6">
+              <div className="absolute inset-0 bg-[image:var(--background-image-grid-dark)] bg-[size:40px_40px] pointer-events-none" />
+              <div className="relative z-10">
+                <h3 className="font-anton text-3xl md:text-4xl uppercase mb-2 text-yellow">
+                  The System
                 </h3>
-                <div className="flex items-baseline gap-2 mb-6">
-                  <span className="font-anton text-5xl">$3,500</span>
-                </div>
-                <p className="font-satoshi text-charcoal/70 mb-8 pb-8 border-b border-charcoal/10">
-                  Custom site, SEO, mobile, copy, analytics, hosting. 5 days or
-                  less.
+                <p className="font-satoshi text-sage/80 mb-8 max-w-xl">
+                  Everything your business needs to start showing up and
+                  converting. Built in one sprint.
                 </p>
-                <ul className="space-y-4 mb-10 font-satoshi">
+
+                <div className="flex items-baseline gap-3 mb-8 pb-8 border-b border-sage/20">
+                  <span className="font-anton text-6xl md:text-7xl">$5,500</span>
+                  <span className="font-satoshi text-sage/60 text-lg">one-time</span>
+                </div>
+
+                {/* Value anchor */}
+                <div className="bg-white/5 rounded-xl p-6 mb-10 border border-sage/10">
+                  <p className="font-satoshi text-sm text-sage/60 uppercase tracking-wider mb-4">
+                    What this would cost separately
+                  </p>
+                  <div className="space-y-2 font-satoshi text-white/80 mb-4">
+                    {[
+                      { item: "Custom website design + development", range: "$8–15K" },
+                      { item: "4 email/SMS automations", range: "$2–4K" },
+                      { item: "Google Ads campaign setup", range: "$2–3K" },
+                      { item: "SEO foundation + analytics", range: "$1–2K" },
+                    ].map((line) => (
+                      <div key={line.item} className="flex justify-between text-sm">
+                        <span>{line.item}</span>
+                        <span className="text-sage/50 ml-4 shrink-0">{line.range}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="flex justify-between font-satoshi text-sm pt-3 border-t border-sage/20">
+                    <span className="text-sage/60">Typical agency total</span>
+                    <span className="text-yellow font-bold">$13–24K</span>
+                  </div>
+                </div>
+
+                <div className="grid sm:grid-cols-2 gap-x-8 gap-y-4 mb-10">
                   {[
-                    "Custom Web Design",
+                    "Custom Website Design",
                     "SEO Foundation",
                     "Mobile Responsive",
                     "Copywriting",
-                    "Analytics Setup",
+                    "Analytics + Conversion Tracking",
+                    "4 Email/SMS Automations",
+                    "Google Ads Campaign Setup",
+                    "Strategy Session",
                   ].map((f) => (
-                    <li key={f} className="flex items-center gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-charcoal" />
+                    <div key={f} className="flex items-center gap-3 font-satoshi text-white/90">
+                      <CheckCircle2 className="w-5 h-5 text-yellow shrink-0" />
                       {f}
-                    </li>
+                    </div>
                   ))}
-                </ul>
-                <Link
-                  href="/start"
-                  className="block w-full text-center bg-white border-2 border-charcoal text-charcoal font-anton uppercase text-xl py-4 rounded-lg hover:bg-charcoal hover:text-white transition-colors duration-300"
-                >
-                  Start Sprint
-                </Link>
-              </div>
+                </div>
 
-              {/* Full System */}
-              <div className="bg-charcoal text-white border border-charcoal rounded-2xl p-8 md:p-12 shadow-2xl relative overflow-hidden transform md:-translate-y-4">
-                <div className="absolute top-0 right-0 bg-yellow text-charcoal font-anton uppercase text-sm px-4 py-1 rounded-bl-xl">
-                  Recommended
-                </div>
-                <h3 className="font-anton text-3xl uppercase mb-2 text-yellow">
-                  The Full System
-                </h3>
-                <div className="flex items-baseline gap-2 mb-6">
-                  <span className="font-anton text-5xl">$5,500</span>
-                </div>
-                <p className="font-satoshi text-sage/80 mb-8 pb-8 border-b border-sage/20">
-                  Everything in Website Sprint plus 4 email/SMS flows and Google
-                  Ads setup. 7 days or less.
-                </p>
-                <ul className="space-y-4 mb-10 font-satoshi text-white/90">
-                  {[
-                    { text: "Everything in Sprint", bold: true },
-                    { text: "4 Email/SMS Automations", bold: false },
-                    { text: "Google Ads Campaign Setup", bold: false },
-                    { text: "Conversion Tracking", bold: false },
-                    { text: "Strategy Session", bold: false },
-                  ].map((f) => (
-                    <li key={f.text} className="flex items-center gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-yellow" />
-                      {f.bold ? <strong>{f.text}</strong> : f.text}
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  href="/start"
-                  className="block w-full text-center bg-yellow text-charcoal font-anton uppercase text-xl py-4 rounded-lg hover:bg-white transition-colors duration-300 shadow-[0_4px_20px_rgb(255,225,124,0.3)]"
-                >
-                  Get The System
-                </Link>
+                <Button href="/start" variant="primary-dark" size="lg" fullWidth>
+                  Tell me about your business
+                </Button>
               </div>
             </div>
 
             {/* Maintenance */}
-            <div className="bg-white border border-charcoal/10 rounded-xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between mb-12 shadow-sm">
+            <div className="bg-white border border-charcoal/10 rounded-xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between mb-8 shadow-sm">
               <div>
                 <h4 className="font-anton text-2xl uppercase mb-1">
-                  Monthly Maintenance
+                  After Launch: $400/mo
                 </h4>
                 <p className="font-satoshi text-charcoal/70 text-sm md:text-base">
-                  Hosting, continuous updates, technical support, and minor
-                  changes.
+                  Replaces your hosting, your &ldquo;tech guy,&rdquo; and the
+                  agency retainer you&apos;d otherwise need. Cancel anytime.
                 </p>
-              </div>
-              <div className="mt-4 md:mt-0 font-anton text-3xl">
-                $400<span className="text-lg text-charcoal/50">/mo</span>
               </div>
             </div>
 
@@ -517,9 +494,9 @@ export default function Home() {
         {/* CASE STUDIES */}
         <section aria-label="Case studies" className="py-24 md:py-32 px-6 bg-white border-b border-charcoal/10">
           <div className="max-w-[1400px] mx-auto">
-            <h2 className="font-anton text-5xl md:text-6xl uppercase leading-[0.9] mb-16">
+            <SectionHeader className="mb-16">
               Work I&apos;ve done. Businesses like yours.
-            </h2>
+            </SectionHeader>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {caseStudies.map((cs) => (
                 <CaseStudyCard key={cs.name} {...cs} />
@@ -535,9 +512,9 @@ export default function Home() {
           className="py-24 md:py-32 px-6 bg-white border-b border-charcoal/10"
         >
           <div className="max-w-3xl mx-auto">
-            <h2 className="font-anton text-5xl md:text-6xl uppercase leading-[0.9] mb-16">
+            <SectionHeader className="mb-16">
               Questions you probably have.
-            </h2>
+            </SectionHeader>
             <div className="space-y-2">
               {faqs.map((faq) => (
                 <FaqItem key={faq.question} {...faq} />
@@ -547,40 +524,14 @@ export default function Home() {
         </section>
 
         {/* FINAL CTA */}
-        <section
-          id="contact"
-          aria-label="Get started"
-          className="py-32 px-6 bg-yellow text-charcoal relative overflow-hidden flex flex-col items-center justify-center text-center"
-        >
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
-            <div className="font-anton text-[20vw] leading-none opacity-5 whitespace-nowrap select-none">
-              CTRLSWING GO LIVE
-            </div>
-          </div>
-          <div className="relative z-10 max-w-4xl mx-auto">
-            <h2 className="font-anton text-6xl md:text-8xl uppercase leading-[0.9] mb-8">
-              Ready to get your marketing running?
-            </h2>
-            <p className="font-satoshi text-xl md:text-2xl text-charcoal/80 max-w-2xl mx-auto mb-12">
-              Fill out a quick form. Takes about 2 minutes. I&apos;ll get back
-              to you within 24 hours with a clear scope, timeline, and price. No
-              commitment.
-            </p>
-            <div className="max-w-md mx-auto bg-charcoal p-3 md:p-4 rounded-2xl shadow-2xl transition-transform duration-300 hover:scale-105 mb-6">
-              <Link
-                href="/start"
-                className="block w-full text-center bg-yellow text-charcoal font-anton uppercase text-2xl md:text-3xl px-8 py-6 rounded-xl hover:bg-white transition-all duration-300 shadow-[0_4px_20px_rgb(255,225,124,0.2)]"
-              >
-                Tell me about your business
-              </Link>
-            </div>
-            <p className="font-satoshi text-sm font-medium text-charcoal/60">
-              <Lock className="inline-block align-text-bottom mr-1 w-4 h-4" />
-              Your info goes directly to me. No sales team. No autoresponder
-              sequence.
-            </p>
-          </div>
-        </section>
+        <CtaBlock
+          heading="Tell me about your business."
+          subheading={<>I&apos;ll tell you exactly what I&apos;d build.</>}
+          description="Takes about 2 minutes. I'll get back within 24 hours with a clear scope, timeline, and price. No commitment."
+          buttonText="Get Started"
+          buttonHref="/start"
+          email="jackson@ctrlswing.com"
+        />
       </main>
 
       <Footer />

@@ -1,21 +1,33 @@
 @import "tailwindcss";
 
 @theme inline {
+  /* Brand colors */
   --color-yellow: #ffe17c;
   --color-charcoal: #171e19;
   --color-darkgray: #272727;
   --color-sage: #b7c6c2;
 
+  /* Semantic colors */
+  --color-error: #ef4444;
+  --color-success: #4ade80;
+
+  /* Typography */
   --font-anton: "Anton", sans-serif;
   --font-satoshi: "Satoshi", sans-serif;
-
   --leading-tightest: 0.9;
 
+  /* Shadows — brand glow variants */
+  --shadow-yellow-glow: 0 8px 30px rgba(255, 225, 124, 0.4);
+  --shadow-yellow-glow-hover: 0 8px 30px rgba(23, 30, 25, 0.4);
+  --shadow-yellow-subtle: 0 4px 20px rgba(255, 225, 124, 0.3);
+  --shadow-yellow-faint: 0 4px 20px rgba(255, 225, 124, 0.2);
+
+  /* Motion */
   --transition-timing-custom: cubic-bezier(0.4, 0, 0.2, 1);
 
+  /* Patterns */
   --background-image-grid-light: linear-gradient(to right, rgba(23, 30, 25, 0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(23, 30, 25, 0.05) 1px, transparent 1px);
   --background-image-grid-dark: linear-gradient(to right, rgba(183, 198, 194, 0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(183, 198, 194, 0.05) 1px, transparent 1px);
-
   --background-size-40: 40px 40px;
 }
 

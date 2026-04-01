@@ -13,28 +13,28 @@ const anton = Anton({
 
 export const metadata: Metadata = {
   title: {
-    default: "CTRLSWING | Your Marketing System, Built in Days",
+    default: "CTRLSWING | Your Marketing Isn't Broken. It's Just Outdated.",
     template: "%s | CTRLSWING",
   },
   description:
-    "Complete marketing systems for small businesses, built and running in days. Website, email, ads, SEO. No retainers, no mystery pricing. One person builds everything. San Diego and beyond.",
+    "Modern marketing systems for small businesses. Website, email, ads, SEO — built by one person with purpose-built tools, in days. No retainers, no mystery pricing. San Diego and beyond.",
   metadataBase: new URL("https://ctrlswing.com"),
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://ctrlswing.com",
     siteName: "CTRLSWING",
-    title: "Your Entire Marketing System. Built and Running in Days.",
+    title: "Your Marketing Isn't Broken. It's Just Outdated.",
     description:
-      "Website. Email. Ads. SEO. All of it. Set up, launched, and live before most agencies finish their proposal.",
+      "Website. Email. Ads. SEO. One person builds it all — with modern tools, in days.",
   },
   twitter: {
     card: "summary_large_image",
     site: "@ctrlswing",
     creator: "@ctrlswing",
-    title: "Your Entire Marketing System. Built and Running in Days.",
+    title: "Your Marketing Isn't Broken. It's Just Outdated.",
     description:
-      "Website. Email. Ads. SEO. All of it. Set up, launched, and live before most agencies finish their proposal.",
+      "Website. Email. Ads. SEO. One person builds it all — with modern tools, in days.",
   },
   robots: {
     index: true,
