@@ -8,6 +8,7 @@ type CtaBlockProps = {
   buttonText: string;
   buttonHref: string;
   email?: string;
+  decorativeText?: string;
 };
 
 export function CtaBlock({
@@ -17,6 +18,7 @@ export function CtaBlock({
   buttonText,
   buttonHref,
   email,
+  decorativeText = "CTRLSWING GO LIVE",
 }: CtaBlockProps) {
   return (
     <section
@@ -26,7 +28,7 @@ export function CtaBlock({
     >
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
         <div className="font-anton text-[20vw] leading-none opacity-5 whitespace-nowrap select-none">
-          CTRLSWING GO LIVE
+          {decorativeText}
         </div>
       </div>
       <div className="relative z-10 max-w-4xl mx-auto">
@@ -47,8 +49,8 @@ export function CtaBlock({
           <Button
             href={buttonHref}
             variant="primary-dark"
+            size="2xl"
             fullWidth
-            className="text-2xl md:text-3xl px-8 py-6 rounded-xl"
           >
             {buttonText}
           </Button>

@@ -13,28 +13,28 @@ const anton = Anton({
 
 export const metadata: Metadata = {
   title: {
-    default: "CTRLSWING | Your Marketing Isn't Broken. It's Just Outdated.",
-    template: "%s | CTRLSWING",
+    default: "ctrlswing — Build AI skills that actually do the work",
+    template: "%s | ctrlswing",
   },
   description:
-    "Modern marketing systems for small businesses. Website, email, ads, SEO — built by one person with purpose-built tools, in days. No retainers, no mystery pricing. San Diego and beyond.",
+    "Learn how to build Claude skills that turn your best thinking into repeatable workflows. Free walkthrough, 1:1 sessions, and custom builds from a practitioner who uses these tools on real client work every day.",
   metadataBase: new URL("https://ctrlswing.com"),
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://ctrlswing.com",
-    siteName: "CTRLSWING",
-    title: "Your Marketing Isn't Broken. It's Just Outdated.",
+    siteName: "ctrlswing",
+    title: "Build AI skills that actually do the work",
     description:
-      "Website. Email. Ads. SEO. One person builds it all — with modern tools, in days.",
+      "Free walkthrough + 1:1 sessions from a practitioner who builds and uses Claude skills on real client work daily.",
   },
   twitter: {
     card: "summary_large_image",
     site: "@ctrlswing",
     creator: "@ctrlswing",
-    title: "Your Marketing Isn't Broken. It's Just Outdated.",
+    title: "Build AI skills that actually do the work",
     description:
-      "Website. Email. Ads. SEO. One person builds it all — with modern tools, in days.",
+      "Free walkthrough + 1:1 sessions from a practitioner who builds and uses Claude skills on real client work daily.",
   },
   robots: {
     index: true,
@@ -53,7 +53,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${anton.variable} scroll-smooth`}>
       <head>
-        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://api.fontshare.com" crossOrigin="anonymous" />
         <link
           href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap"

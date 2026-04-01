@@ -3,9 +3,10 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Zap, Check, CheckCircle2, ArrowLeft } from "lucide-react";
+import { Zap, Check, CheckCircle2, ArrowLeft, Loader2 } from "lucide-react";
 import { track } from "@vercel/analytics";
 import { submitLead } from "./actions";
+import { Button } from "@/components/ui/button";
 
 type FormData = {
   currentStatus: string;
@@ -109,7 +110,8 @@ export default function StartPage() {
           {step > 1 && step <= totalSteps && (
             <button
               onClick={goBack}
-              className="text-sage hover:text-yellow transition-colors duration-300"
+              aria-label="Go back"
+              className="text-sage hover:text-yellow transition-colors duration-200 p-2 -m-2 min-w-[44px] min-h-[44px] flex items-center justify-center"
             >
               <ArrowLeft className="w-5 h-5" />
             </button>
@@ -193,23 +195,10 @@ export default function StartPage() {
                 ))}
               </div>
 
-              <p className="font-satoshi text-sm text-sage mb-10 text-center">
+              <p className="font-satoshi text-sm text-sage mt-6 text-center">
                 No wrong answers. This just helps me understand where
                 you&apos;re starting from.
               </p>
-
-              <button
-                type="button"
-                onClick={nextStep}
-                disabled={!canProceed()}
-                className={`w-full font-anton uppercase text-xl py-5 rounded-xl transition-all duration-300 ${
-                  canProceed()
-                    ? "bg-yellow text-charcoal hover:bg-white"
-                    : "bg-yellow/50 text-charcoal/50 cursor-not-allowed"
-                }`}
-              >
-                Next
-              </button>
             </div>
           )}
 
@@ -303,18 +292,16 @@ export default function StartPage() {
                 </label>
               </div>
 
-              <button
+              <Button
                 type="button"
                 onClick={nextStep}
                 disabled={!canProceed()}
-                className={`w-full font-anton uppercase text-xl py-5 rounded-xl transition-all duration-300 ${
-                  canProceed()
-                    ? "bg-yellow text-charcoal hover:bg-white"
-                    : "bg-yellow/50 text-charcoal/50 cursor-not-allowed"
-                }`}
+                variant="primary"
+                size="xl"
+                fullWidth
               >
                 Next
-              </button>
+              </Button>
             </div>
           )}
 
@@ -392,18 +379,6 @@ export default function StartPage() {
                 ))}
               </div>
 
-              <button
-                type="button"
-                onClick={nextStep}
-                disabled={!canProceed()}
-                className={`w-full font-anton uppercase text-xl py-5 rounded-xl transition-all duration-300 ${
-                  canProceed()
-                    ? "bg-yellow text-charcoal hover:bg-white"
-                    : "bg-yellow/50 text-charcoal/50 cursor-not-allowed"
-                }`}
-              >
-                Next
-              </button>
             </div>
           )}
 
@@ -506,23 +481,28 @@ export default function StartPage() {
               </div>
 
               {error && (
-                <p className="text-red-400 font-satoshi text-sm text-center mb-4">
+                <p className="text-error font-satoshi text-sm text-center mb-4">
                   {error}
                 </p>
               )}
 
-              <button
+              <Button
                 type="button"
                 onClick={handleSubmit}
                 disabled={!canProceed() || submitting}
-                className={`w-full font-anton uppercase text-xl py-5 rounded-xl transition-all duration-300 ${
-                  canProceed() && !submitting
-                    ? "bg-yellow text-charcoal hover:bg-white hover:-translate-y-1 shadow-[0_4px_20px_rgb(255,225,124,0.2)]"
-                    : "bg-yellow/50 text-charcoal/50 cursor-not-allowed"
-                }`}
+                variant="primary"
+                size="xl"
+                fullWidth
               >
-                {submitting ? "Sending..." : "SEND IT OVER"}
-              </button>
+                {submitting ? (
+                  <span className="flex items-center justify-center gap-2">
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                    Sending...
+                  </span>
+                ) : (
+                  "SEND IT OVER"
+                )}
+              </Button>
             </div>
           )}
 

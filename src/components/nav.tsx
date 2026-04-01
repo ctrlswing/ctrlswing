@@ -13,29 +13,31 @@ export function Nav() {
           CTRLSWING<span className="text-yellow">.</span>
         </Link>
         <div className="hidden md:flex items-center gap-8 font-satoshi text-sm font-medium">
-          <a
-            href="#work"
+          <Link
+            href="/resources"
             className="hover:text-yellow transition-colors duration-200"
           >
-            WORK
-          </a>
-          <a
-            href="#pricing"
+            RESOURCES
+          </Link>
+          <Link
+            href="/blog"
             className="hover:text-yellow transition-colors duration-200"
           >
-            PRICING
-          </a>
-          <a
-            href="#faq"
+            BLOG
+          </Link>
+          <Link
+            href="/about"
             className="hover:text-yellow transition-colors duration-200"
           >
-            FAQ
-          </a>
+            ABOUT
+          </Link>
         </div>
         <div className="flex items-center gap-4">
-          <Button href="/start" variant="primary-inverse" size="md" rounded="pill">
-            Get Started
-          </Button>
+          <div className="hidden md:block">
+            <Button href="/start" variant="primary-inverse" size="md" rounded="pill">
+              Book a Session
+            </Button>
+          </div>
           <MobileMenu />
         </div>
       </div>
