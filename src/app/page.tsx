@@ -5,7 +5,6 @@ import { CaseStudyCard } from "@/components/case-study-card";
 import { FaqItem } from "@/components/faq-item";
 import { Button } from "@/components/ui/button";
 import { SectionHeader } from "@/components/ui/section-header";
-import { EmailCapture } from "@/components/ui/email-capture";
 
 const caseStudies = [
   {
@@ -150,30 +149,29 @@ export default function Home() {
           </div>
 
           <h1 className="font-anton text-6xl md:text-8xl lg:text-9xl uppercase leading-[0.9] max-w-5xl mx-auto mb-8 relative z-10">
-            Stop prompting from{" "}
+            You use Claude every day. You&apos;re barely scratching the{" "}
             <span className="relative inline-block whitespace-nowrap px-2">
               <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[70%] bg-yellow transform rotate-[15deg] z-[-1]" />
-              <span className="relative z-10">scratch</span>
-            </span>{" "}
-            every time.
+              <span className="relative z-10">surface.</span>
+            </span>
           </h1>
 
           <p className="font-satoshi text-lg md:text-xl text-charcoal/70 max-w-2xl mx-auto mb-8 md:mb-12">
-            Turn your best thinking into repeatable workflows. No code. Just a
-            markdown file.
+            AI skills turn your best thinking into repeatable workflows. Claude
+            does the work the way you would, every time. No code. No guesswork.
+            Just a markdown file.
           </p>
 
-          <div className="w-full max-w-lg mx-auto">
-            <EmailCapture
-              headline=""
-              description=""
-              microcopy="Free video walkthrough. Takes 20 minutes."
-            />
-          </div>
+          <Button href="/build" variant="primary" size="xl">
+            Build your first skill
+          </Button>
+          <p className="font-satoshi text-sm text-charcoal/50 mt-3 mb-6">
+            Answer a few questions. Get a custom skill built for your workflow.
+          </p>
 
-          <div className="mt-6 flex items-center gap-2">
+          <div className="flex items-center gap-2">
             <span className="font-satoshi text-sm text-charcoal/60">or</span>
-            <Button href="/start" variant="ghost" size="md">
+            <Button href="/book" variant="ghost" size="md">
               Book a 1:1 session
             </Button>
           </div>
@@ -290,16 +288,13 @@ export default function Home() {
                     Learn to build your first skill
                   </h3>
                   <p className="font-satoshi text-lg text-charcoal/70 max-w-md mb-6">
-                    Start with the free walkthrough. I&apos;ll show you how to
-                    build your first skill from scratch. Structure, formatting,
-                    and how to make it actually useful. Takes 20 minutes.
+                    Answer a few questions about your business and workflow. The
+                    builder generates a custom Skill.md tailored to you. Enter
+                    your email to download it.
                   </p>
-                  <EmailCapture
-                    headline=""
-                    description=""
-                    buttonText="Get the walkthrough"
-                    microcopy="Free video walkthrough. No spam."
-                  />
+                  <Button href="/build" variant="primary" size="lg">
+                    Build your skill
+                  </Button>
                 </div>
               </div>
 
@@ -321,7 +316,7 @@ export default function Home() {
                     build your first one together. You leave with a working
                     skill, a recording, and my notes.
                   </p>
-                  <Button href="/start" variant="primary" size="lg">
+                  <Button href="/book" variant="primary" size="lg">
                     Book a session
                   </Button>
                 </div>
@@ -344,9 +339,6 @@ export default function Home() {
                     skills for your team? Custom builds are available for people
                     who&apos;ve done a session and want to go deeper.
                   </p>
-                  <Button href="/start" variant="outline" size="lg">
-                    Let&apos;s talk
-                  </Button>
                 </div>
               </div>
             </div>
@@ -439,20 +431,26 @@ export default function Home() {
               Build your first skill.
             </h2>
             <p className="font-anton text-3xl md:text-4xl uppercase leading-[0.9] mb-8 text-charcoal/60">
-              Free video walkthrough. 20 minutes. No fluff.
+              Answer a few questions. Get a custom skill for your workflow.
             </p>
-            <div className="max-w-lg mx-auto mb-8">
-              <EmailCapture
-                headline=""
-                description=""
-                buttonText="Get the walkthrough"
-                microcopy="Your email goes directly to me. No spam. No autoresponder sequence."
-                variant="brand"
-              />
+            <div className="max-w-md mx-auto mb-8">
+              <div className="bg-charcoal p-3 md:p-4 rounded-2xl shadow-2xl transition-transform duration-300 hover:scale-105">
+                <Button
+                  href="/build"
+                  variant="primary-dark"
+                  size="2xl"
+                  fullWidth
+                >
+                  Build your skill
+                </Button>
+              </div>
             </div>
+            <p className="font-satoshi text-sm text-charcoal/60 mb-4">
+              Your email goes directly to me. No spam. No autoresponder sequence.
+            </p>
             <div className="flex items-center justify-center gap-2">
               <span className="font-satoshi text-sm text-charcoal/70">or</span>
-              <Button href="/start" variant="ghost" size="md" className="text-charcoal/80 hover:text-charcoal">
+              <Button href="/book" variant="ghost" size="md" className="text-charcoal/80 hover:text-charcoal">
                 Book a 1:1 session
               </Button>
             </div>

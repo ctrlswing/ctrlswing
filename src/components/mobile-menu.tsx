@@ -75,7 +75,7 @@ export function MobileMenu() {
           ABOUT
         </Link>
         <Button
-          href="/start"
+          href="/book"
           variant="primary"
           size="md"
           fullWidth

@@ -34,7 +34,7 @@ export function Nav() {
         </div>
         <div className="flex items-center gap-4">
           <div className="hidden md:block">
-            <Button href="/start" variant="primary-inverse" size="md" rounded="pill">
+            <Button href="/book" variant="primary-inverse" size="md" rounded="pill">
               Book a Session
             </Button>
           </div>
