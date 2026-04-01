@@ -504,6 +504,80 @@ export default function Home() {
           </div>
         </section>
 
+        {/* WHO THIS IS FOR */}
+        <section className="py-24 md:py-32 px-6 bg-charcoal text-white border-b border-sage/10 relative overflow-hidden">
+          <div className="absolute inset-0 bg-[image:var(--background-image-grid-dark)] bg-[size:40px_40px] pointer-events-none" />
+          <div className="relative z-10 max-w-6xl mx-auto">
+            <h2 className="font-anton text-5xl md:text-6xl uppercase leading-[0.9] mb-20 text-center">
+              Is this right for you?
+            </h2>
+
+            <div className="grid md:grid-cols-2 gap-12 md:gap-16">
+              {/* For you */}
+              <div>
+                <div className="flex items-center gap-3 mb-8">
+                  <div className="w-10 h-10 rounded-full bg-yellow flex items-center justify-center shrink-0">
+                    <CheckCircle2 className="w-6 h-6 text-charcoal" />
+                  </div>
+                  <h3 className="font-anton text-2xl uppercase">
+                    This is for you if
+                  </h3>
+                </div>
+                <ul className="space-y-6">
+                  {[
+                    "You run a small or local business and need marketing, but you don't have a marketing team.",
+                    "You're starting from zero, or your current site isn't bringing in customers.",
+                    "You've been doing everything yourself and something has to give.",
+                    "You want to see exactly what you're getting and what it costs before anything starts.",
+                  ].map((item) => (
+                    <li key={item} className="flex gap-4">
+                      <span className="w-1.5 h-1.5 rounded-full bg-yellow mt-2.5 shrink-0" />
+                      <p className="font-satoshi text-lg text-sage/90">{item}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Not for you */}
+              <div>
+                <div className="flex items-center gap-3 mb-8">
+                  <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0">
+                    <X className="w-6 h-6 text-sage" />
+                  </div>
+                  <h3 className="font-anton text-2xl uppercase text-sage">
+                    This probably isn&apos;t for you if
+                  </h3>
+                </div>
+                <ul className="space-y-6">
+                  {[
+                    "You already have a marketing team and want someone to optimize what's working.",
+                    "You need a 40-page brand strategy before anything gets built.",
+                    "You want to approve every pixel before it goes live.",
+                    "You're looking for the cheapest option. This is fast and thorough, not discount.",
+                  ].map((item) => (
+                    <li key={item} className="flex gap-4">
+                      <span className="w-1.5 h-1.5 rounded-full bg-sage/40 mt-2.5 shrink-0" />
+                      <p className="font-satoshi text-lg text-sage/60">{item}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <div className="mt-16 pt-16 border-t border-sage/10 text-center">
+              <p className="font-satoshi text-xl text-sage/80 mb-8">
+                Sound like you? I&apos;ll send you a scope, timeline, and price within 24 hours. Not right? Walk away. No hard feelings.
+              </p>
+              <Link
+                href="/start"
+                className="inline-flex justify-center items-center bg-yellow text-charcoal font-anton uppercase text-xl px-10 py-5 rounded-lg hover:bg-white transition-all duration-300 hover:-translate-y-1 shadow-[0_8px_30px_rgb(255,225,124,0.2)]"
+              >
+                Get your free scope and price
+              </Link>
+            </div>
+          </div>
+        </section>
+
         {/* FAQ */}
         <section
           id="faq"
