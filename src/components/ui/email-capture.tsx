@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useId } from "react";
 import { Loader2, CheckCircle2 } from "lucide-react";
 
 type EmailCaptureVariant = "light" | "dark" | "brand";
@@ -22,6 +22,7 @@ export function EmailCapture({
   variant = "light",
   className = "",
 }: EmailCaptureProps) {
+  const id = useId();
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
@@ -31,10 +32,13 @@ export function EmailCapture({
 
     setStatus("loading");
 
-    // TODO: Wire up Kit (ConvertKit) API
-    // For now, simulate success after a brief delay
-    await new Promise((resolve) => setTimeout(resolve, 800));
-    setStatus("success");
+    try {
+      // TODO: Wire up Kit (ConvertKit) API — replace this stub
+      await new Promise((resolve) => setTimeout(resolve, 800));
+      setStatus("success");
+    } catch {
+      setStatus("error");
+    }
   }
 
   const isDark = variant === "dark";
@@ -64,11 +68,11 @@ export function EmailCapture({
         </p>
       )}
       <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 mb-3">
-        <label htmlFor="email-capture" className="sr-only">
+        <label htmlFor={`${id}-email`} className="sr-only">
           Email address
         </label>
         <input
-          id="email-capture"
+          id={`${id}-email`}
           type="email"
           required
           placeholder="you@example.com"

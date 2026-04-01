@@ -53,7 +53,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${anton.variable} scroll-smooth`}>
       <head>
-        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://api.fontshare.com" crossOrigin="anonymous" />
         <link
           href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap"
