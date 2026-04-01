@@ -4,6 +4,7 @@ type SectionHeaderProps = {
   className?: string;
   align?: "left" | "center";
   size?: "default" | "large";
+  variant?: "light" | "dark";
 };
 
 const sizeStyles = {
@@ -17,6 +18,7 @@ export function SectionHeader({
   className = "",
   align = "left",
   size = "default",
+  variant = "light",
 }: SectionHeaderProps) {
   return (
     <div className={`${align === "center" ? "text-center" : ""} ${className}`}>
@@ -24,7 +26,9 @@ export function SectionHeader({
         {children}
       </h2>
       {subtitle && (
-        <p className="font-satoshi text-lg text-charcoal/70 max-w-2xl">
+        <p className={`font-satoshi text-lg max-w-2xl ${align === "center" ? "mx-auto" : ""} ${
+          variant === "dark" ? "text-sage/80" : "text-charcoal/70"
+        }`}>
           {subtitle}
         </p>
       )}

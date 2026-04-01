@@ -21,7 +21,7 @@ export function CaseStudyCard({
     <div className={`${stagger ? "md:mt-12" : ""}`}>
       {/* Browser frame as the card itself */}
       <div
-        className={`rounded-xl mb-6 overflow-hidden border ${isDark ? "bg-charcoal border-charcoal" : "bg-white border-charcoal/10"} shadow-xl hover:shadow-2xl transition-shadow duration-500`}
+        className={`rounded-2xl mb-6 overflow-hidden border ${isDark ? "bg-charcoal border-charcoal" : "bg-white border-charcoal/10"} shadow-xl hover:shadow-2xl transition-shadow duration-500`}
       >
         {/* Chrome bar */}
         <div
