@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
+import { Button } from "@/components/ui/button";
 
 export default function NotFound() {
   return (
@@ -12,21 +12,15 @@ export default function NotFound() {
             404
           </h1>
           <p className="font-satoshi text-xl text-charcoal/70 mb-10">
-            This page doesn't exist. Let's get you back on track.
+            This page doesn&apos;t exist. Let&apos;s get you back on track.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/"
-              className="bg-charcoal text-white font-anton uppercase text-lg px-8 py-3 rounded-lg hover:bg-yellow hover:text-charcoal transition-all duration-300"
-            >
+            <Button href="/" variant="primary-inverse">
               Back Home
-            </Link>
-            <Link
-              href="/start"
-              className="bg-yellow text-charcoal font-anton uppercase text-lg px-8 py-3 rounded-lg hover:bg-charcoal hover:text-white transition-all duration-300"
-            >
+            </Button>
+            <Button href="/start" variant="primary">
               Get Started
-            </Link>
+            </Button>
           </div>
         </div>
       </main>

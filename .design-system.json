@@ -35,7 +35,8 @@
     "heading-scale": {
       "display": { "size": "clamp(3.75rem, 8vw, 9rem)", "lineHeight": "0.9", "weight": 400, "transform": "uppercase" },
       "h1": { "size": "clamp(3rem, 6vw, 3.75rem)", "lineHeight": "0.9", "weight": 400, "transform": "uppercase" },
-      "h2": { "size": "clamp(2.25rem, 4vw, 3rem)", "lineHeight": "0.9", "weight": 400, "transform": "uppercase" },
+      "h2-display": { "size": "clamp(3rem, 5vw, 4.5rem)", "lineHeight": "0.9", "weight": 400, "transform": "uppercase" },
+      "h2": { "size": "clamp(2.25rem, 4vw, 3.75rem)", "lineHeight": "0.9", "weight": 400, "transform": "uppercase" },
       "h3": { "size": "1.5rem", "lineHeight": "1.1", "weight": 400, "transform": "uppercase" },
       "h4": { "size": "1.25rem", "lineHeight": "1.1", "weight": 400, "transform": "uppercase" }
     },
@@ -89,17 +90,35 @@
   },
 
   "opacity-scale": {
+    "ghost": "0.05",
     "border": "0.10",
-    "muted-text": "0.50",
-    "secondary-text": "0.70",
-    "primary-text": "0.80",
-    "subtle-bg": "0.05"
+    "faint": "0.20",
+    "muted": "0.30",
+    "subtle": "0.50",
+    "secondary": "0.60",
+    "body": "0.70",
+    "strong": "0.80",
+    "primary": "0.90"
   },
 
   "patterns": {
     "grid-light": "linear-gradient(to right, rgba(23,30,25,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(23,30,25,0.05) 1px, transparent 1px)",
     "grid-dark": "linear-gradient(to right, rgba(183,198,194,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(183,198,194,0.05) 1px, transparent 1px)",
     "grid-size": "40px 40px"
+  },
+
+  "radius-usage": {
+    "pills-badges": "full",
+    "cards-panels": "2xl",
+    "buttons-inputs": "lg",
+    "inner-elements": "xl"
+  },
+
+  "container-widths": {
+    "narrow": "max-w-3xl",
+    "medium": "max-w-4xl",
+    "wide": "max-w-7xl",
+    "hero-heading": "max-w-6xl"
   },
 
   "constraints": {

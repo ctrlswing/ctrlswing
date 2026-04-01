@@ -190,12 +190,12 @@ export default function Home() {
           <Button href="/start" variant="primary" size="xl" className="mb-4">
             Tell me about your business
           </Button>
-          <p className="font-satoshi text-sm text-charcoal/50 mb-1">
+          <p className="font-satoshi text-sm text-charcoal/60 mb-1">
             No retainers. No mystery pricing. Full scope before anything starts.
           </p>
           <a
             href="mailto:jackson@ctrlswing.com"
-            className="inline-flex items-center gap-1.5 font-satoshi text-sm text-charcoal/50 hover:text-charcoal transition-colors"
+            className="inline-flex items-center gap-1.5 font-satoshi text-sm text-charcoal/60 hover:text-charcoal transition-colors"
           >
             <Mail className="w-3.5 h-3.5" />
             or just email jackson@ctrlswing.com
@@ -315,15 +315,14 @@ export default function Home() {
           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16">
             <div className="lg:col-span-5">
               <div className="sticky top-32">
-                <h2 className="font-anton text-6xl md:text-7xl uppercase leading-[0.9] mb-6">
+                <SectionHeader
+                  size="large"
+                  subtitle="A streamlined process designed to eliminate friction and get your business online fast."
+                >
                   Three steps.
                   <br />
                   That&apos;s it.
-                </h2>
-                <p className="font-satoshi text-lg text-charcoal/70 max-w-sm">
-                  A streamlined process designed to eliminate friction and get
-                  your business online fast.
-                </p>
+                </SectionHeader>
               </div>
             </div>
 
@@ -493,7 +492,7 @@ export default function Home() {
 
         {/* CASE STUDIES */}
         <section aria-label="Case studies" className="py-24 md:py-32 px-6 bg-white border-b border-charcoal/10">
-          <div className="max-w-[1400px] mx-auto">
+          <div className="max-w-7xl mx-auto">
             <SectionHeader className="mb-16">
               Work I&apos;ve done. Businesses like yours.
             </SectionHeader>

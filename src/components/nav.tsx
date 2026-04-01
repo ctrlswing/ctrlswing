@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { MobileMenu } from "./mobile-menu";
+import { Button } from "./ui/button";
 
 export function Nav() {
   return (
@@ -32,12 +33,9 @@ export function Nav() {
           </a>
         </div>
         <div className="flex items-center gap-4">
-          <Link
-            href="/start"
-            className="bg-charcoal text-white font-anton uppercase text-lg px-6 py-2 rounded-full hover:bg-yellow hover:text-charcoal transition-all duration-300 hover:scale-105"
-          >
+          <Button href="/start" variant="primary-inverse" size="md" rounded="pill">
             Get Started
-          </Link>
+          </Button>
           <MobileMenu />
         </div>
       </div>

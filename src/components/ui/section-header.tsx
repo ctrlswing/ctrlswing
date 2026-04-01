@@ -3,6 +3,12 @@ type SectionHeaderProps = {
   subtitle?: string;
   className?: string;
   align?: "left" | "center";
+  size?: "default" | "large";
+};
+
+const sizeStyles = {
+  default: "text-5xl md:text-6xl",
+  large: "text-6xl md:text-7xl",
 };
 
 export function SectionHeader({
@@ -10,10 +16,11 @@ export function SectionHeader({
   subtitle,
   className = "",
   align = "left",
+  size = "default",
 }: SectionHeaderProps) {
   return (
     <div className={`${align === "center" ? "text-center" : ""} ${className}`}>
-      <h2 className="font-anton text-5xl md:text-6xl uppercase leading-[0.9] mb-6">
+      <h2 className={`font-anton ${sizeStyles[size]} uppercase leading-[0.9] mb-6`}>
         {children}
       </h2>
       {subtitle && (

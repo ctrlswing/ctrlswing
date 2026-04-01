@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { Lock } from "lucide-react";
+import { Button } from "./button";
 
 type CtaBlockProps = {
   heading: React.ReactNode;
@@ -44,12 +44,14 @@ export function CtaBlock({
           </p>
         )}
         <div className="max-w-md mx-auto bg-charcoal p-3 md:p-4 rounded-2xl shadow-2xl transition-transform duration-300 hover:scale-105 mb-6">
-          <Link
+          <Button
             href={buttonHref}
-            className="block w-full text-center bg-yellow text-charcoal font-anton uppercase text-2xl md:text-3xl px-8 py-6 rounded-xl hover:bg-white transition-all duration-300 shadow-yellow-faint"
+            variant="primary-dark"
+            fullWidth
+            className="text-2xl md:text-3xl px-8 py-6 rounded-xl"
           >
             {buttonText}
-          </Link>
+          </Button>
         </div>
         <p className="font-satoshi text-sm font-medium text-charcoal/60 mb-2">
           <Lock className="inline-block align-text-bottom mr-1 w-4 h-4" />
@@ -59,7 +61,7 @@ export function CtaBlock({
         {email && (
           <a
             href={`mailto:${email}`}
-            className="font-satoshi text-sm text-charcoal/50 hover:text-charcoal transition-colors"
+            className="font-satoshi text-sm text-charcoal/60 hover:text-charcoal transition-colors"
           >
             Prefer email? {email}
           </a>

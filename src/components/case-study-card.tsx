@@ -18,10 +18,10 @@ export function CaseStudyCard({
   isDark?: boolean;
 }) {
   return (
-    <div className={`group cursor-pointer ${stagger ? "md:mt-12" : ""}`}>
+    <div className={`${stagger ? "md:mt-12" : ""}`}>
       {/* Browser frame as the card itself */}
       <div
-        className={`rounded-xl mb-6 overflow-hidden border ${isDark ? "bg-charcoal border-charcoal" : "bg-white border-charcoal/10"} shadow-xl transition-transform duration-500 group-hover:scale-[1.02]`}
+        className={`rounded-xl mb-6 overflow-hidden border ${isDark ? "bg-charcoal border-charcoal" : "bg-white border-charcoal/10"} shadow-xl hover:shadow-2xl transition-shadow duration-500`}
       >
         {/* Chrome bar */}
         <div

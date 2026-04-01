@@ -1,17 +1,25 @@
 import Link from "next/link";
 
-type ButtonVariant = "primary" | "primary-dark" | "outline" | "ghost";
+type ButtonVariant = "primary" | "primary-dark" | "primary-inverse" | "outline" | "ghost";
 type ButtonSize = "md" | "lg" | "xl";
+type ButtonRounded = "default" | "pill";
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
     "bg-yellow text-charcoal hover:bg-charcoal hover:text-white shadow-yellow-glow hover:shadow-yellow-glow-hover hover:-translate-y-1",
   "primary-dark":
     "bg-yellow text-charcoal hover:bg-white shadow-yellow-subtle",
+  "primary-inverse":
+    "bg-charcoal text-white hover:bg-yellow hover:text-charcoal hover:scale-105",
   outline:
     "bg-white border-2 border-charcoal text-charcoal hover:bg-charcoal hover:text-white",
   ghost:
     "text-charcoal/70 hover:text-charcoal",
+};
+
+const roundedStyles: Record<ButtonRounded, string> = {
+  default: "rounded-lg",
+  pill: "rounded-full",
 };
 
 const sizeStyles: Record<ButtonSize, string> = {
@@ -23,6 +31,7 @@ const sizeStyles: Record<ButtonSize, string> = {
 type ButtonProps = {
   variant?: ButtonVariant;
   size?: ButtonSize;
+  rounded?: ButtonRounded;
   href?: string;
   className?: string;
   children: React.ReactNode;
@@ -35,13 +44,14 @@ type ButtonProps = {
 export function Button({
   variant = "primary",
   size = "lg",
+  rounded = "default",
   href,
   className = "",
   children,
   fullWidth = false,
   ...props
 }: ButtonProps) {
-  const base = `inline-flex justify-center items-center font-anton uppercase rounded-lg transition-all duration-300 ${
+  const base = `inline-flex justify-center items-center font-anton uppercase ${roundedStyles[rounded]} transition-all duration-300 ${
     fullWidth ? "w-full" : ""
   }`;
   const classes = `${base} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`;
