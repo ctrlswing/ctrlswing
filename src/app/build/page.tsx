@@ -442,7 +442,9 @@ export default function BuildPage() {
                 </div>
                 <pre
                   ref={outputRef}
-                  className="p-6 font-mono text-sm text-sage/90 whitespace-pre-wrap overflow-y-auto max-h-[400px] leading-relaxed"
+                  tabIndex={0}
+                  aria-label="Generated skill content"
+                  className="p-6 font-mono text-sm text-sage/90 whitespace-pre-wrap overflow-y-auto max-h-[400px] leading-relaxed focus:outline-none focus:ring-2 focus:ring-yellow focus:ring-inset"
                 >
                   {skillContent || "Waiting for generation to start..."}
                   {generating && (
@@ -454,16 +456,18 @@ export default function BuildPage() {
               {/* Actions */}
               {streamDone && (
                 <div className="space-y-4">
-                  <Button
-                    type="button"
-                    onClick={downloadSkill}
-                    variant="primary"
-                    size="xl"
-                    fullWidth
-                  >
-                    <Download className="w-5 h-5 mr-2" />
-                    Download your skill
-                  </Button>
+                  {skillContent.trim().length > 0 && !skillContent.startsWith("# Generation Error") && (
+                    <Button
+                      type="button"
+                      onClick={downloadSkill}
+                      variant="primary"
+                      size="xl"
+                      fullWidth
+                    >
+                      <Download className="w-5 h-5 mr-2" />
+                      Download your skill
+                    </Button>
+                  )}
 
                   <div className="bg-darkgray border border-sage/10 rounded-2xl p-8 text-center">
                     <h3 className="font-anton text-2xl uppercase mb-3">

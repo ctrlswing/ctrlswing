@@ -37,6 +37,10 @@ export async function generateMetadata({
   return {
     title: resource.name,
     description: resource.description,
+    openGraph: {
+      title: `${resource.name} — ctrlswing`,
+      description: resource.description,
+    },
   };
 }
 

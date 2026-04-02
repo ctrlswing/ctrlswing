@@ -4,6 +4,11 @@ export const metadata: Metadata = {
   title: "Blog",
   description:
     "Articles about building Claude skills, AI marketing workflows, and automation for marketers and founders.",
+  openGraph: {
+    title: "Blog — ctrlswing",
+    description:
+      "Articles about building Claude skills, AI marketing workflows, and automation for marketers and founders.",
+  },
 };
 
 export default function BlogLayout({
