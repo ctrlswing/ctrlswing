@@ -48,7 +48,7 @@ export default function ResourcesPage() {
         </section>
 
         {/* LEAD MAGNET CALLOUT */}
-        <section className="py-16 px-6 bg-charcoal text-white border-b border-sage/10 relative overflow-hidden">
+        <section className="py-16 md:py-20 px-6 bg-charcoal text-white border-b border-sage/10 relative overflow-hidden">
           <div className="absolute inset-0 bg-[image:var(--background-image-grid-dark)] bg-[size:40px_40px] pointer-events-none" />
           <div className="relative z-10 max-w-7xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-8">
             <div>
@@ -69,7 +69,7 @@ export default function ResourcesPage() {
         {/* TAB BAR + RESOURCE GRID */}
         <section className="py-24 md:py-32 px-6 bg-white border-b border-charcoal/10">
           <div className="max-w-7xl mx-auto">
-            <div className="mb-12">
+            <div className="mb-16">
               <TabBar
                 tabs={tabs}
                 defaultValue="all"

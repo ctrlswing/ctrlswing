@@ -97,7 +97,7 @@ export default async function BlogPostPage({
         </section>
 
         {/* EMAIL CAPTURE */}
-        <section className="py-16 px-6 bg-yellow border-b border-charcoal/10">
+        <section className="py-16 md:py-20 px-6 bg-yellow border-b border-charcoal/10">
           <div className="max-w-xl mx-auto">
             <EmailCapture
               headline="Get new posts directly"
@@ -113,7 +113,7 @@ export default async function BlogPostPage({
         {related.length > 0 && (
           <section className="py-24 md:py-32 px-6 bg-charcoal/[0.03] border-b border-charcoal/10">
             <div className="max-w-3xl mx-auto">
-              <h2 className="font-anton text-4xl uppercase mb-12">
+              <h2 className="font-anton text-4xl uppercase mb-16">
                 More posts
               </h2>
               <div className="space-y-8">
@@ -137,7 +137,7 @@ export default async function BlogPostPage({
         )}
 
         {/* SESSION CTA */}
-        <section className="py-16 px-6 bg-white border-b border-charcoal/10">
+        <section className="py-16 md:py-20 px-6 bg-white border-b border-charcoal/10">
           <div className="max-w-3xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-8">
             <div>
               <h3 className="font-anton text-2xl uppercase mb-2">

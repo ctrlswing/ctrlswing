@@ -88,7 +88,7 @@ export default function BlogPage() {
         </section>
 
         {/* SESSION CTA */}
-        <section className="py-16 px-6 bg-white border-b border-charcoal/10">
+        <section className="py-16 md:py-20 px-6 bg-white border-b border-charcoal/10">
           <div className="max-w-3xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-8">
             <div>
               <h3 className="font-anton text-2xl uppercase mb-2">

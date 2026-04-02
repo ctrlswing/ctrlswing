@@ -41,7 +41,7 @@ export default function BookPage() {
         </section>
 
         {/* WHAT YOU GET */}
-        <section className="py-16 px-6 bg-charcoal text-white border-b border-sage/10 relative overflow-hidden">
+        <section className="py-16 md:py-20 px-6 bg-charcoal text-white border-b border-sage/10 relative overflow-hidden">
           <div className="absolute inset-0 bg-[image:var(--background-image-grid-dark)] bg-[size:40px_40px] pointer-events-none" />
           <div className="relative z-10 max-w-3xl mx-auto">
             <h2 className="font-anton text-3xl uppercase mb-8">
@@ -114,7 +114,7 @@ export default function BookPage() {
         </section>
 
         {/* FALLBACK CTA */}
-        <section className="py-16 px-6 bg-charcoal/[0.03] border-b border-charcoal/10">
+        <section className="py-16 md:py-20 px-6 bg-charcoal/[0.03] border-b border-charcoal/10">
           <div className="max-w-3xl mx-auto text-center">
             <h3 className="font-anton text-3xl uppercase mb-4">
               Not sure yet?

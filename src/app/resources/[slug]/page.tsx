@@ -153,7 +153,7 @@ export default async function ResourcePage({
         </section>
 
         {/* DOWNLOAD CTA */}
-        <section className="py-16 px-6 bg-charcoal text-white border-b border-sage/10 relative overflow-hidden">
+        <section className="py-16 md:py-20 px-6 bg-charcoal text-white border-b border-sage/10 relative overflow-hidden">
           <div className="absolute inset-0 bg-[image:var(--background-image-grid-dark)] bg-[size:40px_40px] pointer-events-none" />
           <div className="relative z-10 max-w-3xl mx-auto">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
@@ -179,7 +179,7 @@ export default async function ResourcePage({
         </section>
 
         {/* SESSION CTA */}
-        <section className="py-16 px-6 bg-white border-b border-charcoal/10">
+        <section className="py-16 md:py-20 px-6 bg-white border-b border-charcoal/10">
           <div className="max-w-3xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-8">
             <div>
               <h3 className="font-anton text-2xl uppercase mb-2">
@@ -200,7 +200,7 @@ export default async function ResourcePage({
         {related.length > 0 && (
           <section className="py-24 md:py-32 px-6 bg-charcoal/[0.03] border-b border-charcoal/10">
             <div className="max-w-7xl mx-auto">
-              <h2 className="font-anton text-4xl uppercase mb-12">
+              <h2 className="font-anton text-4xl uppercase mb-16">
                 Related resources
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

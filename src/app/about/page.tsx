@@ -33,7 +33,7 @@ export default function AboutPage() {
         <section className="py-24 md:py-32 px-6 bg-charcoal text-white border-b border-sage/10 relative overflow-hidden">
           <div className="absolute inset-0 bg-[image:var(--background-image-grid-dark)] bg-[size:40px_40px] pointer-events-none" />
           <div className="relative z-10 max-w-3xl mx-auto">
-            <h2 className="font-anton text-5xl md:text-6xl uppercase leading-[0.9] mb-12">
+            <h2 className="font-anton text-5xl md:text-6xl uppercase leading-[0.9] mb-16">
               Background
             </h2>
             <div className="space-y-6">
@@ -54,7 +54,7 @@ export default function AboutPage() {
         {/* WHAT I DO NOW */}
         <section className="py-24 md:py-32 px-6 bg-white border-b border-charcoal/10">
           <div className="max-w-3xl mx-auto">
-            <h2 className="font-anton text-5xl md:text-6xl uppercase leading-[0.9] mb-12">
+            <h2 className="font-anton text-5xl md:text-6xl uppercase leading-[0.9] mb-16">
               What I do now
             </h2>
             <div className="space-y-6">
@@ -76,7 +76,7 @@ export default function AboutPage() {
         {/* THE TOOLS */}
         <section className="py-24 md:py-32 px-6 bg-charcoal/[0.03] border-b border-charcoal/10">
           <div className="max-w-3xl mx-auto">
-            <h2 className="font-anton text-5xl md:text-6xl uppercase leading-[0.9] mb-12">
+            <h2 className="font-anton text-5xl md:text-6xl uppercase leading-[0.9] mb-16">
               The tools
             </h2>
             <div className="space-y-8">
