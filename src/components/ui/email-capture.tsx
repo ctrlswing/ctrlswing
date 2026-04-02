@@ -80,7 +80,7 @@ export function EmailCapture({
           onChange={(e) => setEmail(e.target.value)}
           className={`flex-1 font-satoshi text-lg px-5 py-4 rounded-lg border transition-colors duration-200 focus:outline-none focus:ring-0 ${
             isDark
-              ? "bg-darkgray border-sage/20 text-white placeholder:text-sage/50 focus:border-yellow"
+              ? "bg-darkgray border-sage/20 text-white placeholder:text-sage/50 hover:border-sage/40 focus:border-yellow"
               : isBrand
                 ? "bg-white border-charcoal/10 text-charcoal placeholder:text-charcoal/40 hover:border-charcoal/20 focus:border-charcoal"
                 : "bg-white border-charcoal/20 text-charcoal placeholder:text-charcoal/40 hover:border-charcoal/40 focus:border-yellow"

@@ -30,7 +30,7 @@ export function ResourceCard({
   return (
     <Link
       href={`/resources/${slug}`}
-      className="group block bg-white border border-charcoal/10 rounded-2xl p-8 hover:shadow-2xl transition-shadow duration-300"
+      className="group block bg-white border border-charcoal/10 rounded-2xl p-8 hover:shadow-2xl hover:-translate-y-1 active:scale-[0.99] transition-all duration-300"
     >
       <div className="flex items-center gap-2 mb-4">
         <span

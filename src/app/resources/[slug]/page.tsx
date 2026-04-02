@@ -208,7 +208,7 @@ export default async function ResourcePage({
                   <Link
                     key={r.slug}
                     href={`/resources/${r.slug}`}
-                    className="group block bg-white border border-charcoal/10 rounded-2xl p-8 hover:shadow-2xl transition-shadow duration-300"
+                    className="group block bg-white border border-charcoal/10 rounded-2xl p-8 hover:shadow-2xl hover:-translate-y-1 active:scale-[0.99] transition-all duration-300"
                   >
                     <span
                       className={`inline-block px-3 py-1 rounded-full text-xs font-satoshi font-medium uppercase tracking-wider ${typeBadgeStyles[r.type]} mb-4`}

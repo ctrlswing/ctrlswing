@@ -15,7 +15,7 @@ export default function AboutPage() {
             <SectionHeader size="large">
               About Jackson
             </SectionHeader>
-            <div className="mt-12 space-y-6">
+            <div className="mt-16 space-y-6">
               <p className="font-satoshi text-xl text-charcoal/80 max-w-2xl">
                 I build AI skills and plugins for marketers, founders, and
                 operators. I&apos;m a Skills/AI mentor in the Vibe Marketers

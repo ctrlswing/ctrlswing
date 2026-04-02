@@ -2,15 +2,16 @@ export function Footer() {
   return (
     <footer className="bg-charcoal text-white py-12 px-6 border-t border-sage/10">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-        <div className="font-satoshi text-sage/80 text-sm">
-          Jackson Dean &middot; ctrlswing &middot; San Diego, CA
+        <div className="font-satoshi text-sage/80 text-sm space-y-1">
+          <p>Jackson Dean &middot; ctrlswing &middot; San Diego, CA</p>
+          <p className="text-sage/50">&copy; {new Date().getFullYear()} ctrlswing</p>
         </div>
         <div className="flex items-center gap-6">
           <a
             href="https://x.com/ctrlswing"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-white hover:text-yellow transition-colors duration-200"
+            className="text-white hover:text-yellow hover:scale-110 transition-all duration-200"
           >
             <span className="sr-only">X (Twitter)</span>
             <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -21,7 +22,7 @@ export function Footer() {
             href="https://www.linkedin.com/in/ctrlswing/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-white hover:text-yellow transition-colors duration-200"
+            className="text-white hover:text-yellow hover:scale-110 transition-all duration-200"
           >
             <span className="sr-only">LinkedIn</span>
             <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -32,7 +33,7 @@ export function Footer() {
             href="https://www.skool.com/vibe-marketers"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-white hover:text-yellow transition-colors duration-200"
+            className="text-white hover:text-yellow hover:scale-110 transition-all duration-200"
           >
             <span className="sr-only">Vibe Marketers</span>
             <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">

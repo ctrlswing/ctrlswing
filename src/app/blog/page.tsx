@@ -66,9 +66,15 @@ export default function BlogPage() {
               </div>
             ) : (
               <div className="text-center py-16">
-                <p className="font-satoshi text-lg text-charcoal/60">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-charcoal/5 mb-6">
+                  <ArrowRight className="w-7 h-7 text-charcoal/30" />
+                </div>
+                <p className="font-satoshi text-lg text-charcoal/60 mb-6">
                   First posts coming soon. Subscribe below to get notified.
                 </p>
+                <Button href="/build" variant="outline" size="lg">
+                  Build a skill while you wait
+                </Button>
               </div>
             )}
           </div>
