@@ -52,7 +52,7 @@ export function ResourceCard({
       </p>
       <span className="inline-flex items-center gap-2 font-satoshi font-medium text-charcoal group-hover:text-yellow transition-colors duration-200">
         View details
-        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
+        <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300" />
       </span>
     </Link>
   );

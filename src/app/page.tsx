@@ -271,7 +271,7 @@ export default function Home() {
               <div className="sticky top-32">
                 <SectionHeader
                   size="large"
-                  subtitle="Whether you want to learn, get hands-on help, or have something built for you."
+                  subtitle="Free skill builder, paid 1:1 sessions, or custom builds. Pick your pace."
                 >
                   Three ways in.
                 </SectionHeader>

@@ -259,7 +259,7 @@ export default function BuildPage() {
                   }
                   placeholder="e.g. Writing ad creative for new product launches based on customer research"
                   rows={4}
-                  className="w-full min-h-[120px] bg-transparent border border-sage/20 rounded-xl p-6 text-white font-satoshi text-lg placeholder:text-sage/50 hover:border-sage/40 focus:border-yellow focus:outline-none focus:ring-0 transition-colors resize-none"
+                  className="w-full min-h-[120px] bg-transparent border border-sage/20 rounded-xl p-6 text-white font-satoshi text-lg placeholder:text-sage/50 hover:border-sage/40 focus:border-yellow focus:shadow-[0_0_0_3px_rgba(255,225,124,0.15)] focus:outline-none focus:ring-0 transition-all resize-none"
                 />
               </div>
 
@@ -306,7 +306,7 @@ export default function BuildPage() {
                   }
                   placeholder="e.g. I spend 30 minutes gathering reviews, then write a brief, then iterate on headlines and body copy manually in a doc"
                   rows={5}
-                  className="w-full min-h-[120px] bg-transparent border border-sage/20 rounded-xl p-6 text-white font-satoshi text-lg placeholder:text-sage/50 hover:border-sage/40 focus:border-yellow focus:outline-none focus:ring-0 transition-colors resize-none"
+                  className="w-full min-h-[120px] bg-transparent border border-sage/20 rounded-xl p-6 text-white font-satoshi text-lg placeholder:text-sage/50 hover:border-sage/40 focus:border-yellow focus:shadow-[0_0_0_3px_rgba(255,225,124,0.15)] focus:outline-none focus:ring-0 transition-all resize-none"
                 />
               </div>
 

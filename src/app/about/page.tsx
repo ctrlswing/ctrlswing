@@ -111,7 +111,10 @@ export default function AboutPage() {
                 </a>
               ))}
             </div>
-            <div className="mt-12">
+            <div className="mt-12 flex flex-wrap gap-4">
+              <Button href="/build" variant="primary" size="lg">
+                Build your first skill
+              </Button>
               <Button href="/resources" variant="outline" size="lg">
                 Browse all resources
               </Button>
