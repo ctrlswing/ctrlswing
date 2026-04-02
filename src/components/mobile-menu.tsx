@@ -42,11 +42,14 @@ export function MobileMenu() {
         className="md:hidden p-2"
         aria-label={open ? "Close menu" : "Open menu"}
         aria-expanded={open}
+        aria-controls="mobile-menu"
       >
         {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
       </button>
 
       <div
+        id="mobile-menu"
+        aria-hidden={!open}
         className={`absolute top-20 left-0 right-0 z-30 md:hidden bg-white border-b border-charcoal/10 px-6 py-6 flex flex-col gap-4 font-satoshi text-lg font-medium shadow-lg transition-all duration-300 origin-top ${
           open
             ? "opacity-100 scale-y-100"
@@ -75,7 +78,7 @@ export function MobileMenu() {
           ABOUT
         </Link>
         <Button
-          href="/start"
+          href="/book"
           variant="primary"
           size="md"
           fullWidth

@@ -18,8 +18,8 @@ export default function NotFound() {
             <Button href="/" variant="primary-inverse">
               Back Home
             </Button>
-            <Button href="/start" variant="primary">
-              Get Started
+            <Button href="/resources" variant="primary">
+              Browse Resources
             </Button>
           </div>
         </div>
