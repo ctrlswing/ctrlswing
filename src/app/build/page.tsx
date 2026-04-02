@@ -406,15 +406,15 @@ export default function BuildPage() {
           {/* STEP 5: Generation + Download */}
           {step === 5 && (
             <div className="flex flex-col w-full animate-[fadeIn_0.3s_ease-in-out]">
-              <div className="mb-8">
+              <div className="mb-8" aria-live="polite">
                 <h2 className="font-anton text-5xl md:text-6xl uppercase leading-[0.9] mb-4">
                   {streamDone
                     ? "Your skill is ready."
                     : "Building your skill..."}
                 </h2>
                 {generating && (
-                  <div className="flex items-center gap-3">
-                    <Loader2 className="w-5 h-5 text-yellow animate-spin" />
+                  <div className="flex items-center gap-3" aria-busy="true">
+                    <Loader2 className="w-5 h-5 text-yellow animate-spin" aria-hidden="true" />
                     <p className="font-satoshi text-lg text-sage">
                       Generating your custom Skill.md...
                     </p>

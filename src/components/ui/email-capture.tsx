@@ -46,9 +46,9 @@ export function EmailCapture({
 
   if (status === "success") {
     return (
-      <div className={`flex items-center gap-3 ${className}`}>
-        <CheckCircle2 className="w-6 h-6 text-yellow shrink-0" />
-        <p className={`font-satoshi text-lg ${isDark ? "text-white" : "text-charcoal"}`} >
+      <div className={`flex items-center gap-3 ${className}`} role="alert" aria-live="polite">
+        <CheckCircle2 className="w-6 h-6 text-yellow shrink-0" aria-hidden="true" />
+        <p className={`font-satoshi text-lg ${isDark ? "text-white" : "text-charcoal"}`}>
           Check your inbox. The walkthrough is on its way.
         </p>
       </div>
@@ -78,6 +78,8 @@ export function EmailCapture({
           placeholder="you@example.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          aria-describedby={status === "error" ? `${id}-error` : undefined}
+          aria-invalid={status === "error"}
           className={`flex-1 font-satoshi text-lg px-5 py-4 rounded-lg border transition-colors duration-200 focus:outline-none focus:ring-0 ${
             isDark
               ? "bg-darkgray border-sage/20 text-white placeholder:text-sage/50 hover:border-sage/40 focus:border-yellow"
@@ -103,7 +105,7 @@ export function EmailCapture({
         </button>
       </form>
       {status === "error" && (
-        <p className="font-satoshi text-sm text-error mb-2">
+        <p id={`${id}-error`} className="font-satoshi text-sm text-error mb-2" role="alert" aria-live="polite">
           Something went wrong. Try again or email jackson@ctrlswing.com directly.
         </p>
       )}
