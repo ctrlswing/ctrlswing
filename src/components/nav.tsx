@@ -4,12 +4,19 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 
+const navLinks = [
+  { href: "#work", label: "WORK" },
+  { href: "#pricing", label: "PRICING" },
+  { href: "#faq", label: "FAQ" },
+];
+
 export function Nav() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
+    if (!open) return;
     function onKeyDown(e: KeyboardEvent) {
-      if (e.key === "Escape" && open) setOpen(false);
+      if (e.key === "Escape") setOpen(false);
     }
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
@@ -25,24 +32,15 @@ export function Nav() {
           CTRLSWING<span className="text-yellow">.</span>
         </Link>
         <div className="hidden md:flex items-center gap-8 font-satoshi text-sm font-medium">
-          <a
-            href="#work"
-            className="hover:text-yellow transition-colors duration-200"
-          >
-            WORK
-          </a>
-          <a
-            href="#pricing"
-            className="hover:text-yellow transition-colors duration-200"
-          >
-            PRICING
-          </a>
-          <a
-            href="#faq"
-            className="hover:text-yellow transition-colors duration-200"
-          >
-            FAQ
-          </a>
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className="hover:text-yellow transition-colors duration-200"
+            >
+              {link.label}
+            </a>
+          ))}
         </div>
         <div className="flex items-center gap-4">
           <Link
@@ -62,30 +60,18 @@ export function Nav() {
         </div>
       </div>
 
-      {/* Mobile menu */}
       {open && (
         <div className="md:hidden bg-white border-b border-charcoal/10 px-6 py-6 flex flex-col gap-4 font-satoshi text-lg font-medium shadow-lg">
-          <a
-            href="#work"
-            onClick={() => setOpen(false)}
-            className="py-2 hover:text-yellow transition-colors"
-          >
-            WORK
-          </a>
-          <a
-            href="#pricing"
-            onClick={() => setOpen(false)}
-            className="py-2 hover:text-yellow transition-colors"
-          >
-            PRICING
-          </a>
-          <a
-            href="#faq"
-            onClick={() => setOpen(false)}
-            className="py-2 hover:text-yellow transition-colors"
-          >
-            FAQ
-          </a>
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              onClick={() => setOpen(false)}
+              className="py-2 hover:text-yellow transition-colors"
+            >
+              {link.label}
+            </a>
+          ))}
         </div>
       )}
     </nav>

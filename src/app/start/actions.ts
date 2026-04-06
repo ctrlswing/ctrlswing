@@ -1,40 +1,8 @@
 "use server";
 
-type LeadData = {
-  currentStatus: string;
-  needs: string[];
-  timeline: string;
-  name: string;
-  businessName: string;
-  businessDesc: string;
-  location: string;
-  email: string;
-  phone: string;
-  website: string; // honeypot field
-};
+import { type LeadFormData, statusLabels, needsLabels, timelineLabels } from "./constants";
 
-const statusLabels: Record<string, string> = {
-  zero: "Starting from zero",
-  have_website: "Has a website, not converting",
-  running_some: "Running some marketing",
-  ready_upgrade: "Ready to upgrade everything",
-};
-
-const needsLabels: Record<string, string> = {
-  website: "Website",
-  email: "Email/SMS",
-  ads: "Paid Ads",
-  seo: "SEO",
-  all: "The Full System",
-};
-
-const timelineLabels: Record<string, string> = {
-  yesterday: "Yesterday (URGENT)",
-  this_month: "This month",
-  exploring: "Just exploring",
-};
-
-export async function submitLead(data: LeadData) {
+export async function submitLead(data: LeadFormData) {
   // Honeypot check — bots fill hidden fields, real users don't
   if (data.website) {
     return { success: true }; // silently accept to not tip off bot

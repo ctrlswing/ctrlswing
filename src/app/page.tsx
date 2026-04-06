@@ -176,7 +176,7 @@ export default function Home() {
 
       <main id="main" className="flex-1 pt-20">
         {/* HERO */}
-        <section aria-label="Overview" className="relative bg-[image:var(--background-image-grid-light)] bg-[size:40px_40px] py-24 md:py-32 px-6 flex flex-col items-center text-center overflow-hidden border-b border-charcoal/10">
+        <section aria-label="Overview" className="relative bg-grid-light py-24 md:py-32 px-6 flex flex-col items-center text-center overflow-hidden border-b border-charcoal/10">
           <div className="inline-flex items-center gap-2 border border-charcoal/20 bg-white px-4 py-1.5 rounded-full mb-10 shadow-sm">
             <span className="w-2 h-2 rounded-full bg-yellow animate-pulse" />
             <span className="text-xs font-bold tracking-widest uppercase">
@@ -234,7 +234,7 @@ export default function Home() {
         <section className="w-full flex flex-col lg:flex-row">
           {/* Problem */}
           <div className="w-full lg:w-1/2 bg-charcoal text-white p-12 md:p-24 border-b lg:border-b-0 lg:border-r border-sage/10 relative overflow-hidden">
-            <div className="absolute inset-0 bg-[image:var(--background-image-grid-dark)] bg-[size:40px_40px] pointer-events-none" />
+            <div className="absolute inset-0 bg-grid-dark pointer-events-none" />
             <div className="relative z-10">
               <h2 className="font-anton text-5xl md:text-6xl uppercase leading-[0.9] mb-16">
                 THE OLD WAY
@@ -280,7 +280,7 @@ export default function Home() {
 
           {/* Solution */}
           <div className="w-full lg:w-1/2 bg-darkgray text-white p-12 md:p-24 border-l-4 border-yellow relative overflow-hidden">
-            <div className="absolute inset-0 bg-[image:var(--background-image-grid-dark)] bg-[size:40px_40px] pointer-events-none" />
+            <div className="absolute inset-0 bg-grid-dark pointer-events-none" />
             <div className="relative z-10">
               <h2 className="font-anton text-5xl md:text-6xl uppercase leading-[0.9] mb-16 text-yellow">
                 THE BETTER WAY
@@ -380,7 +380,7 @@ export default function Home() {
         <section
           id="pricing"
           aria-label="Pricing"
-          className="py-24 md:py-32 px-6 bg-[image:var(--background-image-grid-light)] bg-[size:40px_40px] border-b border-charcoal/10"
+          className="py-24 md:py-32 px-6 bg-grid-light border-b border-charcoal/10"
         >
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-20">

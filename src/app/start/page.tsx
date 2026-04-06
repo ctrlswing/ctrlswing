@@ -6,36 +6,18 @@ import Image from "next/image";
 import { Zap, Check, CheckCircle2, ArrowLeft } from "lucide-react";
 import { track } from "@vercel/analytics";
 import { submitLead } from "./actions";
-
-type FormData = {
-  currentStatus: string;
-  needs: string[];
-  timeline: string;
-  name: string;
-  businessName: string;
-  businessDesc: string;
-  location: string;
-  email: string;
-  phone: string;
-  website: string; // honeypot — bots fill this, humans don't see it
-};
-
-const initialFormData: FormData = {
-  currentStatus: "",
-  needs: [],
-  timeline: "",
-  name: "",
-  businessName: "",
-  businessDesc: "",
-  email: "",
-  location: "",
-  phone: "",
-  website: "",
-};
+import {
+  type LeadFormData,
+  initialFormData,
+  statusOptions,
+  needsOptions,
+  timelineOptions,
+  contactFields,
+} from "./constants";
 
 export default function StartPage() {
   const [step, setStep] = useState(1);
-  const [formData, setFormData] = useState<FormData>(initialFormData);
+  const [formData, setFormData] = useState<LeadFormData>(initialFormData);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
 
@@ -101,7 +83,7 @@ export default function StartPage() {
 
   return (
     <div className="min-h-screen bg-charcoal text-white font-satoshi relative">
-      <div className="absolute inset-0 bg-[image:var(--background-image-grid-dark)] bg-[size:40px_40px] pointer-events-none" />
+      <div className="absolute inset-0 bg-grid-dark pointer-events-none" />
 
       {/* Header */}
       <header className="relative z-20 w-full flex items-center justify-between p-6 md:px-12 md:py-8">
@@ -156,25 +138,7 @@ export default function StartPage() {
               </div>
 
               <div className="space-y-4 mb-8">
-                {[
-                  {
-                    value: "zero",
-                    label: "Starting from zero. No website, no marketing yet.",
-                  },
-                  {
-                    value: "have_website",
-                    label:
-                      "Have a website, but it's not bringing in customers.",
-                  },
-                  {
-                    value: "running_some",
-                    label: "Running some marketing, but it could be better.",
-                  },
-                  {
-                    value: "ready_upgrade",
-                    label: "Ready to upgrade everything.",
-                  },
-                ].map((option) => (
+                {statusOptions.map((option) => (
                   <label
                     key={option.value}
                     className={`group relative block cursor-pointer rounded-xl border p-6 transition-all duration-300 ${
@@ -238,81 +202,66 @@ export default function StartPage() {
               </div>
 
               <div className="space-y-4 mb-10">
-                {[
-                  { value: "website", label: "A website that actually converts" },
-                  {
-                    value: "email",
-                    label: "Email and SMS that keep customers coming back",
-                  },
-                  {
-                    value: "ads",
-                    label: "Paid ads that bring in new customers",
-                  },
-                  {
-                    value: "seo",
-                    label: "SEO so people can find you on Google",
-                  },
-                ].map((option) => (
-                  <label
-                    key={option.value}
-                    className={`group relative flex cursor-pointer items-center justify-between rounded-xl border p-6 transition-all duration-300 ${
-                      formData.needs.includes(option.value)
-                        ? "border-yellow bg-darkgray border-l-4"
-                        : "border-sage/10 bg-charcoal/50 hover:border-sage/40 hover:bg-darkgray"
-                    }`}
-                  >
-                    <span className="font-satoshi text-lg text-white font-medium pr-4">
-                      {option.label}
-                    </span>
-                    <input
-                      type="checkbox"
-                      className="sr-only"
-                      checked={formData.needs.includes(option.value)}
-                      onChange={() => toggleNeed(option.value)}
-                    />
-                    <div
-                      className={`h-6 w-6 shrink-0 rounded-md border flex items-center justify-center transition-colors ${
-                        formData.needs.includes(option.value)
-                          ? "border-yellow bg-yellow"
-                          : "border-sage/30"
+                {needsOptions.map((option) => {
+                  const isSelected = formData.needs.includes(option.value);
+                  return (
+                    <label
+                      key={option.value}
+                      className={`group relative flex cursor-pointer items-center justify-between rounded-xl border p-6 transition-all duration-300 ${
+                        isSelected
+                          ? "border-yellow bg-darkgray border-l-4"
+                          : "border-sage/10 bg-charcoal/50 hover:border-sage/40 hover:bg-darkgray"
                       }`}
                     >
-                      {formData.needs.includes(option.value) && (
-                        <Check className="w-4 h-4 text-charcoal" />
-                      )}
-                    </div>
-                  </label>
-                ))}
+                      <span className="font-satoshi text-lg text-white font-medium pr-4">
+                        {option.label}
+                      </span>
+                      <input
+                        type="checkbox"
+                        className="sr-only"
+                        checked={isSelected}
+                        onChange={() => toggleNeed(option.value)}
+                      />
+                      <div
+                        className={`h-6 w-6 shrink-0 rounded-md border flex items-center justify-center transition-colors ${
+                          isSelected ? "border-yellow bg-yellow" : "border-sage/30"
+                        }`}
+                      >
+                        {isSelected && <Check className="w-4 h-4 text-charcoal" />}
+                      </div>
+                    </label>
+                  );
+                })}
 
-                {/* All of it */}
-                <label
-                  className={`group relative flex cursor-pointer items-center justify-between rounded-xl border-2 p-6 transition-all duration-300 ${
-                    formData.needs.includes("all")
-                      ? "border-yellow bg-yellow/10 border-l-4"
-                      : "border-yellow/20 bg-yellow/5 hover:border-yellow/50 hover:bg-yellow/10"
-                  }`}
-                >
-                  <span className="font-satoshi text-lg text-yellow font-bold pr-4">
-                    All of it. The whole system.
-                  </span>
-                  <input
-                    type="checkbox"
-                    className="sr-only"
-                    checked={formData.needs.includes("all")}
-                    onChange={() => toggleNeed("all")}
-                  />
-                  <div
-                    className={`h-6 w-6 shrink-0 rounded-md border flex items-center justify-center transition-colors ${
-                      formData.needs.includes("all")
-                        ? "border-yellow bg-yellow"
-                        : "border-yellow/50"
-                    }`}
-                  >
-                    {formData.needs.includes("all") && (
-                      <Check className="w-4 h-4 text-charcoal" />
-                    )}
-                  </div>
-                </label>
+                {(() => {
+                  const isAllSelected = formData.needs.includes("all");
+                  return (
+                    <label
+                      className={`group relative flex cursor-pointer items-center justify-between rounded-xl border-2 p-6 transition-all duration-300 ${
+                        isAllSelected
+                          ? "border-yellow bg-yellow/10 border-l-4"
+                          : "border-yellow/20 bg-yellow/5 hover:border-yellow/50 hover:bg-yellow/10"
+                      }`}
+                    >
+                      <span className="font-satoshi text-lg text-yellow font-bold pr-4">
+                        All of it. The whole system.
+                      </span>
+                      <input
+                        type="checkbox"
+                        className="sr-only"
+                        checked={isAllSelected}
+                        onChange={() => toggleNeed("all")}
+                      />
+                      <div
+                        className={`h-6 w-6 shrink-0 rounded-md border flex items-center justify-center transition-colors ${
+                          isAllSelected ? "border-yellow bg-yellow" : "border-yellow/50"
+                        }`}
+                      >
+                        {isAllSelected && <Check className="w-4 h-4 text-charcoal" />}
+                      </div>
+                    </label>
+                  );
+                })()}
               </div>
 
               <button
@@ -370,10 +319,7 @@ export default function StartPage() {
                   </div>
                 </label>
 
-                {[
-                  { value: "this_month", label: "This month" },
-                  { value: "exploring", label: "Just exploring for now" },
-                ].map((option) => (
+                {timelineOptions.map((option) => (
                   <label
                     key={option.value}
                     className={`group relative block cursor-pointer rounded-xl border p-6 transition-all duration-300 ${
@@ -445,50 +391,7 @@ export default function StartPage() {
               </div>
 
               <div className="space-y-6 mb-12">
-                {[
-                  {
-                    key: "name" as const,
-                    label: "Your name",
-                    placeholder: "Your name",
-                    type: "text",
-                    required: true,
-                  },
-                  {
-                    key: "businessName" as const,
-                    label: "Business name",
-                    placeholder: "Business name",
-                    type: "text",
-                    required: true,
-                  },
-                  {
-                    key: "businessDesc" as const,
-                    label: "What does your business do?",
-                    placeholder: "What does your business do?",
-                    type: "text",
-                    required: true,
-                  },
-                  {
-                    key: "location" as const,
-                    label: "Location",
-                    placeholder: "Where is your business based? (city/state)",
-                    type: "text",
-                    required: false,
-                  },
-                  {
-                    key: "email" as const,
-                    label: "Email",
-                    placeholder: "Email",
-                    type: "email",
-                    required: true,
-                  },
-                  {
-                    key: "phone" as const,
-                    label: "Phone",
-                    placeholder: "Phone (optional, but fastest way to reach you)",
-                    type: "tel",
-                    required: false,
-                  },
-                ].map((field) => (
+                {contactFields.map((field) => (
                   <div key={field.key} className="relative">
                     <label
                       htmlFor={field.key}
@@ -572,6 +475,7 @@ export default function StartPage() {
                       src="/case-studies/dtjj.webp"
                       alt="Downtown BJJ website"
                       fill
+                      sizes="(max-width: 768px) 100vw, 448px"
                       className="object-cover object-top"
                     />
                   </div>
