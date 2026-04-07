@@ -52,7 +52,7 @@ export default function ResourcesPage() {
         </section>
 
         {/* RESOURCES */}
-        <section className="py-24 md:py-32 px-6 bg-white border-b border-charcoal/10">
+        <section className="py-24 md:py-32 px-6 bg-charcoal/[0.02] border-b border-charcoal/10">
           <div className="max-w-4xl mx-auto space-y-8">
             {resources.map((resource) => (
               <ResourceCard key={resource.title} {...resource} />

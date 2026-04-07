@@ -28,11 +28,11 @@ export function ResourceCard({
   }
 
   return (
-    <div className="border border-charcoal/10 rounded-xl p-8 md:p-10 hover:shadow-xl transition-shadow duration-300">
+    <div className="bg-white border border-charcoal/10 rounded-xl p-8 md:p-10 shadow-sm hover:shadow-lg hover:border-charcoal/20 transition-all duration-300">
       <h3 className="font-anton text-3xl uppercase leading-[0.9] mb-4">
         {title}
       </h3>
-      <p className="font-satoshi text-charcoal/70 mb-8">{description}</p>
+      <p className="font-satoshi text-charcoal/60 leading-relaxed mb-8">{description}</p>
 
       {status === "success" ? (
         <div className="bg-yellow/10 border border-yellow/30 rounded-lg p-6 text-center">

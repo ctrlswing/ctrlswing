@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Mail } from "lucide-react";
 
 const navLinks = [
   { href: "/workshop", label: "WORKSHOP" },
@@ -42,7 +42,14 @@ export function Nav() {
             </Link>
           ))}
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-5">
+          <Link
+            href="/newsletter"
+            className="hidden md:inline-flex items-center gap-1.5 font-satoshi text-sm font-medium text-yellow hover:text-charcoal transition-colors duration-200 underline underline-offset-4 decoration-yellow/40 hover:decoration-charcoal/40"
+          >
+            <Mail className="w-3.5 h-3.5" />
+            NEWSLETTER
+          </Link>
           <Link
             href="/workshop"
             className="bg-charcoal text-white font-anton uppercase text-lg px-6 py-2 rounded-full hover:bg-yellow hover:text-charcoal transition-all duration-300 hover:scale-105"
@@ -72,6 +79,14 @@ export function Nav() {
               {link.label}
             </Link>
           ))}
+          <Link
+            href="/newsletter"
+            onClick={() => setOpen(false)}
+            className="py-2 inline-flex items-center gap-2 text-yellow hover:text-charcoal transition-colors"
+          >
+            <Mail className="w-4 h-4" />
+            NEWSLETTER
+          </Link>
         </div>
       )}
     </nav>

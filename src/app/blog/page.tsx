@@ -69,21 +69,21 @@ export default function BlogPage() {
         </section>
 
         {/* POSTS GRID */}
-        <section className="py-24 md:py-32 px-6 bg-white">
+        <section className="py-24 md:py-32 px-6 bg-charcoal/[0.02]">
           <div className="max-w-4xl mx-auto">
-            <div className="space-y-0 divide-y divide-charcoal/10">
+            <div className="space-y-6">
               {posts.map((post) => (
                 <article
                   key={post.title}
-                  className="group py-10 first:pt-0 last:pb-0"
+                  className="group bg-white border border-charcoal/10 rounded-xl p-8 md:p-10 shadow-sm hover:shadow-lg hover:border-charcoal/20 hover:-translate-y-0.5 transition-all duration-300"
                 >
-                  <span className="font-satoshi text-xs font-medium uppercase tracking-widest text-charcoal/40 mb-3 block">
+                  <span className="font-satoshi text-xs font-medium uppercase tracking-widest text-charcoal/40 mb-4 block">
                     {post.tag}
                   </span>
                   <h2 className="font-anton text-3xl md:text-4xl uppercase leading-[0.9] mb-3 group-hover:translate-x-1 transition-transform duration-300">
                     {post.title}
                   </h2>
-                  <p className="font-satoshi text-lg text-charcoal/70 mb-3">
+                  <p className="font-satoshi text-lg text-charcoal/60 mb-4 line-clamp-2">
                     {post.description}
                   </p>
                   <p className="font-satoshi text-sm text-charcoal/40">
@@ -93,7 +93,7 @@ export default function BlogPage() {
               ))}
             </div>
 
-            <div className="mt-20 text-center border border-charcoal/10 rounded-xl p-12">
+            <div className="mt-16 text-center bg-white border border-charcoal/10 rounded-xl p-12 shadow-sm">
               <p className="font-satoshi text-lg text-charcoal/60 mb-4">
                 Posts are on the way. Want to know when they drop?
               </p>
