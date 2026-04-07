@@ -75,8 +75,8 @@ export default function Home() {
             Book a Workshop Seat
           </Link>
           <p className="font-satoshi text-xs md:text-sm text-charcoal/60 max-w-md">
-            $500/seat. 5 seats per session. You bring a workflow, you leave with
-            a working skill.
+            $200/seat. 10 seats per session. One afternoon. Bring a workflow.
+            Build a skill. Leave with it running.
           </p>
         </section>
 
@@ -170,8 +170,8 @@ export default function Home() {
 
               <div className="space-y-6 mb-12">
                 {[
-                  "$500 per seat",
-                  "5 seats per session (small group, hands-on)",
+                  "$200 per seat",
+                  "10 seats per session",
                   "Monthly sessions",
                   "Next date: TBD",
                 ].map((item) => (
@@ -307,8 +307,8 @@ export default function Home() {
               Stop reading about skills. Start building them.
             </h2>
             <p className="font-satoshi text-xl md:text-2xl text-charcoal/80 max-w-2xl mx-auto mb-12">
-              Next workshop is limited to 5 seats. Bring your workflow, leave
-              with a working skill. $500.
+              10 seats per session. One afternoon. Bring a workflow, build a
+              skill, leave with it running. $200.
             </p>
             <div className="max-w-md mx-auto bg-charcoal p-3 md:p-4 rounded-2xl shadow-2xl transition-transform duration-300 hover:scale-105 mb-6">
               <Link

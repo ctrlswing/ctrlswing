@@ -75,7 +75,7 @@ export async function submitWorkshopBooking(data: {
       { name: "Email", value: data.email, inline: true },
       { name: "Business", value: data.business },
     ],
-    footer: "ctrlswing.com/workshop — $500 seat",
+    footer: "ctrlswing.com/workshop — $200 seat",
   });
 }
 

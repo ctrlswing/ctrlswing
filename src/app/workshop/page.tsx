@@ -7,7 +7,7 @@ import { WorkshopForm } from "@/components/workshop-form";
 export const metadata: Metadata = {
   title: "Workshop",
   description:
-    "Build your first agent skill in one hands-on session. $500/seat, 5 seats, monthly. Bring a workflow, leave with a working skill.",
+    "Build your first agent skill in one hands-on session. $200/seat, 10 seats, monthly. Bring a workflow. Build a skill. Leave with it running.",
 };
 
 const whoItsFor = [
@@ -60,9 +60,9 @@ export default function WorkshopPage() {
               Not a webinar. Not a lecture. You build something real.
             </p>
             <div className="flex flex-wrap justify-center gap-6 font-satoshi text-sm font-medium text-charcoal/60 uppercase tracking-wider">
-              <span>$500/seat</span>
+              <span>$200/seat</span>
               <span className="text-charcoal/30">&bull;</span>
-              <span>5 seats max</span>
+              <span>10 seats</span>
               <span className="text-charcoal/30">&bull;</span>
               <span>Monthly</span>
               <span className="text-charcoal/30">&bull;</span>
@@ -132,17 +132,17 @@ export default function WorkshopPage() {
             {/* Pricing side */}
             <div className="p-12 md:p-24 flex flex-col justify-center">
               <h2 className="font-anton text-5xl md:text-6xl uppercase leading-[0.9] mb-8">
-                <span className="text-yellow">$500</span> per seat.
+                <span className="text-yellow">$200</span> per seat.
               </h2>
               <p className="font-satoshi text-lg text-sage/80 mb-10 max-w-lg">
-                Small group. Hands-on. You bring a workflow, you leave with a
-                working skill. No upsells, no subscription, no catch.
+                One afternoon. Bring a workflow. Build a skill. Leave with it
+                running. No upsells, no subscription, no catch.
               </p>
 
               <div className="space-y-4 mb-10">
                 {[
-                  "One live session (approx. 2-3 hours)",
-                  "5 seats max per session for real attention",
+                  "Single session, 2-3 hours, one afternoon",
+                  "10 seats per session",
                   "Your own working skill by the end",
                   "Recording of your session",
                   "Follow-up support via email",

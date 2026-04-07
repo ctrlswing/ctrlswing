@@ -94,7 +94,7 @@ export function WorkshopForm() {
         disabled={status === "loading"}
         className="w-full bg-yellow text-charcoal font-anton uppercase text-xl py-5 rounded-xl hover:bg-white transition-colors duration-300 disabled:bg-yellow/50 disabled:text-charcoal/50 disabled:cursor-not-allowed"
       >
-        {status === "loading" ? "Sending..." : "Reserve My Seat — $500"}
+        {status === "loading" ? "Sending..." : "Reserve My Seat — $200"}
       </button>
 
       {status === "error" && (

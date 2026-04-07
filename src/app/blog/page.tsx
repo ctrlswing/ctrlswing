@@ -41,7 +41,7 @@ const posts = [
     tag: "Strategy",
   },
   {
-    title: "The Workshop Format: Why 5 Seats and $500",
+    title: "The Workshop Format: Why 10 Seats and $200",
     description:
       "The thinking behind the workshop structure and why small groups produce better results.",
     tag: "Behind the scenes",
