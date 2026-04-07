@@ -13,28 +13,28 @@ const anton = Anton({
 
 export const metadata: Metadata = {
   title: {
-    default: "CTRLSWING | Your Marketing System, Built in Days",
+    default: "CTRLSWING | Learn to Build Agent Skills That Work",
     template: "%s | CTRLSWING",
   },
   description:
-    "Complete marketing systems for small businesses, built and running in days. Website, email, ads, SEO. No retainers, no mystery pricing. One person builds everything. San Diego and beyond.",
+    "Workshops, free resources, and hands-on support for operators and teams who want to build agent skills. Taught by Jackson Dean, mentor in the VM community (3,200+ members).",
   metadataBase: new URL("https://ctrlswing.com"),
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://ctrlswing.com",
     siteName: "CTRLSWING",
-    title: "Your Entire Marketing System. Built and Running in Days.",
+    title: "Learn to Build Agent Skills That Actually Work",
     description:
-      "Website. Email. Ads. SEO. All of it. Set up, launched, and live before most agencies finish their proposal.",
+      "Workshops, free resources, and hands-on support. Bring a workflow, leave with a working skill.",
   },
   twitter: {
     card: "summary_large_image",
     site: "@ctrlswing",
     creator: "@ctrlswing",
-    title: "Your Entire Marketing System. Built and Running in Days.",
+    title: "Learn to Build Agent Skills That Actually Work",
     description:
-      "Website. Email. Ads. SEO. All of it. Set up, launched, and live before most agencies finish their proposal.",
+      "Workshops, free resources, and hands-on support. Bring a workflow, leave with a working skill.",
   },
   robots: {
     index: true,

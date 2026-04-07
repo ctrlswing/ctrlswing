@@ -5,9 +5,9 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { href: "#work", label: "WORK" },
-  { href: "#pricing", label: "PRICING" },
-  { href: "#faq", label: "FAQ" },
+  { href: "/workshop", label: "WORKSHOP" },
+  { href: "/blog", label: "BLOG" },
+  { href: "/resources", label: "RESOURCES" },
 ];
 
 export function Nav() {
@@ -33,21 +33,21 @@ export function Nav() {
         </Link>
         <div className="hidden md:flex items-center gap-8 font-satoshi text-sm font-medium">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               className="hover:text-yellow transition-colors duration-200"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </div>
         <div className="flex items-center gap-4">
           <Link
-            href="/start"
+            href="/workshop"
             className="bg-charcoal text-white font-anton uppercase text-lg px-6 py-2 rounded-full hover:bg-yellow hover:text-charcoal transition-all duration-300 hover:scale-105"
           >
-            Get Started
+            Book a Seat
           </Link>
           <button
             onClick={() => setOpen(!open)}
@@ -63,14 +63,14 @@ export function Nav() {
       {open && (
         <div className="md:hidden bg-white border-b border-charcoal/10 px-6 py-6 flex flex-col gap-4 font-satoshi text-lg font-medium shadow-lg">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               onClick={() => setOpen(false)}
               className="py-2 hover:text-yellow transition-colors"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </div>
       )}
