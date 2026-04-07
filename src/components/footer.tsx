@@ -49,7 +49,7 @@ export function Footer() {
               href="https://x.com/ctrlswing"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white hover:text-yellow transition-colors duration-200"
+              className="text-white hover:text-yellow hover:scale-110 transition-all duration-200"
             >
               <span className="sr-only">X (Twitter)</span>
               <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -60,7 +60,7 @@ export function Footer() {
               href="https://www.linkedin.com/in/ctrlswing/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white hover:text-yellow transition-colors duration-200"
+              className="text-white hover:text-yellow hover:scale-110 transition-all duration-200"
             >
               <span className="sr-only">LinkedIn</span>
               <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">

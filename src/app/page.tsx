@@ -3,6 +3,8 @@ import { Play, ArrowRight, Users, BookOpen, Zap } from "lucide-react";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { NewsletterForm } from "@/components/newsletter-form";
+import { GridOverlay } from "@/components/ui/grid-overlay";
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
 
 const blogPosts = [
   {
@@ -70,7 +72,7 @@ export default function Home() {
 
           <Link
             href="/workshop"
-            className="inline-flex justify-center items-center bg-yellow text-charcoal font-anton uppercase text-xl md:text-2xl px-10 py-5 rounded-lg hover:bg-charcoal hover:text-white transition-all duration-300 hover:-translate-y-1 shadow-[0_8px_30px_rgb(255,225,124,0.4)] hover:shadow-[0_8px_30px_rgb(23,30,25,0.4)] mb-4"
+            className="inline-flex justify-center items-center bg-yellow text-charcoal font-anton uppercase text-xl md:text-2xl px-10 py-5 rounded-lg hover:bg-charcoal hover:text-white transition-all duration-300 hover:-translate-y-1 shadow-yellow-glow hover:shadow-yellow-glow-hover mb-4"
           >
             Book a Workshop Seat
           </Link>
@@ -98,17 +100,19 @@ export default function Home() {
           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16">
             <div className="lg:col-span-5">
               <div className="sticky top-32">
-                <p className="font-satoshi text-sm font-medium uppercase tracking-widest text-charcoal/50 mb-4">
-                  For the 67% who haven&apos;t tried them yet
-                </p>
-                <h2 className="font-anton text-5xl md:text-6xl uppercase leading-[0.9] mb-6">
-                  Agent skills, explained simply.
-                </h2>
-                <p className="font-satoshi text-lg text-charcoal/70 max-w-sm">
-                  Skills are reusable instructions that tell an AI agent exactly
-                  how to do a specific task. Think of them like saved recipes for
-                  your business.
-                </p>
+                <ScrollReveal>
+                  <p className="font-satoshi text-sm font-medium uppercase tracking-widest text-charcoal/50 mb-4">
+                    For the 67% who haven&apos;t tried them yet
+                  </p>
+                  <h2 className="font-anton text-5xl md:text-6xl uppercase leading-[0.9] mb-6">
+                    Agent skills, explained simply.
+                  </h2>
+                  <p className="font-satoshi text-lg text-charcoal/70 max-w-sm">
+                    Skills are reusable instructions that tell an AI agent exactly
+                    how to do a specific task. Think of them like saved recipes for
+                    your business.
+                  </p>
+                </ScrollReveal>
               </div>
             </div>
 
@@ -129,23 +133,22 @@ export default function Home() {
                   title: "They compound over time",
                   desc: "Start with one skill that handles your weekly reporting. Then add one for writing proposals. Then client onboarding. Each skill you build makes the next one easier.",
                 },
-              ].map((item) => (
-                <div
-                  key={item.title}
-                  className="relative group flex flex-col md:flex-row gap-6 items-start"
-                >
-                  <div className="w-14 h-14 bg-yellow/10 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-yellow/20 transition-colors duration-300">
-                    <item.icon className="w-7 h-7 text-charcoal" />
+              ].map((item, i) => (
+                <ScrollReveal key={item.title} delay={i * 100}>
+                  <div className="relative group flex flex-col md:flex-row gap-6 items-start">
+                    <div className="w-14 h-14 bg-yellow/10 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-yellow/20 transition-colors duration-300">
+                      <item.icon className="w-7 h-7 text-charcoal" />
+                    </div>
+                    <div>
+                      <h3 className="font-anton text-3xl uppercase mb-3 group-hover:translate-x-1 transition-transform duration-300">
+                        {item.title}
+                      </h3>
+                      <p className="font-satoshi text-lg text-charcoal/70 max-w-lg">
+                        {item.desc}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-anton text-3xl uppercase mb-3 group-hover:translate-x-1 transition-transform duration-300">
-                      {item.title}
-                    </h3>
-                    <p className="font-satoshi text-lg text-charcoal/70 max-w-lg">
-                      {item.desc}
-                    </p>
-                  </div>
-                </div>
+                </ScrollReveal>
               ))}
             </div>
           </div>
@@ -154,19 +157,23 @@ export default function Home() {
         {/* THE WORKSHOP OFFER */}
         <section className="w-full flex flex-col lg:flex-row">
           <div className="w-full lg:w-1/2 bg-charcoal text-white p-12 md:p-24 relative overflow-hidden">
-            <div className="absolute inset-0 bg-grid-dark pointer-events-none" />
+            <GridOverlay />
             <div className="relative z-10">
-              <p className="font-satoshi text-sm font-medium uppercase tracking-widest text-sage/60 mb-4">
-                The Workshop
-              </p>
-              <h2 className="font-anton text-5xl md:text-6xl uppercase leading-[0.9] mb-8 text-yellow">
-                Build your first skill. In one session.
-              </h2>
-              <p className="font-satoshi text-xl text-sage/80 mb-12 max-w-xl">
-                You bring a real workflow from your business. We turn it into a
-                working agent skill before the session ends. Not a demo. Not a
-                lecture. You leave with something you can use on Monday.
-              </p>
+              <ScrollReveal>
+                <p className="font-satoshi text-sm font-medium uppercase tracking-widest text-sage/60 mb-4">
+                  The Workshop
+                </p>
+                <h2 className="font-anton text-5xl md:text-6xl uppercase leading-[0.9] mb-8 text-yellow">
+                  Build your first skill. In one session.
+                </h2>
+              </ScrollReveal>
+              <ScrollReveal delay={100}>
+                <p className="font-satoshi text-xl text-sage/80 mb-12 max-w-xl">
+                  You bring a real workflow from your business. We turn it into a
+                  working agent skill before the session ends. Not a demo. Not a
+                  lecture. You leave with something you can use on Monday.
+                </p>
+              </ScrollReveal>
 
               <div className="space-y-6 mb-12">
                 {[
@@ -174,33 +181,39 @@ export default function Home() {
                   "10 seats per session",
                   "Monthly sessions",
                   "Next date: TBD",
-                ].map((item) => (
-                  <div key={item} className="flex items-center gap-3">
-                    <div className="w-2 h-2 rounded-full bg-yellow shrink-0" />
-                    <p className="font-satoshi text-lg text-white/90">{item}</p>
-                  </div>
+                ].map((item, i) => (
+                  <ScrollReveal key={item} delay={200 + i * 75}>
+                    <div className="flex items-center gap-3">
+                      <div className="w-2 h-2 rounded-full bg-yellow shrink-0" />
+                      <p className="font-satoshi text-lg text-white/90">{item}</p>
+                    </div>
+                  </ScrollReveal>
                 ))}
               </div>
 
-              <Link
-                href="/workshop"
-                className="inline-flex items-center gap-3 bg-yellow text-charcoal font-anton uppercase text-xl px-8 py-4 rounded-lg hover:bg-white transition-all duration-300 shadow-[0_8px_30px_rgb(255,225,124,0.4)]"
-              >
-                Learn more & book
-                <ArrowRight className="w-5 h-5" />
-              </Link>
+              <ScrollReveal delay={500}>
+                <Link
+                  href="/workshop"
+                  className="inline-flex items-center gap-3 bg-yellow text-charcoal font-anton uppercase text-xl px-8 py-4 rounded-lg hover:bg-white transition-all duration-300 shadow-yellow-glow"
+                >
+                  Learn more & book
+                  <ArrowRight className="w-5 h-5" />
+                </Link>
+              </ScrollReveal>
             </div>
           </div>
 
           <div className="w-full lg:w-1/2 bg-darkgray text-white p-12 md:p-24 border-l-4 border-yellow relative overflow-hidden">
-            <div className="absolute inset-0 bg-grid-dark pointer-events-none" />
+            <GridOverlay />
             <div className="relative z-10">
-              <p className="font-satoshi text-sm font-medium uppercase tracking-widest text-sage/60 mb-4">
-                What you get
-              </p>
-              <h2 className="font-anton text-4xl md:text-5xl uppercase leading-[0.9] mb-12">
-                Not slides. Working skills.
-              </h2>
+              <ScrollReveal>
+                <p className="font-satoshi text-sm font-medium uppercase tracking-widest text-sage/60 mb-4">
+                  What you get
+                </p>
+                <h2 className="font-anton text-4xl md:text-5xl uppercase leading-[0.9] mb-12">
+                  Not slides. Working skills.
+                </h2>
+              </ScrollReveal>
 
               <div className="space-y-10">
                 {[
@@ -216,13 +229,15 @@ export default function Home() {
                     title: "A skill you can actually use",
                     desc: "You walk out with a finished skill that works in Claude Code. Not a prototype. Not a concept. A working tool.",
                   },
-                ].map((item) => (
-                  <div key={item.title} className="flex flex-col gap-2">
-                    <h3 className="font-anton text-2xl uppercase tracking-wide">
-                      {item.title}
-                    </h3>
-                    <p className="font-satoshi text-sage/80">{item.desc}</p>
-                  </div>
+                ].map((item, i) => (
+                  <ScrollReveal key={item.title} delay={100 + i * 100}>
+                    <div className="flex flex-col gap-2">
+                      <h3 className="font-anton text-2xl uppercase tracking-wide">
+                        {item.title}
+                      </h3>
+                      <p className="font-satoshi text-sage/80">{item.desc}</p>
+                    </div>
+                  </ScrollReveal>
                 ))}
               </div>
             </div>
@@ -233,14 +248,16 @@ export default function Home() {
         <section className="py-24 md:py-32 px-6 bg-white border-b border-charcoal/10">
           <div className="max-w-7xl mx-auto">
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-              <div>
-                <p className="font-satoshi text-sm font-medium uppercase tracking-widest text-charcoal/50 mb-4">
-                  From the blog
-                </p>
-                <h2 className="font-anton text-5xl md:text-6xl uppercase leading-[0.9]">
-                  Practical stuff. No fluff.
-                </h2>
-              </div>
+              <ScrollReveal>
+                <div>
+                  <p className="font-satoshi text-sm font-medium uppercase tracking-widest text-charcoal/50 mb-4">
+                    From the blog
+                  </p>
+                  <h2 className="font-anton text-5xl md:text-6xl uppercase leading-[0.9]">
+                    Practical stuff. No fluff.
+                  </h2>
+                </div>
+              </ScrollReveal>
               <Link
                 href="/blog"
                 className="font-satoshi text-sm font-medium text-charcoal/60 hover:text-yellow transition-colors inline-flex items-center gap-2"
@@ -251,24 +268,23 @@ export default function Home() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {blogPosts.map((post) => (
-                <div
-                  key={post.title}
-                  className="group border border-charcoal/10 rounded-xl p-8 hover:shadow-xl transition-shadow duration-300"
-                >
-                  <span className="font-satoshi text-xs font-medium uppercase tracking-widest text-charcoal/40 mb-4 block">
-                    {post.tag}
-                  </span>
-                  <h3 className="font-anton text-2xl uppercase leading-[0.9] mb-4 group-hover:translate-x-1 transition-transform duration-300">
-                    {post.title}
-                  </h3>
-                  <p className="font-satoshi text-charcoal/70">
-                    {post.description}
-                  </p>
-                  <p className="font-satoshi text-sm text-charcoal/40 mt-4">
-                    Coming soon
-                  </p>
-                </div>
+              {blogPosts.map((post, i) => (
+                <ScrollReveal key={post.title} delay={i * 100}>
+                  <div className="group border border-charcoal/10 rounded-xl p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                    <span className="font-satoshi text-xs font-medium uppercase tracking-widest text-charcoal/40 mb-4 block">
+                      {post.tag}
+                    </span>
+                    <h3 className="font-anton text-2xl uppercase leading-[0.9] mb-4 group-hover:translate-x-1 transition-transform duration-300">
+                      {post.title}
+                    </h3>
+                    <p className="font-satoshi text-charcoal/70">
+                      {post.description}
+                    </p>
+                    <p className="font-satoshi text-sm text-charcoal/40 mt-4">
+                      Coming soon
+                    </p>
+                  </div>
+                </ScrollReveal>
               ))}
             </div>
           </div>
@@ -276,19 +292,21 @@ export default function Home() {
 
         {/* NEWSLETTER CTA */}
         <section className="py-24 md:py-32 px-6 bg-charcoal text-white relative overflow-hidden">
-          <div className="absolute inset-0 bg-grid-dark pointer-events-none" />
+          <GridOverlay />
           <div className="relative z-10 max-w-3xl mx-auto text-center">
-            <h2 className="font-anton text-5xl md:text-6xl uppercase leading-[0.9] mb-6">
-              One practical thing, every week.
-            </h2>
-            <p className="font-satoshi text-lg text-sage/80 mb-10 max-w-xl mx-auto">
-              Every week I send one email with one skill, workflow, or idea I
-              actually built and used. No theory. No 10-part threads. Just the
-              thing, and how to use it.
-            </p>
-            <div className="flex justify-center">
-              <NewsletterForm dark />
-            </div>
+            <ScrollReveal>
+              <h2 className="font-anton text-5xl md:text-6xl uppercase leading-[0.9] mb-6">
+                One practical thing, every week.
+              </h2>
+              <p className="font-satoshi text-lg text-sage/80 mb-10 max-w-xl mx-auto">
+                Every week I send one email with one skill, workflow, or idea I
+                actually built and used. No theory. No 10-part threads. Just the
+                thing, and how to use it.
+              </p>
+              <div className="flex justify-center">
+                <NewsletterForm dark />
+              </div>
+            </ScrollReveal>
           </div>
         </section>
 
@@ -303,28 +321,30 @@ export default function Home() {
             </div>
           </div>
           <div className="relative z-10 max-w-4xl mx-auto">
-            <h2 className="font-anton text-6xl md:text-8xl uppercase leading-[0.9] mb-8">
-              Stop reading about skills. Start building them.
-            </h2>
-            <p className="font-satoshi text-xl md:text-2xl text-charcoal/80 max-w-2xl mx-auto mb-12">
-              10 seats per session. One afternoon. Bring a workflow, build a
-              skill, leave with it running. $200.
-            </p>
-            <div className="max-w-md mx-auto bg-charcoal p-3 md:p-4 rounded-2xl shadow-2xl transition-transform duration-300 hover:scale-105 mb-6">
-              <Link
-                href="/workshop"
-                className="block w-full text-center bg-yellow text-charcoal font-anton uppercase text-2xl md:text-3xl px-8 py-6 rounded-xl hover:bg-white transition-all duration-300 shadow-[0_4px_20px_rgb(255,225,124,0.2)]"
-              >
-                Book a Seat
-              </Link>
-            </div>
-            <p className="font-satoshi text-sm font-medium text-charcoal/60">
-              Or grab a free skill from{" "}
-              <Link href="/resources" className="underline hover:text-charcoal transition-colors">
-                /resources
-              </Link>{" "}
-              if you want to try before you buy.
-            </p>
+            <ScrollReveal>
+              <h2 className="font-anton text-6xl md:text-8xl uppercase leading-[0.9] mb-8">
+                Stop reading about skills. Start building them.
+              </h2>
+              <p className="font-satoshi text-xl md:text-2xl text-charcoal/80 max-w-2xl mx-auto mb-12">
+                10 seats per session. One afternoon. Bring a workflow, build a
+                skill, leave with it running. $200.
+              </p>
+              <div className="max-w-md mx-auto bg-charcoal p-3 md:p-4 rounded-2xl shadow-2xl transition-transform duration-300 hover:scale-105 mb-6">
+                <Link
+                  href="/workshop"
+                  className="block w-full text-center bg-yellow text-charcoal font-anton uppercase text-2xl md:text-3xl px-8 py-6 rounded-xl hover:bg-white transition-all duration-300 shadow-yellow-subtle"
+                >
+                  Book a Seat
+                </Link>
+              </div>
+              <p className="font-satoshi text-sm font-medium text-charcoal/60">
+                Or grab a free skill from{" "}
+                <Link href="/resources" className="underline hover:text-charcoal transition-colors">
+                  /resources
+                </Link>{" "}
+                if you want to try before you buy.
+              </p>
+            </ScrollReveal>
           </div>
         </section>
       </main>

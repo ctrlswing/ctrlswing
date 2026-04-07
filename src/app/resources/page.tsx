@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { ResourceCard } from "@/components/resource-card";
+import { WorkshopCta } from "@/components/workshop-cta";
+import { ScrollReveal } from "@/components/ui/scroll-reveal";
 
 export const metadata: Metadata = {
   title: "Free Resources",
@@ -40,45 +41,32 @@ export default function ResourcesPage() {
         {/* HEADER */}
         <section className="py-24 md:py-32 px-6 bg-grid-light border-b border-charcoal/10">
           <div className="max-w-4xl mx-auto">
-            <h1 className="font-anton text-6xl md:text-8xl uppercase leading-[0.9] mb-6">
-              Free skills.
-            </h1>
-            <p className="font-satoshi text-lg md:text-xl text-charcoal/70 max-w-2xl">
-              Three agent skills I built and use regularly. Drop your email and
-              I&apos;ll send them over. No catch, no 14-email drip sequence. Just
-              the skill.
-            </p>
+            <ScrollReveal>
+              <h1 className="font-anton text-6xl md:text-8xl uppercase leading-[0.9] mb-6">
+                Free skills.
+              </h1>
+              <p className="font-satoshi text-lg md:text-xl text-charcoal/70 max-w-2xl">
+                Three agent skills I built and use regularly. Drop your email and
+                I&apos;ll send them over. No catch, no 14-email drip sequence. Just
+                the skill.
+              </p>
+            </ScrollReveal>
           </div>
         </section>
 
         {/* RESOURCES */}
         <section className="py-24 md:py-32 px-6 bg-white border-b border-charcoal/10">
           <div className="max-w-4xl mx-auto space-y-8">
-            {resources.map((resource) => (
-              <ResourceCard key={resource.title} {...resource} />
+            {resources.map((resource, i) => (
+              <ScrollReveal key={resource.title} delay={i * 100}>
+                <ResourceCard {...resource} />
+              </ScrollReveal>
             ))}
           </div>
         </section>
 
         {/* WORKSHOP UPSELL */}
-        <section className="py-24 md:py-32 px-6 bg-charcoal text-white relative overflow-hidden">
-          <div className="absolute inset-0 bg-grid-dark pointer-events-none" />
-          <div className="relative z-10 max-w-3xl mx-auto text-center">
-            <h2 className="font-anton text-5xl md:text-6xl uppercase leading-[0.9] mb-6">
-              Want to build your own?
-            </h2>
-            <p className="font-satoshi text-lg text-sage/80 mb-10 max-w-xl mx-auto">
-              These skills took me 20 minutes each to build. In the workshop, I
-              teach you how to do the same thing with your own workflows.
-            </p>
-            <Link
-              href="/workshop"
-              className="inline-flex items-center bg-yellow text-charcoal font-anton uppercase text-xl px-8 py-4 rounded-lg hover:bg-white transition-all duration-300 shadow-[0_8px_30px_rgb(255,225,124,0.4)]"
-            >
-              Learn about the workshop
-            </Link>
-          </div>
-        </section>
+        <WorkshopCta />
       </main>
 
       <Footer />

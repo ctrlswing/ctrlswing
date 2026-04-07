@@ -28,7 +28,7 @@ export function ResourceCard({
   }
 
   return (
-    <div className="border border-charcoal/10 rounded-xl p-8 md:p-10 hover:shadow-xl transition-shadow duration-300">
+    <div className="border border-charcoal/10 rounded-xl p-8 md:p-10 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
       <h3 className="font-anton text-3xl uppercase leading-[0.9] mb-4">
         {title}
       </h3>
