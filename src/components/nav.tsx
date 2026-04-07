@@ -2,16 +2,18 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { href: "#work", label: "WORK" },
-  { href: "#pricing", label: "PRICING" },
-  { href: "#faq", label: "FAQ" },
+  { href: "/workshop", label: "WORKSHOP" },
+  { href: "/blog", label: "BLOG" },
+  { href: "/resources", label: "RESOURCES" },
 ];
 
 export function Nav() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     if (!open) return;
@@ -21,6 +23,10 @@ export function Nav() {
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
   }, [open]);
+
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50">
@@ -33,21 +39,23 @@ export function Nav() {
         </Link>
         <div className="hidden md:flex items-center gap-8 font-satoshi text-sm font-medium">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
-              className="hover:text-yellow transition-colors duration-200"
+              className={`hover:text-yellow transition-colors duration-200 ${
+                pathname === link.href ? "text-yellow" : ""
+              }`}
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </div>
         <div className="flex items-center gap-4">
           <Link
-            href="/start"
-            className="bg-charcoal text-white font-anton uppercase text-lg px-6 py-2 rounded-full hover:bg-yellow hover:text-charcoal transition-all duration-300 hover:scale-105"
+            href="/workshop"
+            className="hidden sm:inline-block bg-charcoal text-white font-anton uppercase text-lg px-6 py-2 rounded-full hover:bg-yellow hover:text-charcoal transition-all duration-300 hover:scale-105"
           >
-            Get Started
+            Book a Seat
           </Link>
           <button
             onClick={() => setOpen(!open)}
@@ -63,15 +71,22 @@ export function Nav() {
       {open && (
         <div className="md:hidden bg-white border-b border-charcoal/10 px-6 py-6 flex flex-col gap-4 font-satoshi text-lg font-medium shadow-lg">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
-              onClick={() => setOpen(false)}
-              className="py-2 hover:text-yellow transition-colors"
+              className={`py-2 hover:text-yellow transition-colors ${
+                pathname === link.href ? "text-yellow" : ""
+              }`}
             >
               {link.label}
-            </a>
+            </Link>
           ))}
+          <Link
+            href="/workshop"
+            className="bg-charcoal text-white font-anton uppercase text-lg px-6 py-3 rounded-full text-center hover:bg-yellow hover:text-charcoal transition-all duration-300 mt-2"
+          >
+            Book a Seat
+          </Link>
         </div>
       )}
     </nav>

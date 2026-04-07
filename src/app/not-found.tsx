@@ -12,7 +12,7 @@ export default function NotFound() {
             404
           </h1>
           <p className="font-satoshi text-xl text-charcoal/70 mb-10">
-            This page doesn't exist. Let's get you back on track.
+            This page does not exist. Let me get you back on track.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
@@ -22,10 +22,10 @@ export default function NotFound() {
               Back Home
             </Link>
             <Link
-              href="/start"
+              href="/workshop"
               className="bg-yellow text-charcoal font-anton uppercase text-lg px-8 py-3 rounded-lg hover:bg-charcoal hover:text-white transition-all duration-300"
             >
-              Get Started
+              See the Workshop
             </Link>
           </div>
         </div>

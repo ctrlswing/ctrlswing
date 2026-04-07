@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
 export const alt =
-  "CTRLSWING - Your entire marketing system. Built and running in days.";
+  "CTRLSWING - Learn to build agent skills. Hands-on workshops.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -28,7 +28,6 @@ export default async function Image() {
           fontFamily: "Anton",
         }}
       >
-        {/* Logo */}
         <div
           style={{
             display: "flex",
@@ -42,7 +41,6 @@ export default async function Image() {
           <span style={{ color: "#ffe17c" }}>.</span>
         </div>
 
-        {/* Headline */}
         <div
           style={{
             display: "flex",
@@ -58,7 +56,7 @@ export default async function Image() {
               maxWidth: "900px",
             }}
           >
-            YOUR ENTIRE MARKETING SYSTEM. BUILT AND RUNNING IN{" "}
+            I TEACH YOU HOW TO BUILD{" "}
             <span
               style={{
                 color: "#171e19",
@@ -67,7 +65,7 @@ export default async function Image() {
                 transform: "rotate(2deg)",
               }}
             >
-              DAYS
+              AGENT SKILLS
             </span>
             .
           </div>
@@ -79,7 +77,7 @@ export default async function Image() {
               fontWeight: 400,
             }}
           >
-            Website. Email. Ads. SEO. All of it. ctrlswing.com
+            Hands-on workshops for operators, business owners, and teams. ctrlswing.com
           </div>
         </div>
       </div>
